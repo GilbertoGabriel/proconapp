@@ -385,3 +385,12 @@ function efetuarOLogout() {
 	removeCookie("portalunico");
 	goTo("/home");
 }
+
+function showMenu(){
+	if(gD(gI("menu")) == "block" ){
+		sD(gI("menu"),"none");
+	}
+	else{
+		sD(gI("menu"),"block");
+	}
+}

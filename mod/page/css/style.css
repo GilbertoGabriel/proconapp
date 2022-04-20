@@ -106,12 +106,11 @@ a:focus {
 /* HOME PAGE */
 
 .cardsInfo {
-	margin: 10px;
-	padding: 15px;
 	border-radius: 5px;
 	background-color: #ffffff;
 	box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.22);
 	transition: 0.5s;
+
 }
 
 .cardsInfo:hover {
@@ -152,17 +151,20 @@ a:focus {
 	color: #0000ed;
 }
 
+.mudaCor{
+	fill: yellow;
+}
 
 /* --------------------------------------------------------------------- */
 
 /* --------------------------------------------------------------------- */
 /* TABLE PAGE */
 
-#tableProducts{
+#tableProducts {
 	border: 1.5px solid black;
 }
 
-.titleTable{
+.titleTable {
 	color: white;
 	border: 1px solid black;
 }
