@@ -1,52 +1,63 @@
-<!--===================================Pesquisa===================================-->
+
+<!--===================================Pesquisa usando label===================================-->
 <div class="dv-center">
 
     <div class="dv-line">
 
         <div class="dv-colum dv-center dv-horizontal-align-center dv-vertical-align-center">
 
-           <!--  <input class="pesquisar dv-margin-hdpi dv-padding-rigth-mdpi dv-padding-left-mdpi" type="text"
-                id="" name="" autocomplete="off" placeholder="Digite o nome do produto"
-                style=" width: 70%;">
+            <input class="pesquisar dv-margin-hdpi dv-padding-rigth-mdpi dv-padding-left-mdpi" type="text"
+                id="" name="" autocomplete="off" placeholder="Digite o nome do produto..."
+                style=" width: 100%;">
         
         </div>
 
         <div class="dv-colum dv-center dv-horizontal-align-center dv-vertical-align-center">
 
             <input class="pesquisar dv-margin-hdpi dv-padding-rigth-mdpi dv-padding-left-mdpi" type="text"
-                id="" name="" autocomplete="off" placeholder="Digite a  do produto"
-                style=" width: 70%;">
+                id="" name="" autocomplete="off" placeholder="Digite um endereço..."
+                style=" width: 100%;">
         
-        </div> -->
+        </div> 
 
-        <input id="gz-search" class="gz-textbox-mdpi dv-f-l dv-mt-mdpi dv-mr-hdpi dv-mb-mdpi dv-ml-hdpi gz-gray" 
-        type="text" value="@_LAN_SEARCH_FOR"
-        onfocus="emptySearch(this.id);" onblur="showSearch(this.id);">
+        <div class="dv-colum dv-center dv-horizontal-align-center dv-vertical-align-center">
 
-<div id="gz-button-search" class="gz-button dv-f-l dv-mt-mdpi" 
-        onclick="goSearch();">
+            <input class="pesquisar dv-margin-hdpi dv-padding-rigth-mdpi dv-padding-left-mdpi" type="text"
+                id="" name="" autocomplete="off" placeholder="Digite o preço..."
+                style=" width: 100%;">
+        
+        </div> 
 
-    <a href="#" class="gz-tooltip" onclick="return false;">
-
-        <img src="@_ROOT/mod/cms/img/icon/search.png" />
-
-        <span class="gz-span-bottom-right @_THEME">
-
-            @_LAN_SEARCH
-
-        </span>
-
-    </a>
 
 </div>
 
+<!--===================================Pesquisa usando DROPBOX===================================-->
+<div class="dv-center">
 
-        
+    <div class="dv-line">
+
+        <div class="dv-column">
+
+            <for(cards)>
+
+                <gz>@_START_LINE_THREE</gz>
+
+
+                        <select name="select">
+                            <option value="valor1"><gz>cards.nome_categoria</gz></option>
+                          </select>
+
+                    
+       
+                <gz>@_END_LINE_THREE</gz>
+
+                </for>
+
+        </div>
+
     </div>
 
-
 </div>
-
 
 
 
