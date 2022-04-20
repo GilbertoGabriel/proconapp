@@ -1,40 +1,22 @@
-
 <!--===================================Pesquisa usando label===================================-->
 <div class="dv-center" >
 
     <div class="dv-line">
 
-        <div class="dv-padding-mdpi dv-colum dv-center dv-horizontal-align-center dv-vertical-align-center">
+        <div class="dv-column dv-horizontal-align-center dv-margin-mdpi">
 
-            <p class="dv-margin-bottom-hdpi">Nome:</p>
+            <input class="dv-padding-mdpi dv-margin-mdpi dv-radius dv-bold " type="text" id="users.produtos"
+                name="users.produto" autocomplete="off" placeholder="Nome">
 
-			<input class="dv-padding-mdpi dv-margin-bottom-hdpi dv-radius dv-bold" type="text" id="" name="" autocomplete="off">
+            <input class="dv-padding-mdpi dv-margin-mdpi dv-radius dv-bold " type="text" id="users.produtos"
+                name="users.produto" autocomplete="off" placeholder="Categoria">
+
+            <input class="dv-padding-mdpi dv-margin-mdpi dv-radius dv-bold " type="text" id="users.produtos"
+                name="users.produto" autocomplete="off" placeholder="Preço">
 
         </div>
 
-        <div class="dv-padding-mdpi dv-colum dv-center dv-horizontal-align-center dv-vertical-align-center">
-
-            <p class="dv-margin-bottom-hdpi">Endereço:</p>
-
-			<input class="dv-padding-mdpi dv-margin-bottom-hdpi dv-radius dv-bold" type="text" id="" name="" autocomplete="off">
-
-           <!--  <input class="pesquisar dv-margin-hdpi dv-padding-rigth-mdpi dv-padding-left-mdpi" type="text"
-                id="" name="" autocomplete="off" placeholder="Digite um endereço..."
-                style=" width: 100%;"> -->
-        
-        </div> 
-
-        <div class="dv-padding-mdpi dv-colum dv-center dv-horizontal-align-center dv-vertical-align-center">
-            
-            <p class="dv-margin-bottom-hdpi ">Preço:</p>
-
-			<input class="dv-padding-mdpi dv-margin-bottom-hdpi dv-radius dv-bold" type="text" id="" name="" autocomplete="off" placeholder="R$">
-           <!--  <input class="pesquisar dv-margin-hdpi dv-padding-rigth-mdpi dv-padding-left-mdpi" type="text"
-                id="" name="" autocomplete="off" placeholder="Digite o preço..."
-                style=" width: 100%;"> -->
-        
-        </div> 
-
+    </div>
 
 </div>
 </div>
@@ -45,21 +27,22 @@
 
     <div class="dv-line">
 
-    <p class="dv-margin-bottom-hdpi ">Categoria: </p>
+        <div class="dv-column dv-horizontal-align-center">
 
-                        <select class="selectTable">
 
-                            <for(cards)>
-                            <option value="valor"><gz>cards.nome_categoria</gz></option>
-                            </for>
+            <select class="selectTable dv-margin-mdpi">
 
-                        </select>
+                <for(cards)>
+                    <option value="valor">
+                        <gz>cards.nome_categoria</gz>
+                    </option>
+                    </for>
 
-                        <div class="dv-padding-ldpi">
-								
-                            <input type="submit" class="botaoTable dv-padding-mdpi dv-text-align-center dv-radius dv-bold dv-white dv-cursor" value="Procurar">
+            </select>
+            
+            <input type="submit" class="dv-padding-sdpi dv-margin-mdpi dv-text-align-center dv-radius dv-gray-bg dv-bold dv-black dv-cursor" value="Pesquisar">
 
-                        </div>
+                       
 
     </div>
 
@@ -72,7 +55,7 @@
 
     <div class="dv-line">
 
-        
+
 
         <div class="dv-column dv-horizontal-align-center dv-text-align-center">
 
@@ -107,7 +90,7 @@
 
                     </tr>
 
-                </for>
+                    </for>
 
 
             </table>
