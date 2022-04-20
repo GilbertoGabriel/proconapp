@@ -31,27 +31,18 @@
 
 </div>
 
-<!--===================================Pesquisa usando DROPBOX===================================-->
+<!--===================================Pesquisa usando select===================================-->
 <div class="dv-center">
 
     <div class="dv-line">
 
         <div class="dv-column">
 
-            <for(cards)>
-
-                <gz>@_START_LINE_THREE</gz>
-
-
-                        <select name="select">
-                            <option value="valor1"><gz>cards.nome_categoria</gz></option>
+                        <select class="selectTable">
+                            <for(cards)>
+                            <option value="valor"><gz>cards.nome_categoria</gz></option>
+                            </for>
                           </select>
-
-                    
-       
-                <gz>@_END_LINE_THREE</gz>
-
-                </for>
 
         </div>
 
