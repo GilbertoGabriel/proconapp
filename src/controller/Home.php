@@ -18,6 +18,8 @@
 
 		$response["cards"] = $daoFactory->getCardsDao()->read("", "cards.id ASC", true);
 
+		$response["produtos"] = $daoFactory->getProdutosDao()->read("", "produtos.id ASC", true);
+
 
 		$daoFactory->close();
 

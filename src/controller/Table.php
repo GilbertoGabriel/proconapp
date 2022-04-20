@@ -16,7 +16,7 @@
 		$daoFactory->beginTransaction();
 
 		$response["produtos"] = $daoFactory->getProdutosDao()->read("", "produtos.id ASC", true);
-
+		$response["cards"] = $daoFactory->getCardsDao()->read("", "cards.id ASC", true);
 
 		$daoFactory->close();
 		

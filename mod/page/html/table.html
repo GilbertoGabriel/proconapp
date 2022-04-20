@@ -1,6 +1,61 @@
-<div class="dv-center">
+<!--===================================Pesquisa usando label===================================-->
+<div class="dv-center" >
 
     <div class="dv-line">
+
+        <div class="dv-column dv-horizontal-align-center dv-margin-mdpi">
+
+            <input class="dv-padding-mdpi dv-margin-mdpi dv-radius dv-bold " type="text" id="users.produtos"
+                name="users.produto" autocomplete="off" placeholder="Nome">
+
+            <input class="dv-padding-mdpi dv-margin-mdpi dv-radius dv-bold " type="text" id="users.produtos"
+                name="users.produto" autocomplete="off" placeholder="Endereço">
+
+            <input class="dv-padding-mdpi dv-margin-mdpi dv-radius dv-bold " type="text" id="users.produtos"
+                name="users.produto" autocomplete="off" placeholder="Preço">
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+
+<!--===================================Pesquisa usando select===================================-->
+<div class="dv-center" >
+
+    <div class="dv-line">
+
+        <div class="dv-column dv-horizontal-align-center">
+
+
+            <select class="selectTable dv-margin-mdpi">
+
+                <for(cards)>
+                    <option value="valor">
+                        <gz>cards.nome_categoria</gz>
+                    </option>
+                    </for>
+
+            </select>
+            
+            <input type="submit" class="dv-padding-sdpi dv-margin-mdpi dv-text-align-center dv-radius dv-gray-bg dv-bold dv-black dv-cursor" value="Pesquisar">
+
+                       
+
+    </div>
+
+</div>
+
+
+
+<!--===================================Tabela===================================-->
+<div class="dv-center" >
+
+    <div class="dv-line">
+
+
 
         <div class="dv-column dv-horizontal-align-center dv-text-align-center">
 
@@ -35,7 +90,7 @@
 
                     </tr>
 
-                </for>
+                    </for>
 
 
             </table>
@@ -45,4 +100,5 @@
     </div>
 
 
+</div>
 </div>
