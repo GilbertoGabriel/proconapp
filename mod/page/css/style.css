@@ -106,12 +106,11 @@ a:focus {
 /* HOME PAGE */
 
 .cardsInfo {
-	margin-bottom: 15px;
-	/* padding: 100px; */
 	border-radius: 5px;
 	background-color: #ffffff;
 	box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.22);
 	transition: 0.5s;
+
 }
 
 .cardsInfo:hover {
@@ -169,11 +168,11 @@ box-shadow: inset 10px 10px 20px #bababa,
 /* --------------------------------------------------------------------- */
 /* TABLE PAGE */
 
-#tableProducts{
+#tableProducts {
 	border: 1.5px solid black;
 }
 
-.titleTable{
+.titleTable {
 	color: white;
 	border: 1px solid black;
 }
