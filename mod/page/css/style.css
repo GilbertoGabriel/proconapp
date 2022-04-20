@@ -173,6 +173,7 @@ box-shadow: inset 10px 10px 20px #bababa,
 .selectTable{
 	border: 1.5px solid black;
 	width: 50%;
+
 }
 #tableProducts {
 	border: 1.5px solid black;
@@ -182,7 +183,9 @@ box-shadow: inset 10px 10px 20px #bababa,
 	color: white;
 	border: 1px solid black;
 }
-
+.botaoTable{
+	background-color: #12295d;
+}
 /* --------------------------------------------------------------------- */
 /**
  * Id
