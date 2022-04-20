@@ -109,7 +109,8 @@ a:focus {
 	margin-bottom: 15px;
 	padding: 30px;
 	border-radius: 5px;
-	background-color: #ffffff;
+	background-color: #fafafa;
+	border-bottom: 2px solid #12295d;
 	box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.22);
 	transition: 0.5s;
 	display: flex;
@@ -124,7 +125,7 @@ a:focus {
 	box-shadow: 0px 14px 23px -8px #000000;
 }
 
-.imgCards{
+.imgCards {
 	width: 150px;
 	height: 150px;
 	display: flex;
@@ -137,7 +138,7 @@ a:focus {
 	-moz-filter: hue-rotate(210deg);
 }
 
-.menu{
+.menu {
 	margin: 10px;
 }
 
@@ -159,12 +160,12 @@ a:focus {
 }
 
 
-.suporte {
+.suporte{
 	width: 95%;
 	height: 85%;
 }
 
-.footer-img {
+.footer-img{
 	width: 60%;
 }
 
@@ -173,24 +174,20 @@ a:focus {
 	color: #0000ed;
 }
 
-.pesquisar{
+#pesquisa {
 	background-color: #12295d;
 	border: 2px solid #0000ed;
-	height: 3rem;
 	color: white;
 }
 
-.pesquisar:focus{
+#pesquisa:focus {
 	outline-width: 0px !important;
 }
 
-.pesquisar:hover{
+#pesquisar:hover {
 	border: 2px solid #0000ed;
 }
 
-.lupa{
-	background-image: url("@_ROOT/mod/page/img/icon/search.svg");
-}
 /* --------------------------------------------------------------------- */
 
 /* --------------------------------------------------------------------- */
