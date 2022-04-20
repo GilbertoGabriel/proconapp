@@ -190,15 +190,13 @@ text-decoration: underline;
 .selectTable{
 	border: 1.5px solid black;
 	width: 50%;
-
-#tableProducts {
-	border: 1.5px solid black;
 }
 
 .titleTable {
 	color: white;
 	border: 1px solid black;
 }
+
 .botaoTable{
 	background-color: #12295d;
 }
