@@ -387,10 +387,9 @@ function efetuarOLogout() {
 }
 
 function showMenu(){
-	if(gD(gI("menu")) == "block" ){
-		sD(gI("menu"),"none");
-	}
-	else{
-		sD(gI("menu"),"block");
+	if(gD(gI("menu")) == "block"){
+		sD(gI("menu"), "none")
+	}else{
+		sD(gI("menu"), "block")
 	}
 }
