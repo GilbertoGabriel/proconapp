@@ -105,6 +105,10 @@ a:focus {
 /* --------------------------------------------------------------------- */
 /* HOME PAGE */
 
+.search-icon {
+	filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(105%) contrast(103%);
+}
+
 .cardsInfo {
 	margin-bottom: 15px;
 	padding: 30px;
