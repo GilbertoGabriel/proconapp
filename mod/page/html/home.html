@@ -1,80 +1,31 @@
 <div class="dv-center">
 
-        <for(cards)>
+    <div class="dv-line dv-horizontal-align-center dv-vertical-align-center">
 
-            <gz>@_START_LINE_THREE</gz>
+        <div class="dv-column">
 
-                <div class="dv-column-three-side cardsInfo">
+            <for(cards)>
 
-                    <img class="dv-padding-ldpi" src="@_ROOT/res/img/mdpi/<gz>cards.foto</gz>">
-                    <p class="dv-text-align-center" style="color: #0000ed; font-size: 30px;"><gz>cards.nome_categoria</gz></p>
-          
+                <gz>@_START_LINE_THREE</gz>
+
+                <div class="dv-column-three-center cardsInfo">
+
+
+                <img class="dv-svg-mdpi" src="@_ROOT/res/doc/<gz>cards.foto</gz>">
+
+                    <p class="dv-text-align-center title">
+                        <gz>cards.nome_categoria</gz>
+                    </p>
+
                 </div>
 
-            <gz>@_END_LINE_THREE</gz>
+                <gz>@_END_LINE_THREE</gz>
 
-        </for>
+                </for>
 
-<!--
-==========================Formulário==========================  
--->
-					<div class="dv-margin-bottom-hdpi dv-overflow-auto">
+        </div>
 
-						<table>
-						
-							<tr class="dv-text-align-left dv-border-bottom">
+    </div>
 
-								<th class="dv-padding-top-mdpi dv-padding-right-mdpi dv-padding-bottom-mdpi dv-padding-left-hdpi dv-gray">Nome</th>
-								
-								<th class="dv-padding-mdpi dv-gray">Marca</th>
-
-                                <th class="dv-padding-mdpi dv-gray">Categoria</th>
-								
-								<th class="dv-padding-top-mdpi dv-padding-right-hdpi dv-padding-bottom-mdpi dv-padding-left-mdpi dv-text-align-right dv-gray">Preço</th>
-								
-							</tr>
-							
-							<tr id="1" class="dv-border-bottom dv-cursor dv-seletectable" onclick="getSelectedLineExample(this);">
-							
-								<td class="dv-padding-top-mdpi dv-padding-right-mdpi dv-padding-bottom-mdpi dv-padding-left-hdpi"><gz>produtos.produto</gz></td>
-								
-                                <td class="dv-padding-mdpi"><gz>produtos.marca</gz></td>
-
-								<td class="dv-padding-mdpi"><gz>produtos.categoria</gz></td>
-								
-								<td class="dv-padding-top-mdpi dv-padding-right-hdpi dv-padding-bottom-mdpi dv-padding-left-mdpi dv-text-align-right">lorem.ipsum@wtag.com.br</td>
-								
-							</tr>
-							
-							<tr id="2" class="dv-border-bottom dv-cursor dv-seletectable" onclick="getSelectedLineExample(this);">
-							
-								<td class="dv-padding-top-mdpi dv-padding-right-mdpi dv-padding-bottom-mdpi dv-padding-left-hdpi">Lorem ipsum</td>
-								
-                                <td class="dv-padding-mdpi">lorem</td>
-
-								<td class="dv-padding-mdpi">lorem</td>
-								
-								<td class="dv-padding-top-mdpi dv-padding-right-hdpi dv-padding-bottom-mdpi dv-padding-left-mdpi dv-text-align-right">lorem.ipsum@wtag.com.br</td>
-								
-							</tr>
-
-                            <tr id="3" class="dv-border-bottom dv-cursor dv-seletectable" onclick="getSelectedLineExample(this);">
-							
-								<td class="dv-padding-top-mdpi dv-padding-right-mdpi dv-padding-bottom-mdpi dv-padding-left-hdpi">Lorem ipsum</td>
-								
-                                <td class="dv-padding-mdpi">lorem</td>
-
-								<td class="dv-padding-mdpi">lorem</td>
-								
-								<td class="dv-padding-top-mdpi dv-padding-right-hdpi dv-padding-bottom-mdpi dv-padding-left-mdpi dv-text-align-right">lorem.ipsum@wtag.com.br</td>
-								
-							</tr>
-						
-	
-							
-						</table>
-						
-					</div>				
 
 </div>
-   

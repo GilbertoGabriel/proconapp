@@ -102,43 +102,75 @@ a:focus {
 	outline-width: 0px !important;
 }
 
+/* --------------------------------------------------------------------- */
+/* HOME PAGE */
+
 .cardsInfo {
 	margin: 10px;
 	padding: 15px;
 	border-radius: 5px;
 	background-color: #ffffff;
-	box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+	box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.22);
 	transition: 0.5s;
 }
 
 .cardsInfo:hover {
 	transform: translateY(-5px);
-    cursor: pointer;
+	cursor: pointer;
 
-	box-shadow: 7px 7px 13px 0px rgba(17, 17, 17, 0.7);
+	box-shadow: 7px 7px 13px 0px rgba(66, 66, 66, 0.7);
 }
 
 .blue {
 	background-color: #12295d;
 }
 
-.link:hover{
-	text-decoration: underline;
+.link:hover {
+	background-color: white;
+	color: black;
+	border-radius: 10rem;
+	padding-left: 7px;
+	padding-right: 10px;
+	transition: 0.3s;
 }
 
 .white-procon {
+	width: 80%;
+}
+
+.suporte {
+	width: 95%;
+	height: 85%;
+}
+
+.footer-img {
 	width: 60%;
 }
 
-.suporte{
-	width: 30px;
-	height: 30px;
-	fill: white;
+.title {
+	font-size: 30px;
+	color: #0000ed;
 }
 
-.footer-img{
-	width: 40%;
+
+/* --------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------- */
+/* TABLE PAGE */
+
+#tableProducts{
+	border: 1.5px solid black;
 }
+
+.titleTable{
+	color: white;
+	border: 1px solid black;
+}
+
+/* --------------------------------------------------------------------- */
+
+
+
 /**
  * Id
  */

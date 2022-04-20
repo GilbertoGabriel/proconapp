@@ -90,7 +90,7 @@
 			$cards->setNome_categoria(logicNull($request["cards.nome_categoria"]));
 			
 			if (isset($_FILES["upload"])) {
-				$upload = new getz\Upload($_FILES["upload"], 1200);
+				$upload = new getz\Upload($_FILES["upload"], 0);
 				$cards->setFoto($upload->getName());
 			} else 
 				$cards->setFoto("");
@@ -158,13 +158,10 @@
 			$daoFactory->close();
 				
 			if (isset($_FILES["upload"])) {
-				if ($cardsDao[0]["cards.foto"] != "") {	
-					unlink($_DOCUMENT_ROOT . "/res/img/ldpi/" . $cardsDao[0]["cards.foto"]);
-					unlink($_DOCUMENT_ROOT . "/res/img/mdpi/" . $cardsDao[0]["cards.foto"]);
-					unlink($_DOCUMENT_ROOT . "/res/img/hdpi/" . $cardsDao[0]["cards.foto"]);
-				}
-				
-				$upload = new getz\Upload($_FILES["upload"], 1200);
+				if ($cardsDao[0]["cards.foto"] != "")
+					unlink($_DOCUMENT_ROOT . "/res/doc/" . $cardsDao[0]["cards.foto"]);
+			
+				$upload = new getz\Upload($_FILES["upload"], 0);
 				$cards->setFoto($upload->getName());
 			} else 
 				$cards->setFoto($cardsDao[0]["cards.foto"]);
@@ -209,14 +206,11 @@
 			for ($i = 0; $i < sizeof($lines); $i++) {
 				$where = "cards.id = " . $lines[$i];
 				
-				$cardsDao = $daoFactory->getCardsDao()->read($where, "", false);
-				
-				if ($cardsDao[0]["cards.foto"] != "") {	
-					unlink($_DOCUMENT_ROOT . "/res/img/ldpi/" . $cardsDao[0]["cards.foto"]);
-					unlink($_DOCUMENT_ROOT . "/res/img/mdpi/" . $cardsDao[0]["cards.foto"]);
-					unlink($_DOCUMENT_ROOT . "/res/img/hdpi/" . $cardsDao[0]["cards.foto"]);
-				}
-				
+			$cardsDao = $daoFactory->getCardsDao()->read($where, "", false);
+			
+			if ($cardsDao[0]["cards.foto"] != "")
+				unlink($_DOCUMENT_ROOT . "/res/doc/" . $cardsDao[0]["cards.foto"]);
+			
 				$resultDao = $daoFactory->getCardsDao()->delete($where);
 				$result = !$result ? false : (!$resultDao ? false : true);
 			}
@@ -387,7 +381,7 @@
 					 * Upload File
 					 */
 					if (isset($_FILES["upload"])) {
-						$upload = new getz\Upload($_FILES["upload"], 1200);
+						$upload = new getz\Upload($_FILES["upload"], 0);
 						$cards->setFoto($upload->getName());
 					} else 
 						$cards->setFoto("");
@@ -439,16 +433,13 @@
 					 * Upload File
 					 */
 					if (isset($_FILES["upload"])) {
-						if ($cardsDao[0]["cards.foto"] != "") {	
-							/*
-							 * Unlink
-							 */
-							unlink($_DOCUMENT_ROOT . "/res/img/ldpi/" . $cardsDao[0]["cards.foto"]); 
-							unlink($_DOCUMENT_ROOT . "/res/img/mdpi/" . $cardsDao[0]["cards.foto"]);
-							unlink($_DOCUMENT_ROOT . "/res/img/hdpi/" . $cardsDao[0]["cards.foto"]);
-						}
+						/*
+						 * Unlink
+						 */
+						if ($cardsDao[0]["cards.foto"] != "")
+							unlink($_DOCUMENT_ROOT . "/res/doc/" . $cardsDao[0]["cards.foto"]);
 						
-						$upload = new getz\Upload($_FILES["upload"], 1200);
+						$upload = new getz\Upload($_FILES["upload"], 0);
 						$cards->setFoto($upload->getName());
 					} else 
 						$cards->setFoto($cardsDao[0]["cards.foto"]);
@@ -496,11 +487,8 @@
 						 */
 						$cardsDao = $daoFactory->getCardsDao()->read($where, "", false);
 						
-						if ($cardsDao[0]["cards.foto"] != "") {	
-							unlink($_DOCUMENT_ROOT . "/res/img/ldpi/" . $cardsDao[0]["cards.foto"]);
-							unlink($_DOCUMENT_ROOT . "/res/img/mdpi/" . $cardsDao[0]["cards.foto"]);
-							unlink($_DOCUMENT_ROOT . "/res/img/hdpi/" . $cardsDao[0]["cards.foto"]);
-						}
+						if ($cardsDao[0]["cards.foto"] != "")
+							unlink($_DOCUMENT_ROOT . "/res/doc/" . $cardsDao[0]["cards.foto"]);
 						
 						$resultDao = $daoFactory->getCardsDao()->delete($where);
 						$result = !$result ? false : (!$resultDao ? false : true);

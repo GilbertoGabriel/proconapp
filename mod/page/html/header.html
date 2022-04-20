@@ -1,101 +1,150 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-	<head>
-		
-		<title>@_TITLE</title>
-		
-		<meta http-equiv="content-type" content="text/html; charset=utf-8">
-		
-		<meta http-equiv="content-language" content="pt-br">
-		
-		<meta name="title" content="@_TITLE">
-		
-		<meta name="description" content="@_DESCRIPTION">
-		
-	  	<meta name="keywords" content="@_KEYWORDS">
-		
-		<meta name="author" content="Wtag">
-		
-		<meta name="generator" content="Getz Framework">
-		
-		<meta name="robots" content="@_ROBOTS">
-		
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<link rel="icon" href="@_ROOT/mod/page/img/icon.svg" height="16">
-		
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
-		
-		<link rel="stylesheet" href="@_ROOT/res/css/divmon-1.0.0.css">
-		
-		<link rel="stylesheet" href="@_ROOT@_PACKAGE/css/style.css">
-		
-		<script charset="UTF-8" src="@_ROOT/res/js/divmon-1.0.0.js"></script>
-		
-		<script charset="UTF-8" src="@_ROOT@_PACKAGE/js/ext.js"></script>		
-		
-		<script charset="UTF-8" src="@_ROOT@_PACKAGE/js/handler.js"></script>		
+<head>
 
-	</head>
-	
-	<body>
+	<title>@_TITLE</title>
 
-		<div class="blue">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 
+	<meta http-equiv="content-language" content="pt-br">
+
+	<meta name="title" content="@_TITLE">
+
+	<meta name="description" content="@_DESCRIPTION">
+
+	<meta name="keywords" content="@_KEYWORDS">
+
+	<meta name="author" content="Wtag">
+
+	<meta name="generator" content="Getz Framework">
+
+	<meta name="robots" content="@_ROBOTS">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="icon" href="@_ROOT/mod/page/img/icon.svg" height="16">
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
+
+	<link rel="stylesheet" href="@_ROOT/res/css/divmon-1.0.0.css">
+
+	<link rel="stylesheet" href="@_ROOT@_PACKAGE/css/style.css">
+
+	<script charset="UTF-8" src="@_ROOT/res/js/divmon-1.0.0.js"></script>
+
+	<script charset="UTF-8" src="@_ROOT@_PACKAGE/js/ext.js"></script>
+
+	<script charset="UTF-8" src="@_ROOT@_PACKAGE/js/handler.js"></script>
+
+</head>
+
+<body>
+
+	<div class="blue">
+
+
+		<div class="dv-screen">
 			<div class="dv-line">
-		
+
 				<div class="dv-column-three dv-horizontal-align-left">
-	
+
 					<img class="white-procon" src="@_ROOT/mod/page/img/white-procon.png" alt="">
 
 				</div>
 
 				<div class="dv-colum dv-center dv-horizontal-align-center dv-vertical-align-center">
-		
-					<div class="dv-line">
 
-						<div class="dv-column">
-							<p class="dv-white">Pesquisar:</p>
-							<input class="dv-radius pesquisar" type="text" id="users.nick" name="users.nick" autocomplete="off" style="width: 550px;">
-						</div>
+					<input class="pesquisar dv-margin-hdpi dv-padding-rigth-mdpi dv-padding-left-mdpi" type="text"
+						id="users.nick" name="users.nick" autocomplete="off" placeholder="Pesquisar"
+						style=" width: 70%;">
 
-					</div>
-					
-		
 				</div>
-	
+
 			</div>
-		
 		</div>
 
-		<div style="background-color: #2484cd;">
+		<div class="dv-mobile">
+			<div class="dv-line">
+
+				<div class="dv-column-three dv-horizontal-align-center dv-vertical-align-center">
+
+					<img class="white-procon" src="@_ROOT/mod/page/img/white-procon.png" alt="">
+
+				</div>
+
+				<div class="dv-colum dv-center dv-horizontal-align-center dv-vertical-align-center">
+
+					<input class="pesquisar dv-margin-hdpi dv-padding-rigth-mdpi dv-padding-left-mdpi" type="text"
+						id="users.nick" name="users.nick" autocomplete="off" placeholder="Pesquisar"
+						style=" width: 70%;">
+
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	<div style="background-color: #2484cd;">
+
+
+		<div class="dv-mobile">
 
 			<div class="dv-line">
-		
-				<div class="dv-column dv-horizontal-align-left"> 
+
+				<div class="dv-column dv-horizontal-align-left dv-horizontal-align-center dv-vertical-align-center">
 
 					<ul class="dv-margin-mdpi">
 
-						<a href="#" class="dv-margin-hdpi">
+						<a href="/proconapp" class="dv-margin-ldpi">
+							<li class="link dv-margin-ldpi dv-white">HOME</li>
+						</a>
+
+						<a href="/proconapp/table" class="dv-margin-ldpi">
+							<li class="link dv-margin-ldpi dv-white">PRODUTO</li>
+						</a>
+
+						<a href="#" class="dv-margin-ldpi">
+							<li class="link dv-margin-ldpi dv-white">CATEGORIA</li>
+						</a>
+
+					</ul>
+
+				</div>
+
+			</div>
+
+
+		</div>
+
+
+		<div class="dv-screen">
+			<div class="dv-line">
+
+				<div class="dv-column dv-horizontal-align-left">
+
+					<ul class="dv-margin-mdpi">
+
+						<a href="/proconapp" class="dv-margin-ldpi">
 							<li class="link dv-margin-ldpi dv-display-inline dv-white">HOME</li>
 						</a>
 
-						<a href="#" class="dv-margin-hdpi">
+						<a href="/proconapp/table" class="dv-margin-ldpi">
 							<li class="link dv-margin-ldpi dv-display-inline dv-white">PRODUTO</li>
 						</a>
 
-						<a href="#" class="dv-margin-hdpi">
+						<a href="#" class="dv-margin-ldpi">
 							<li class="link dv-margin-ldpi dv-display-inline dv-white">CATEGORIA</li>
 						</a>
 
 					</ul>
-		
+
 				</div>
-				
-				
-			
+
 			</div>
-		
-			
+
 		</div>
+
+	</div>

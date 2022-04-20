@@ -29,7 +29,7 @@
 	 */ 
 	$fields = array("id" => "integer",
 			"nome_categoria" => "string32",
-			"foto" => "photo",
+			"foto" => "upload",
 			"link" => "string32",
 			"cadastrado" => "new",
 			"modificado" => "now"
