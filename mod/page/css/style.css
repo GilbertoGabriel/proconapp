@@ -167,7 +167,10 @@ box-shadow: inset 10px 10px 20px #bababa,
 
 /* --------------------------------------------------------------------- */
 /* TABLE PAGE */
-
+.selectTable{
+	border: 1.5px solid black;
+	width: 50%;
+}
 #tableProducts {
 	border: 1.5px solid black;
 }
@@ -185,3 +188,5 @@ box-shadow: inset 10px 10px 20px #bababa,
 /*
  * Class
  */
+
+
