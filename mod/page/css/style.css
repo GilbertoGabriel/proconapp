@@ -109,8 +109,8 @@ a:focus {
 	margin-bottom: 15px;
 	padding: 30px;
 	border-radius: 5px;
-	background-color: #fafafa;
-	border-bottom: 1px solid #12295d;
+	background-color: #f6f6f6;
+	border-bottom: 3px solid #1c3c89;
 	box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.22);
 	transition: 0.5s;
 	display: flex;
@@ -118,11 +118,21 @@ a:focus {
 	flex-direction: column;
 }
 
-.cardsInfo:hover {
-	transform: translateY(-5px);
+.cardsInfo:hover{
+	transform: translateY(-1px);
 	cursor: pointer;
-	-webkit-box-shadow: 0px 14px 23px -8px #000000;
-	box-shadow: 0px 14px 23px -8px #000000;
+	-webkit-box-shadow: 0px 7px 22px -10px #000000; 
+	box-shadow: 0px 7px 22px -10px #000000;
+}
+
+.cardsInfo:hover > .imgCards{
+	-webkit-transform: scale(1.1);
+   transform: scale(1.1);
+}
+
+.cardsInfo:hover > .title{
+	-webkit-transform: scale(0.9);
+   transform: scale(0.9);
 }
 
 .imgCards {
@@ -130,12 +140,7 @@ a:focus {
 	height: 150px;
 	display: flex;
 	align-items: center;
-}
-
-.filter {
-	filter: hue-rotate(210deg);
-	-webkit-filter: hue-rotate(210deg);
-	-moz-filter: hue-rotate(210deg);
+	transition: 0.5s;
 }
 
 .menu {
@@ -147,45 +152,17 @@ a:focus {
 }
 
 .link:hover {
-	background-color: white;
-	color: black;
-	border-radius: 10rem;
-	padding-left: 7px;
-	padding-right: 10px;
-	transition: 0.3s;
+text-decoration: underline;
 }
 
 .white-procon {
 	width: 80%;
 }
 
-
-.suporte{
-	width: 95%;
-	height: 85%;
-}
-
-
-
-.footer-img{
-	width: 60%;
-}
-
-
-/* FOOTER MOBILE */
-.footer-img-mobile{
-	width: 40%;
-}
-.suporte-mobile{
-	width: 65%;
-	height: 60%;
-}
-/* --------------- */
-
-
 .title {
 	font-size: 30px;
 	color: #0000ed;
+	transition: 0.5s;
 }
 
 #pesquisa {
@@ -217,6 +194,30 @@ a:focus {
 }
 
 /* --------------------------------------------------------------------- */
+
+/* FOOTER */
+.suporte{
+	width: 95%;
+	height: 85%;
+}
+
+
+.footer-img{
+	width: 60%;
+}
+
+
+/* FOOTER MOBILE */
+.footer-img-mobile{
+	width: 40%;
+}
+.suporte-mobile{
+	width: 65%;
+	height: 60%;
+}
+/* --------------------------------------------------------------------- */
+/* --------------- */
+
 /**
  * Id
  */

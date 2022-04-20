@@ -1,29 +1,61 @@
 <div class="dv-center">
+    <div class="dv-screen">
 
-    <div class="dv-line">
+        <div class="dv-line">
 
-        <div class="dv-column">
-
-            <for(cards)>
-
-                <gz>@_START_LINE_THREE</gz>
-
-                    <div class="dv-column-three dv-position-relative cardsInfo">
-
-                        <img class="dv-blue imgCards" src="@_ROOT/res/doc/<gz>cards.foto</gz>">
-
-                        <p class="dv-text-align-center title">
-                            <gz>cards.nome_categoria</gz>
-                        </p>
-
-                    </div>
-       
-                <gz>@_END_LINE_THREE</gz>
-
-                </for>
-
+            <div class="dv-column">
+    
+                <for(cards)>
+    
+                    <gz>@_START_LINE_THREE</gz>
+    
+                        <div class="dv-column-three dv-position-relative cardsInfo">
+    
+                            <img class="dv-blue imgCards" src="@_ROOT/res/doc/<gz>cards.foto</gz>">
+    
+                            <p class="dv-text-align-center title">
+                                <gz>cards.nome_categoria</gz>
+                            </p>
+    
+                        </div>
+           
+                    <gz>@_END_LINE_THREE</gz>
+    
+                    </for>
+    
+            </div>
+    
         </div>
 
     </div>
+   
+    <div class="dv-mobile">
 
+        <div class="dv-line">
+
+            <div class="dv-column">
+    
+                <for(cards)>
+    
+                    <gz>@_START_LINE_THREE</gz>
+    
+                        <div class="dv-column-three dv-position-relative dv-margin-hdpi cardsInfo">
+    
+                            <img class="dv-blue imgCards" src="@_ROOT/res/doc/<gz>cards.foto</gz>">
+    
+                            <p class="dv-text-align-center title">
+                                <gz>cards.nome_categoria</gz>
+                            </p>
+    
+                        </div>
+           
+                    <gz>@_END_LINE_THREE</gz>
+    
+                    </for>
+    
+            </div>
+    
+        </div>
+
+    </div>
 </div>
