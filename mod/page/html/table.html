@@ -1,48 +1,169 @@
-<div class="dv-center">
+<!--===================================Pesquisa usando label===================================-->
 
-    <div class="dv-line">
+<div class="dv-screen">
 
-        <div class="dv-column dv-horizontal-align-center dv-text-align-center">
+    <div class="dv-center">
 
-            <table id="tableProducts" class="dv-margin-mdpi" style="margin-left: 0; margin-right:0px; max-width: 95%;">
-                <tr>
-                    <th class="titleTable blue">Produto</th>
-                    <th class="titleTable blue">Categoria</th>
-                    <th class="titleTable blue">Marca</th>
-                </tr>
+        <div class="dv-line">
 
-                <for(produtos)>
+            <div class="dv-column dv-margin-mdpi">
 
-                    <tr class="dv-border">
+                <h1>Filtro de pesquisa:</h1>
 
-                        <td class="dv-text-align-center">
+            </div>
+            
+        </div>
+        <div class="dv-line">
 
-                            <gz>produtos.produto</gz>
+            <div class="dv-column dv-horizontal-align-center dv-margin-mdpi">
 
-                        </td>
+                <input class="dv-padding-mdpi dv-margin-mdpi dv-radius dv-bold searchBox" type="text" id="users.produtos"
+                    name="users.produto" autocomplete="off" placeholder="Nome" style="margin-left: 0;">
 
-                        <td class="dv-text-align-center">
+                <input class="dv-padding-mdpi dv-margin-mdpi  dv-radius dv-bold searchBox" type="text" id="users.produtos"
+                    name="users.produto" autocomplete="off" placeholder="Endereço">
 
-                            <gz>categorias.categoria</gz>
+                <input class="dv-padding-mdpi dv-margin-mdpi  dv-radius dv-bold searchBox" type="text" id="users.produtos"
+                    name="users.produto" autocomplete="off" placeholder="Preço">
 
-                        </td>
-
-                        <td class="dv-text-align-center">
-
-                            <gz>marcas.marca</gz>
-
-                        </td>
-
-                    </tr>
-
-                </for>
-
-
-            </table>
+            </div>
 
         </div>
 
     </div>
 
+</div>
 
+<div class="dv-mobile">
+
+    <div class="dv-line">
+
+        <div class="dv-column dv-margin-mdpi">
+
+            <h1>Filtro de pesquisa:</h1>
+
+        </div>
+    </div>
+    
+    <div class="dv-center">
+
+        <div class="dv-line">
+
+            <div class="dv-column dv-horizontal-align-center dv-margin-mdpi">
+
+                <input class="dv-padding-mdpi dv-radius dv-bold searchBox" type="text" id="produtos"
+                    name="users.produto" autocomplete="off" placeholder="Nome">
+
+            </div>
+
+        </div>
+
+
+        <div class="dv-line">
+
+            <div class="dv-column dv-horizontal-align-center dv-margin-mdpi">
+
+                <input class="dv-padding-mdpi dv-radius dv-bold searchBox" type="text" id="enderecos"
+                    name="users.produto" autocomplete="off" placeholder="Endereço">
+
+            </div>
+
+        </div>
+
+
+        <div class="dv-line">
+
+            <div class="dv-column dv-horizontal-align-center dv-margin-mdpi">
+
+                <input class="dv-padding-mdpi dv-radius dv-bold searchBox" type="text" id="precos"
+                    name="users.produto" autocomplete="off" placeholder="Preço">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<!--===================================Pesquisa usando select===================================-->
+<div class="dv-center">
+
+    <div class="dv-line">
+
+        <div class="dv-column dv-horizontal-align-center">
+
+            <select class="selectTable searchBox dv-text-align-center dv-margin-mdpi" onChange="getValue(this.value)" id="cards.name">
+
+                <for(cards)>
+                    <option value="<gz>cards.nome_categoria</gz>">
+                        <gz>cards.nome_categoria</gz>
+                    </option>
+                </for>
+
+            </select>
+
+            <input onclick="getSearch()" type="submit"
+                class="dv-padding-sdpi dv-margin-mdpi dv-text-align-center dv-radius dv-gray-bg dv-bold dv-black dv-cursor"
+                value="Pesquisar">
+
+        </div>
+
+    </div>
+</div>
+
+
+    <!--===================================Tabela===================================-->
+    <div class="dv-center">
+
+        <div class="dv-line">
+
+            <div class="dv-column dv-horizontal-align-center dv-text-align-center">
+
+                <table id="tableProducts" class="dv-margin-mdpi"
+                    style="margin-left: 0; margin-right:0px; max-width: 95%;">
+                    <tr>
+                        <th class="titleTable blue">Produto</th>
+                        <th class="titleTable blue">Categoria</th>
+                        <th class="titleTable blue">Marca</th>
+                    </tr>
+
+                    <for(produtos)>
+
+                        <tr class="dv-border">
+
+                            <td class="dv-text-align-center">
+
+                                <gz>produtos.produto</gz>
+
+                            </td>
+
+                            <td class="dv-text-align-center">
+
+                                <gz>categorias.categoria</gz>
+
+                            </td>
+
+                            <td class="dv-text-align-center">
+
+                                <gz>marcas.marca</gz>
+
+                            </td>
+
+                        </tr>
+
+                        </for>
+
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+    </div>
 </div>

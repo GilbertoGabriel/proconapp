@@ -393,3 +393,20 @@ function showMenu(){
 		sD(gI("menu"), "block")
 	}
 }
+
+function getValue(value){
+	var data = {
+		"cards.name" : gV(gI("cards.name")),
+	}
+	console.log(value)
+	console.log(data)
+}
+
+function getSearch(){
+	var data = {
+		"produto" : gV(gI("produtos")),
+		"endereco" : gV(gI("enderecos")),
+		"preco" : gV(gI("precos")),
+	}
+	console.log(data)
+}
