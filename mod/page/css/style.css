@@ -193,10 +193,25 @@ text-decoration: underline;
 	border: 1.5px solid black;
 }
 
+.searchBox:focus{
+	outline-width: 0px !important;
+}
+
+.searchBox:hover{
+	outline-width: 0px !important;
+}
+
 .titleTable {
 	color: white;
 	border: 1px solid black;
 }
+
+.pesquisarLabel:hover{
+	transition: 0.5s;
+	background-color: #12295d;
+	color: white;
+}
+
 
 /* --------------------------------------------------------------------- */
 
