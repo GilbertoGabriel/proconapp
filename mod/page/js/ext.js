@@ -394,11 +394,10 @@ function showMenu(){
 	}
 }
 
-function getValue(value){
+function getValue(){
 	var data = {
 		"cards.name" : gV(gI("cards.name")),
 	}
-	console.log(value)
 	console.log(data)
 }
 

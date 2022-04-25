@@ -15,7 +15,7 @@
         </div>
         <div class="dv-line">
 
-            <div class="dv-column dv-horizontal-align-center dv-margin-mdpi">
+            <div class="dv-column dv-horizontal-align-center dv-margin-mdpi" style="margin-bottom: 0;">
 
                 <input class="dv-padding-mdpi dv-margin-mdpi dv-radius dv-bold searchBox" type="text" id="users.produtos"
                     name="users.produto" autocomplete="off" placeholder="Nome" style="margin-left: 0;">
@@ -96,7 +96,7 @@
 
         <div class="dv-column dv-horizontal-align-center">
 
-            <select class="searchBox dv-text-align-center dv-margin-mdpi" onChange="getValue(this.value)" id="cards.name">
+            <select class="searchBox dv-text-align-center dv-margin-mdpi" onChange="getValue()" id="cards.name">
 
                 <for(cards)>
                     <option value="<gz>cards.nome_categoria</gz>">
@@ -157,13 +157,11 @@
 
                         </for>
 
-
                 </table>
 
             </div>
 
         </div>
-
 
     </div>
 </div>
