@@ -28,7 +28,7 @@
 	 * photo, photoWithPosition, position, upload
 	 */ 
 	$fields = array("id" => "integer",
-			"cadastro" => "datetime",
+			"cadastrado" => "new",
 			"modificado" => "now"
 	);
 				

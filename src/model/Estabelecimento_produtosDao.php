@@ -19,7 +19,7 @@
 		 * Constant variables
 		 */
 		private $create = "INSERT INTO estabelecimento_produtos (
-				cadastro
+				cadastrado
 				, modificado
 				, estabelecimento
 				, produto
@@ -27,7 +27,7 @@
 				
 		public $read = 
 				"estabelecimento_produtos.id AS \"estabelecimento_produtos.id\"
-				, estabelecimento_produtos.cadastro AS \"estabelecimento_produtos.cadastro\"
+				, estabelecimento_produtos.cadastrado AS \"estabelecimento_produtos.cadastrado\"
 				, estabelecimento_produtos.modificado AS \"estabelecimento_produtos.modificado\"
 				, estabelecimento_produtos.estabelecimento AS \"estabelecimento_produtos.estabelecimento\"
 				, estabelecimento_produtos.produto AS \"estabelecimento_produtos.produto\"
@@ -62,7 +62,7 @@
 		 */
 		public function setCreate($estabelecimento_produtos) {		
 			$this->sql = $this->create . " (\"" . 
-					$estabelecimento_produtos->getCadastro() .
+					$estabelecimento_produtos->getCadastrado() .
 					"\", \"" . $estabelecimento_produtos->getModificado() .
 					"\", \"" . $estabelecimento_produtos->getEstabelecimento() .
 					"\", \"" . $estabelecimento_produtos->getProduto() .
@@ -109,7 +109,6 @@
 			
 			$this->sql = $this->update . 
 					" id = \"" . $estabelecimento_produtos->getId() . 
-					"\", cadastro = \"" . $estabelecimento_produtos->getCadastro() . 
 					"\", modificado = \"" . $estabelecimento_produtos->getModificado() . 
 					"\", estabelecimento = \"" . $estabelecimento_produtos->getEstabelecimento() . 
 					"\", produto = \"" . $estabelecimento_produtos->getProduto() . 
@@ -292,7 +291,7 @@
 
 			while ($row = $result->fetch_assoc()) {
 				$this->setResponse($line, "estabelecimento_produtos.id", $row["estabelecimento_produtos.id"]);
-				$this->setResponse($line, "estabelecimento_produtos.cadastro", modelDateTime($row["estabelecimento_produtos.cadastro"]));
+				$this->setResponse($line, "estabelecimento_produtos.cadastrado", modelDateTime($row["estabelecimento_produtos.cadastrado"]));
 				$this->setResponse($line, "estabelecimento_produtos.modificado", modelDateTime($row["estabelecimento_produtos.modificado"]));
 				$this->setResponse($line, "estabelecimento_produtos.estabelecimento", $row["estabelecimento_produtos.estabelecimento"]);
 				$this->setResponse($line, "estabelecimentos.estabelecimento", $row["estabelecimentos.estabelecimento"]);
@@ -357,7 +356,7 @@
 
 			while ($row = $result->fetch_assoc()) {
 				$this->setResponse($size, "estabelecimento_produtos.id", $row["estabelecimento_produtos.id"]);
-				$this->setResponse($size, "estabelecimento_produtos.cadastro", $row["estabelecimento_produtos.cadastro"]);
+				$this->setResponse($size, "estabelecimento_produtos.cadastrado", $row["estabelecimento_produtos.cadastrado"]);
 			
 				if ($row["estabelecimento_produtos.id"] == $selected)
 					$this->setResponse($size, "estabelecimento_produtos.selected", "selected");
@@ -386,7 +385,7 @@
 
 			while ($row = $result->fetch_assoc()) {
 				$this->setResponse($size, "estabelecimento_produtos.id", $row["estabelecimento_produtos.id"]);
-				$this->setResponse($size, "estabelecimento_produtos.cadastro", $row["estabelecimento_produtos.cadastro"]);
+				$this->setResponse($size, "estabelecimento_produtos.cadastrado", $row["estabelecimento_produtos.cadastrado"]);
 				$this->setResponse($size, "estabelecimento_produtos.selected", "selected");
 					
 				$size++;

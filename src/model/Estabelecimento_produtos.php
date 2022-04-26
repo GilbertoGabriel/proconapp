@@ -12,7 +12,7 @@
 	class Estabelecimento_produtos {
 			
 		private $id;
-		private $cadastro;
+		private $cadastrado;
 		private $modificado;
 		private $estabelecimento;
 		private $produto;
@@ -27,12 +27,12 @@
 			return $this->id;
 		}
 					
-		public function setCadastro($cadastro) {
-			$this->cadastro = $cadastro;
+		public function setCadastrado($cadastrado) {
+			$this->cadastrado = $cadastrado;
 		}
 		
-		public function getCadastro() {
-			return $this->cadastro;
+		public function getCadastrado() {
+			return $this->cadastrado;
 		}
 					
 		public function setModificado($modificado) {

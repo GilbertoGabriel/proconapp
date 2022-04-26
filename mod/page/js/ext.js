@@ -410,6 +410,4 @@ function getSearch(){
 
 function searchExample() {
 	goTo("/table/search/" + gV(gI("produtos")));
-
-	// console.log(gV(gI("produtos")))
 }
