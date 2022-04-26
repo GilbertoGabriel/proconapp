@@ -99,9 +99,7 @@ function formExample() {
 /**
  * Go to search page.
  */
-function searchExample() {
-	goTo("/posts/search/" + gV(gI("search")));
-}
+
 
 /*
  * Controller response.
@@ -398,7 +396,7 @@ function getValue(){
 	var data = {
 		"cards.name" : gV(gI("cards.name")),
 	}
-	console.log(data)
+	console.log(data) 		
 }
 
 function getSearch(){
@@ -408,4 +406,10 @@ function getSearch(){
 		"preco" : gV(gI("precos")),
 	}
 	console.log(data)
+}
+
+function searchExample() {
+	goTo("/table/search/" + gV(gI("produtos")));
+
+	// console.log(gV(gI("produtos")))
 }
