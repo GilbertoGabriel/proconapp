@@ -51,7 +51,7 @@
 	$call = "";
 	
 	// Set the column for answer after the call
-	$answer = "";
+	$answer = "estabelecimento_produtos";
 
 	/*
 	 * Builder
