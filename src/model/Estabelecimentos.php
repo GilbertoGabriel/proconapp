@@ -20,7 +20,11 @@
 		private $email;
 		private $cadastrado;
 		private $modificado;
-		private $endereco;
+		private $logradouro;
+		private $bairro;
+		private $numero;
+		private $cidade;
+		private $cep;
 			
 		public function __construct() { }
 			
@@ -96,12 +100,44 @@
 			return $this->modificado;
 		}
 					
-		public function setEndereco($endereco) {
-			$this->endereco = $endereco;
+		public function setLogradouro($logradouro) {
+			$this->logradouro = $logradouro;
 		}
 		
-		public function getEndereco() {
-			return $this->endereco;
+		public function getLogradouro() {
+			return $this->logradouro;
+		}
+					
+		public function setBairro($bairro) {
+			$this->bairro = $bairro;
+		}
+		
+		public function getBairro() {
+			return $this->bairro;
+		}
+					
+		public function setNumero($numero) {
+			$this->numero = $numero;
+		}
+		
+		public function getNumero() {
+			return $this->numero;
+		}
+					
+		public function setCidade($cidade) {
+			$this->cidade = $cidade;
+		}
+		
+		public function getCidade() {
+			return $this->cidade;
+		}
+					
+		public function setCep($cep) {
+			$this->cep = $cep;
+		}
+		
+		public function getCep() {
+			return $this->cep;
 		}
 					
 	}

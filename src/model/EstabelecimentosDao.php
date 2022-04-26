@@ -9,8 +9,6 @@
 	 
 	namespace src\model; 
 	
-	use src\model;
-	
 	class EstabelecimentosDao {
 	
 		private $connection;
@@ -27,7 +25,11 @@
 				, email
 				, cadastrado
 				, modificado
-				, endereco
+				, logradouro
+				, bairro
+				, numero
+				, cidade
+				, cep
 				) VALUES";
 				
 		public $read = 
@@ -40,7 +42,11 @@
 				, estabelecimentos.email AS \"estabelecimentos.email\"
 				, estabelecimentos.cadastrado AS \"estabelecimentos.cadastrado\"
 				, estabelecimentos.modificado AS \"estabelecimentos.modificado\"
-				, estabelecimentos.endereco AS \"estabelecimentos.endereco\"
+				, estabelecimentos.logradouro AS \"estabelecimentos.logradouro\"
+				, estabelecimentos.bairro AS \"estabelecimentos.bairro\"
+				, estabelecimentos.numero AS \"estabelecimentos.numero\"
+				, estabelecimentos.cidade AS \"estabelecimentos.cidade\"
+				, estabelecimentos.cep AS \"estabelecimentos.cep\"
 				";
 				
 		private $update = "UPDATE estabelecimentos SET";
@@ -80,7 +86,11 @@
 					"\", \"" . $estabelecimentos->getEmail() .
 					"\", \"" . $estabelecimentos->getCadastrado() .
 					"\", \"" . $estabelecimentos->getModificado() .
-					"\", \"" . $estabelecimentos->getEndereco() .
+					"\", \"" . $estabelecimentos->getLogradouro() .
+					"\", \"" . $estabelecimentos->getBairro() .
+					"\", \"" . $estabelecimentos->getNumero() .
+					"\", \"" . $estabelecimentos->getCidade() .
+					"\", \"" . $estabelecimentos->getCep() .
 					"\")";
 		}
 		
@@ -96,15 +106,13 @@
 		 * @param {String} order
 		 */
 		public function setRead($where, $order) {
-			$enderecosDao = new model\EnderecosDao($this->connection);
 			
 			$this->setWhere($where);
 			$this->setOrder($order);
 			
-			$this->sql = "SELECT " . $this->read . ", " . $enderecosDao->read . 
-					" FROM " . $this->getFrom() .", " . $enderecosDao->from . 
-					($this->getWhere() == "" ? " WHERE estabelecimentos.endereco = enderecos.id" : $this->getWhere()) . 
-					" AND estabelecimentos.endereco = enderecos.id" . $this->getOrder();
+			$this->sql = "SELECT " . $this->read . " FROM " . $this->getFrom() . 
+					$this->getWhere() . "
+				" . $this->getOrder();
 		}
 		
 		/**
@@ -130,7 +138,11 @@
 					"\", celular2 = \"" . $estabelecimentos->getCelular2() . 
 					"\", email = \"" . $estabelecimentos->getEmail() . 
 					"\", modificado = \"" . $estabelecimentos->getModificado() . 
-					"\", endereco = \"" . $estabelecimentos->getEndereco() . 
+					"\", logradouro = \"" . $estabelecimentos->getLogradouro() . 
+					"\", bairro = \"" . $estabelecimentos->getBairro() . 
+					"\", numero = \"" . $estabelecimentos->getNumero() . 
+					"\", cidade = \"" . $estabelecimentos->getCidade() . 
+					"\", cep = \"" . $estabelecimentos->getCep() . 
 					"\"" . $this->getWhere();
 		}
 		
@@ -322,8 +334,13 @@
 				$this->setResponse($line, "estabelecimentos.email", $row["estabelecimentos.email"]);
 				$this->setResponse($line, "estabelecimentos.cadastrado", modelDateTime($row["estabelecimentos.cadastrado"]));
 				$this->setResponse($line, "estabelecimentos.modificado", modelDateTime($row["estabelecimentos.modificado"]));
-				$this->setResponse($line, "estabelecimentos.endereco", $row["estabelecimentos.endereco"]);
-				$this->setResponse($line, "enderecos.endereco", $row["enderecos.endereco"]);
+				$this->setResponse($line, "estabelecimentos.logradouro", $row["estabelecimentos.logradouro"]);
+				$this->setResponse($line, "estabelecimentos.logradouro.format.json", modelDoubleQuotesJson($row["estabelecimentos.logradouro"]));
+				$this->setResponse($line, "estabelecimentos.bairro", $row["estabelecimentos.bairro"]);
+				$this->setResponse($line, "estabelecimentos.bairro.format.json", modelDoubleQuotesJson($row["estabelecimentos.bairro"]));
+				$this->setResponse($line, "estabelecimentos.numero", $row["estabelecimentos.numero"]);
+				$this->setResponse($line, "estabelecimentos.cidade", $row["estabelecimentos.cidade"]);
+				$this->setResponse($line, "estabelecimentos.cep", $row["estabelecimentos.cep"]);
 			
 				$this->setResponse($line, "estabelecimentos.line", $line);
 			

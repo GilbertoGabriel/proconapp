@@ -115,31 +115,80 @@
 						id="estabelecimentos.email" name="estabelecimentos.email" value="">
 				
 			</div>
-					
-			<!-- Endereco -->
+						
+			<!-- Logradouro -->
 			
 			<div class="gz-block dv-f-l">
 		
-				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Endereco</div> 
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Logradouro</div>
 			
 			</div>
 			
 			<div class="gz-block dv-f-l">
+							
+				<input class="gz-textbox-mdpi dv-f-l dv-mt-ldpi" type="text" 
+						id="estabelecimentos.logradouro" name="estabelecimentos.logradouro" value="">
+				
+			</div>
+						
+			<!-- Bairro -->
 			
-				<select id="estabelecimentos.enderecos" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
-					
-					<for(enderecos)>
-
-						<option value="<gz>enderecos.id</gz>">
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Bairro</div>
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+							
+				<input class="gz-textbox-mdpi dv-f-l dv-mt-ldpi" type="text" 
+						id="estabelecimentos.bairro" name="estabelecimentos.bairro" value="">
+				
+			</div>
 						
-							<gz>enderecos.cep</gz>
+			<!-- Numero -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-ldpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Numero</div>
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+							
+				<input class="gz-textbox-ldpi dv-f-l dv-mt-ldpi gz-integer" type="text" 
+						id="estabelecimentos.numero" name="estabelecimentos.numero" value="">
+				
+			</div>
 						
-						</option>
-
-					</for>
-					
-				</select>
-
+			<!-- Cidade -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-ldpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Cidade</div>
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+							
+				<input class="gz-textbox-ldpi dv-f-l dv-mt-ldpi gz-integer" type="text" 
+						id="estabelecimentos.cidade" name="estabelecimentos.cidade" value="">
+				
+			</div>
+						
+			<!-- Cep -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-ldpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Cep</div>
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+							
+				<input class="gz-textbox-ldpi dv-f-l dv-mt-ldpi gz-cep" type="text" 
+						id="estabelecimentos.cep" name="estabelecimentos.cep" value="">
+				
 			</div>
 
 			<!-- Ok -->

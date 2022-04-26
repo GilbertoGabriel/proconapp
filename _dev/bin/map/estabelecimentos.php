@@ -35,13 +35,18 @@
 			"celular2" => "string16",
 			"email" => "email",
 			"cadastrado" => "new",
-			"modificado" => "now"
+			"modificado" => "now",
+			"logradouro" => "string32",
+			"bairro" => "string32",
+			"numero" => "integer",
+			"cidade" => "integer",
+			"cep" => "cep"
 	);
 				
 	/*
 	 *$fk = array("table" => "field");
 	 */
-	$fk = array("enderecos" => "endereco"
+	$fk = array(
 	);
 			
 	/*
@@ -49,7 +54,7 @@
 	 *
 	 * types: session, base, standard, advanced, autocomplete
 	 */ 
-	$fkFields = array("enderecos" => "standard"
+	$fkFields = array(
 	);
 				
 	// Set the table if this screen call another
