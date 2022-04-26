@@ -94,17 +94,17 @@
 				
 				<tr>
 
-					<th id="produto_precos.id" style="display:none;"
+					<th id="estabelecimento_produtos.id" style="display:none;"
 							onclick="orderBy(this.id);">
 
 						Id
 
 					</th>
 					
-					<th id="produto_precos.produto_preco" style="width:100%;" 
+					<th id="estabelecimento_produtos.cadastro" style="width:100%;" 
 							onclick="orderBy(this.id);">
 							
-						Produto_preco
+						Cadastro
 						
 					</th>
 					
@@ -112,16 +112,16 @@
 				
 				<one(data_not_found)><tr><td colspan="2"><gz>value</gz></td></tr></one>		
 
-				<for(produto_precos)>
+				<for(estabelecimento_produtos)>
 
-					<tr id="<gz>produto_precos.line</gz>" 
-							onMouseOver="onFocus(<gz>produto_precos.line</gz>);" 
-							onMouseOut="outFocus(<gz>produto_precos.line</gz>);" 
-							onclick="selected(<gz>produto_precos.line</gz>);">
+					<tr id="<gz>estabelecimento_produtos.line</gz>" 
+							onMouseOver="onFocus(<gz>estabelecimento_produtos.line</gz>);" 
+							onMouseOut="outFocus(<gz>estabelecimento_produtos.line</gz>);" 
+							onclick="selected(<gz>estabelecimento_produtos.line</gz>);">
 
-						<td style="display:none;"><gz>produto_precos.id</gz></td>
+						<td style="display:none;"><gz>estabelecimento_produtos.id</gz></td>
 
-						<td><gz>produto_precos.produto_preco</gz></td>
+						<td><gz>estabelecimento_produtos.cadastro</gz></td>
 						
 					</tr>
 
@@ -135,19 +135,19 @@
 
 		<div id="gz-footer" class="dv-f-l dv-pt-mdpi dv-pb-mdpi">
 		
-			<one(produto_precos)>
+			<one(estabelecimento_produtos)>
 		
 				<div class="dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-xdpi dv-pt-mdpi">
 				
-					<p><gz>produto_precos.size</gz> @_LAN_ITEMS_PAGE</p>
+					<p><gz>estabelecimento_produtos.size</gz> @_LAN_ITEMS_PAGE</p>
 						
 				</div>
 				
-				<gz>produto_precos.pagination</gz>
+				<gz>estabelecimento_produtos.pagination</gz>
 					
 				<div class="dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-mdpi dv-pt-mdpi">
 			
-					<p>@_LAN_OF <gz>produto_precos.pages</gz></p>
+					<p>@_LAN_OF <gz>estabelecimento_produtos.pages</gz></p>
 
 				</div>
 
@@ -185,7 +185,7 @@
 				</div>
 				
 				<div id="gz-button-next" class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" 
-						onclick="goNext(<gz>produto_precos.size</gz>);">
+						onclick="goNext(<gz>estabelecimento_produtos.size</gz>);">
 			
 					<a href="#" class="gz-tooltip" onclick="return false;">
 
@@ -202,7 +202,7 @@
 				</div>
 				
 				<div id="gz-button-last" class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" 
-						onclick="goLast(<gz>produto_precos.size</gz>);">
+						onclick="goLast(<gz>estabelecimento_produtos.size</gz>);">
 
 					<a href="#" class="gz-tooltip" onclick="return false;">
 

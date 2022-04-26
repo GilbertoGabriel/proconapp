@@ -340,6 +340,7 @@
 				$this->setResponse($line, "estabelecimentos.bairro.format.json", modelDoubleQuotesJson($row["estabelecimentos.bairro"]));
 				$this->setResponse($line, "estabelecimentos.numero", $row["estabelecimentos.numero"]);
 				$this->setResponse($line, "estabelecimentos.cidade", $row["estabelecimentos.cidade"]);
+				$this->setResponse($line, "estabelecimentos.cidade.format.json", modelDoubleQuotesJson($row["estabelecimentos.cidade"]));
 				$this->setResponse($line, "estabelecimentos.cep", $row["estabelecimentos.cep"]);
 			
 				$this->setResponse($line, "estabelecimentos.line", $line);

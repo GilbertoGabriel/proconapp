@@ -19,13 +19,13 @@
 	$where = "";
 	
 	if ($search != "")
-		$where = "estabelecimentos.estabelecimento LIKE \"%" . $search . "%\"";	
+		$where = "estabelecimento_produtos.cadastro LIKE \"%" . $search . "%\"";	
 		
 	if ($code != "")
-		$where = "estabelecimentos.id = " . $code;
+		$where = "estabelecimento_produtos.id = " . $code;
 	
 	if (isset($_GET["friendly"]))
-		$where = "estabelecimentos.estabelecimento = \"" . removeLine($_GET["friendly"]) . "\"";	
+		$where = "estabelecimento_produtos.cadastro = \"" . removeLine($_GET["friendly"]) . "\"";	
 		
 	$limit = "";	
 		
@@ -37,7 +37,7 @@
 				
 	} else {
 		if ($position > 0 && $itensPerPage > 0) {
-			$limit = "estabelecimentos.id DESC LIMIT " . 
+			$limit = "estabelecimento_produtos.id DESC LIMIT " . 
 					(($position * $itensPerPage) - $itensPerPage) . ", " . $itensPerPage;	
 		}
 	}
@@ -58,16 +58,16 @@
 		$view->setKeywords("");
 		
 		$daoFactory->beginTransaction();
-		$response["estabelecimentos"] = $daoFactory->getEstabelecimentosDao()->read($where, $limit, true);
+		$response["estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read($where, $limit, true);
 		$daoFactory->close();
 		
 		if (isset($_GET["friendly"]))
-			$view->setTitle($response["estabelecimentos"][0]["estabelecimentos.estabelecimento"]);
+			$view->setTitle($response["estabelecimento_produtos"][0]["estabelecimento_produtos.cadastro"]);
 
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/header.html");
 		
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . 
-				(isset($_GET["friendly"]) ? "/html/@_PAGE.html" : "/html/estabelecimentos.html"), $response);
+				(isset($_GET["friendly"]) ? "/html/@_PAGE.html" : "/html/estabelecimento_produtos.html"), $response);
 		
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/footer.html");
 	}
@@ -86,22 +86,13 @@
 			// $request[0]["@_PARAM"] = $daoFactory->prepare($request[0]["@_PARAM"]); // Prepare with sql injection.
 
 			$daoFactory->beginTransaction();
-			$estabelecimentos = new model\Estabelecimentos();
-			$estabelecimentos->setEstabelecimento(logicNull($request["estabelecimentos.estabelecimento"]));
-			$estabelecimentos->setCnpj(logicNull($request["estabelecimentos.cnpj"]));
-			$estabelecimentos->setTelefone(logicNull($request["estabelecimentos.telefone"]));
-			$estabelecimentos->setCelular(logicNull($request["estabelecimentos.celular"]));
-			$estabelecimentos->setCelular2(logicNull($request["estabelecimentos.celular2"]));
-			$estabelecimentos->setEmail(logicNull($request["estabelecimentos.email"]));
-			$estabelecimentos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$estabelecimentos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$estabelecimentos->setLogradouro(logicNull($request["estabelecimentos.logradouro"]));
-			$estabelecimentos->setBairro(logicNull($request["estabelecimentos.bairro"]));
-			$estabelecimentos->setNumero(logicZero($request["estabelecimentos.numero"]));
-			$estabelecimentos->setCidade(logicNull($request["estabelecimentos.cidade"]));
-			$estabelecimentos->setCep(logicNull($request["estabelecimentos.cep"]));
+			$estabelecimento_produtos = new model\Estabelecimento_produtos();
+			$estabelecimento_produtos->setCadastro(logicNull(controllerDateTime($request["estabelecimento_produtos.cadastro"])));
+			$estabelecimento_produtos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos->setEstabelecimento($request["estabelecimento_produtos.estabelecimento"]);
+			$estabelecimento_produtos->setProduto($request["estabelecimento_produtos.produto"]);
 			
-			$resultDao = $daoFactory->getEstabelecimentosDao()->create($estabelecimentos);
+			$resultDao = $daoFactory->getEstabelecimento_produtosDao()->create($estabelecimento_produtos);
 
 			if ($resultDao) {
 				$daoFactory->commit();
@@ -128,16 +119,16 @@
 		if (isset($_POST["request"])) {
 			$request = json_decode($_POST["request"], true);
 			
-			$limit = "estabelecimentos.id DESC LIMIT " . 
+			$limit = "estabelecimento_produtos.id DESC LIMIT " . 
 					(($request[0]["page"] * $request[0]["pageSize"]) - 
 					$request[0]["pageSize"]) . ", " . $request[0]["pageSize"];	
 		}
 		
 		$daoFactory->beginTransaction();
-		$estabelecimentos = $daoFactory->getEstabelecimentosDao()->read("", $limit, false);
+		$estabelecimento_produtos = $daoFactory->getEstabelecimento_produtosDao()->read("", $limit, false);
 		$daoFactory->close();
 		
-		echo $view->json($estabelecimentos);
+		echo $view->json($estabelecimento_produtos);
 	}
 	
 	/*
@@ -149,24 +140,15 @@
 			$request = json_decode($_POST["request"], true);
 			// $request[0]["@_PARAM"] = $daoFactory->prepare($request[0]["@_PARAM"]); // Prepare with sql injection.
 			
-			$estabelecimentos = new model\Estabelecimentos();
-			$estabelecimentos->setId($request["estabelecimentos.id"]);
-			$estabelecimentos->setEstabelecimento(logicNull($request["estabelecimentos.estabelecimento"]));
-			$estabelecimentos->setCnpj(logicNull($request["estabelecimentos.cnpj"]));
-			$estabelecimentos->setTelefone(logicNull($request["estabelecimentos.telefone"]));
-			$estabelecimentos->setCelular(logicNull($request["estabelecimentos.celular"]));
-			$estabelecimentos->setCelular2(logicNull($request["estabelecimentos.celular2"]));
-			$estabelecimentos->setEmail(logicNull($request["estabelecimentos.email"]));
-			$estabelecimentos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$estabelecimentos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$estabelecimentos->setLogradouro(logicNull($request["estabelecimentos.logradouro"]));
-			$estabelecimentos->setBairro(logicNull($request["estabelecimentos.bairro"]));
-			$estabelecimentos->setNumero(logicZero($request["estabelecimentos.numero"]));
-			$estabelecimentos->setCidade(logicNull($request["estabelecimentos.cidade"]));
-			$estabelecimentos->setCep(logicNull($request["estabelecimentos.cep"]));
+			$estabelecimento_produtos = new model\Estabelecimento_produtos();
+			$estabelecimento_produtos->setId($request["estabelecimento_produtos.id"]);
+			$estabelecimento_produtos->setCadastro(logicNull(controllerDateTime($request["estabelecimento_produtos.cadastro"])));
+			$estabelecimento_produtos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos->setEstabelecimento($request["estabelecimento_produtos.estabelecimento"]);
+			$estabelecimento_produtos->setProduto($request["estabelecimento_produtos.produto"]);
 			
 			$daoFactory->beginTransaction();
-			$resultDao = $daoFactory->getEstabelecimentosDao()->update($estabelecimentos);
+			$resultDao = $daoFactory->getEstabelecimento_produtosDao()->update($estabelecimento_produtos);
 
 			if ($resultDao) {
 				$daoFactory->commit();
@@ -191,17 +173,17 @@
 		enableCORS();
 		if (isset($_POST["request"])) {
 			$request = json_decode($_POST["request"], true);
-			$request["estabelecimentos.id"] = $daoFactory->prepare($request["estabelecimentos.id"]); // Prepare with sql injection.
+			$request["estabelecimento_produtos.id"] = $daoFactory->prepare($request["estabelecimento_produtos.id"]); // Prepare with sql injection.
 				
 			$result = true;
-			$lines = explode("<gz>", $request["estabelecimentos.id"]);
+			$lines = explode("<gz>", $request["estabelecimento_produtos.id"]);
 
 			$daoFactory->beginTransaction();
 
 			for ($i = 0; $i < sizeof($lines); $i++) {
-				$where = "estabelecimentos.id = " . $lines[$i];
+				$where = "estabelecimento_produtos.id = " . $lines[$i];
 				
-				$resultDao = $daoFactory->getEstabelecimentosDao()->delete($where);
+				$resultDao = $daoFactory->getEstabelecimento_produtosDao()->delete($where);
 				$result = !$result ? false : (!$resultDao ? false : true);
 			}
 
@@ -238,10 +220,12 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
+					$response["estabelecimentos"] = $daoFactory->getEstabelecimentosDao()->read("", "estabelecimentos.id ASC", false);
+					$response["produtos"] = $daoFactory->getProdutosDao()->read("", "produtos.id ASC", false);
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimentos/estabelecimentosCRT.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos/estabelecimento_produtosCRT.html", $response);
 				}
 			}
 
@@ -254,14 +238,14 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["estabelecimentos"] = $daoFactory->getEstabelecimentosDao()->read($where, $limit, true);
-					if (!is_array($response["estabelecimentos"])) {
+					$response["estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read($where, $limit, true);
+					if (!is_array($response["estabelecimento_produtos"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimentos/estabelecimentosRD.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos/estabelecimento_produtosRD.html", $response);
 				}
 			}
 
@@ -274,11 +258,25 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["estabelecimentos"] = $daoFactory->getEstabelecimentosDao()->read($where, "", true);
+					$response["estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read($where, "", true);
+					$response["estabelecimento_produtos"][0]["estabelecimento_produtos.estabelecimentos"] = $daoFactory->getEstabelecimentosDao()->read("", "estabelecimentos.id ASC", false);
+					for ($x = 0; $x < sizeof($response["estabelecimento_produtos"][0]["estabelecimento_produtos.estabelecimentos"]); $x++) {
+						if ($response["estabelecimento_produtos"][0]["estabelecimento_produtos.estabelecimentos"][$x]["estabelecimentos.id"] == 
+								$response["estabelecimento_produtos"][0]["estabelecimento_produtos.estabelecimento"]) {
+							$response["estabelecimento_produtos"][0]["estabelecimento_produtos.estabelecimentos"][$x]["estabelecimentos.selected"] = "selected";
+						}
+					}
+					$response["estabelecimento_produtos"][0]["estabelecimento_produtos.produtos"] = $daoFactory->getProdutosDao()->read("", "produtos.id ASC", false);
+					for ($x = 0; $x < sizeof($response["estabelecimento_produtos"][0]["estabelecimento_produtos.produtos"]); $x++) {
+						if ($response["estabelecimento_produtos"][0]["estabelecimento_produtos.produtos"][$x]["produtos.id"] == 
+								$response["estabelecimento_produtos"][0]["estabelecimento_produtos.produto"]) {
+							$response["estabelecimento_produtos"][0]["estabelecimento_produtos.produtos"][$x]["produtos.selected"] = "selected";
+						}
+					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimentos/estabelecimentosUPD.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos/estabelecimento_produtosUPD.html", $response);
 				}
 			}
 
@@ -293,20 +291,20 @@
 					 * Insert your foreign key here
 					 */
 					if ($where != "")
-						$where .= " AND estabelecimentos.@_FOREIGN_KEY = " . $base;
+						$where .= " AND estabelecimento_produtos.@_FOREIGN_KEY = " . $base;
 					else 
-						$where = "estabelecimentos.@_FOREIGN_KEY = " . $base;
+						$where = "estabelecimento_produtos.@_FOREIGN_KEY = " . $base;
 						
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["estabelecimentos"] = $daoFactory->getEstabelecimentosDao()->read($where, $limit, true);
-					if (!is_array($response["estabelecimentos"])) {
+					$response["estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read($where, $limit, true);
+					if (!is_array($response["estabelecimento_produtos"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimentos/estabelecimentosCLL.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos/estabelecimento_produtosCLL.html", $response);
 				}
 			}
 
@@ -319,21 +317,21 @@
 					
 					if (sizeof($arrBase) > 1) {
 						if ($where != "")
-							$where .= " AND estabelecimentos.@_FOREIGN_KEY = " . $arrBase[1];
+							$where .= " AND estabelecimento_produtos.@_FOREIGN_KEY = " . $arrBase[1];
 						else
-							$where = "estabelecimentos.@_FOREIGN_KEY = " . $arrBase[1];
+							$where = "estabelecimento_produtos.@_FOREIGN_KEY = " . $arrBase[1];
 					}
 				}
 				
-				$limit = "estabelecimentos.id DESC LIMIT " . (($position * 5) - 5) . ", 5";
+				$limit = "estabelecimento_produtos.id DESC LIMIT " . (($position * 5) - 5) . ", 5";
 
 				$daoFactory->beginTransaction();
 				$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-				$response["estabelecimentos"] = $daoFactory->getEstabelecimentosDao()->read($where, $limit, true);
+				$response["estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read($where, $limit, true);
 				$daoFactory->close();
 
-				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimentos/estabelecimentosSCR.html", $response) . 
-						"<size>" . (is_array($response["estabelecimentos"]) ? $response["estabelecimentos"][0]["estabelecimentos.size"] : 0) . "<theme>455a64";
+				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos/estabelecimento_produtosSCR.html", $response) . 
+						"<size>" . (is_array($response["estabelecimento_produtos"]) ? $response["estabelecimento_produtos"][0]["estabelecimento_produtos.size"] : 0) . "<theme>455a64";
 			}
 
 			/*
@@ -346,13 +344,13 @@
 				$cmb = explode("<gz>", $search);
 
 				if ($cmb[1] != "")
-					$where = "estabelecimentos.id = " . $cmb[1];
+					$where = "estabelecimento_produtos.id = " . $cmb[1];
 
 				$daoFactory->beginTransaction();
-				$response["estabelecimentos"] = $daoFactory->getEstabelecimentosDao()->comboScr($where);
+				$response["estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->comboScr($where);
 				$daoFactory->close();
 
-				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimentos/estabelecimentosCMB.html", $response);
+				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos/estabelecimento_produtosCMB.html", $response);
 			}
 
 			/*
@@ -364,23 +362,14 @@
 					
 					echo $view->json($response);
 				} else {
-					$estabelecimentos = new model\Estabelecimentos();
-					$estabelecimentos->setEstabelecimento(logicNull($form[0]));
-					$estabelecimentos->setCnpj(logicNull($form[1]));
-					$estabelecimentos->setTelefone(logicNull($form[2]));
-					$estabelecimentos->setCelular(logicNull($form[3]));
-					$estabelecimentos->setCelular2(logicNull($form[4]));
-					$estabelecimentos->setEmail(logicNull($form[5]));
-					$estabelecimentos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$estabelecimentos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$estabelecimentos->setLogradouro(logicNull($form[6]));
-					$estabelecimentos->setBairro(logicNull($form[7]));
-					$estabelecimentos->setNumero(logicZero($form[8]));
-					$estabelecimentos->setCidade(logicNull($form[9]));
-					$estabelecimentos->setCep(logicNull($form[10]));
+					$estabelecimento_produtos = new model\Estabelecimento_produtos();
+					$estabelecimento_produtos->setCadastro(logicNull(controllerDateTime($form[0])));
+					$estabelecimento_produtos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos->setEstabelecimento($form[1]);
+					$estabelecimento_produtos->setProduto($form[2]);
 					
 					$daoFactory->beginTransaction();
-					$resultDao = $daoFactory->getEstabelecimentosDao()->create($estabelecimentos);
+					$resultDao = $daoFactory->getEstabelecimento_produtosDao()->create($estabelecimento_produtos);
 
 					if ($resultDao) {
 						$daoFactory->commit();
@@ -405,24 +394,15 @@
 					
 					echo $view->json($response);
 				} else {
-					$estabelecimentos = new model\Estabelecimentos();
-					$estabelecimentos->setId($code);
-					$estabelecimentos->setEstabelecimento(logicNull($form[0]));
-					$estabelecimentos->setCnpj(logicNull($form[1]));
-					$estabelecimentos->setTelefone(logicNull($form[2]));
-					$estabelecimentos->setCelular(logicNull($form[3]));
-					$estabelecimentos->setCelular2(logicNull($form[4]));
-					$estabelecimentos->setEmail(logicNull($form[5]));
-					$estabelecimentos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$estabelecimentos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$estabelecimentos->setLogradouro(logicNull($form[6]));
-					$estabelecimentos->setBairro(logicNull($form[7]));
-					$estabelecimentos->setNumero(logicZero($form[8]));
-					$estabelecimentos->setCidade(logicNull($form[9]));
-					$estabelecimentos->setCep(logicNull($form[10]));
+					$estabelecimento_produtos = new model\Estabelecimento_produtos();
+					$estabelecimento_produtos->setId($code);
+					$estabelecimento_produtos->setCadastro(logicNull(controllerDateTime($form[0])));
+					$estabelecimento_produtos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos->setEstabelecimento($form[1]);
+					$estabelecimento_produtos->setProduto($form[2]);
 					
 					$daoFactory->beginTransaction();
-					$resultDao = $daoFactory->getEstabelecimentosDao()->update($estabelecimentos);
+					$resultDao = $daoFactory->getEstabelecimento_produtosDao()->update($estabelecimento_produtos);
 
 					if ($resultDao) {
 						$daoFactory->commit();
@@ -453,9 +433,9 @@
 					$daoFactory->beginTransaction();
 
 					for ($i = 1; $i < sizeof($lines); $i++) {
-						$where = "estabelecimentos.id = " . $lines[$i];
+						$where = "estabelecimento_produtos.id = " . $lines[$i];
 						
-						$resultDao = $daoFactory->getEstabelecimentosDao()->delete($where);
+						$resultDao = $daoFactory->getEstabelecimento_produtosDao()->delete($where);
 						$result = !$result ? false : (!$resultDao ? false : true);
 					}
 

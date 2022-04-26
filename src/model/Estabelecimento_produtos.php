@@ -9,14 +9,13 @@
 	 
 	namespace src\model; 
 
-	class Produto_precos {
+	class Estabelecimento_produtos {
 			
 		private $id;
-		private $produto_preco;
-		private $cadastrado;
+		private $cadastro;
 		private $modificado;
-		private $produto;
 		private $estabelecimento;
+		private $produto;
 			
 		public function __construct() { }
 			
@@ -28,20 +27,12 @@
 			return $this->id;
 		}
 					
-		public function setProduto_preco($produto_preco) {
-			$this->produto_preco = $produto_preco;
+		public function setCadastro($cadastro) {
+			$this->cadastro = $cadastro;
 		}
 		
-		public function getProduto_preco() {
-			return $this->produto_preco;
-		}
-					
-		public function setCadastrado($cadastrado) {
-			$this->cadastrado = $cadastrado;
-		}
-		
-		public function getCadastrado() {
-			return $this->cadastrado;
+		public function getCadastro() {
+			return $this->cadastro;
 		}
 					
 		public function setModificado($modificado) {
@@ -52,20 +43,20 @@
 			return $this->modificado;
 		}
 					
-		public function setProduto($produto) {
-			$this->produto = $produto;
-		}
-		
-		public function getProduto() {
-			return $this->produto;
-		}
-					
 		public function setEstabelecimento($estabelecimento) {
 			$this->estabelecimento = $estabelecimento;
 		}
 		
 		public function getEstabelecimento() {
 			return $this->estabelecimento;
+		}
+					
+		public function setProduto($produto) {
+			$this->produto = $produto;
+		}
+		
+		public function getProduto() {
+			return $this->produto;
 		}
 					
 	}

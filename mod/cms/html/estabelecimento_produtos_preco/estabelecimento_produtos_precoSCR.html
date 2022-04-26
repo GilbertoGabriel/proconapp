@@ -25,7 +25,7 @@
 		<!-- Create -->
 
 		<div id="gz-button-create" class="gz-button dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi"
-				onclick="goToBlank('/produto_precos/create/1#from-screen');">
+				onclick="goToBlank('/estabelecimento_produtos_preco/create/1#from-screen');">
 	
 			<a href="#" class="gz-tooltip" onclick="return false;">
 
@@ -91,20 +91,20 @@
 
 				<th style="display:none;">Id</th>
 
-				<th style="width:100%;">Produto_preco</th>
+				<th style="width:100%;">Preco</th>
 
 			</tr>
 
-			<for(produto_precos)>
+			<for(estabelecimento_produtos_preco)>
 
-				<tr id="<gz>produto_precos.line</gz>" 
-						onMouseOver="onFocus(<gz>produto_precos.line</gz>);" 
-						onMouseOut="outFocus(<gz>produto_precos.line</gz>);" 
-						onClick="selected(<gz>produto_precos.line</gz>);">
+				<tr id="<gz>estabelecimento_produtos_preco.line</gz>" 
+						onMouseOver="onFocus(<gz>estabelecimento_produtos_preco.line</gz>);" 
+						onMouseOut="outFocus(<gz>estabelecimento_produtos_preco.line</gz>);" 
+						onClick="selected(<gz>estabelecimento_produtos_preco.line</gz>);">
 
-					<td style="display:none;"><gz>produto_precos.id</gz></td>
+					<td style="display:none;"><gz>estabelecimento_produtos_preco.id</gz></td>
 
-					<td><gz>produto_precos.produto_preco</gz></td>			
+					<td><gz>estabelecimento_produtos_preco.preco</gz></td>			
 					
 				</tr>
 

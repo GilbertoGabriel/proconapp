@@ -19,13 +19,13 @@
 	$where = "";
 	
 	if ($search != "")
-		$where = "produto_precos.produto_preco LIKE \"%" . $search . "%\"";	
+		$where = "estabelecimento_produtos_preco.preco LIKE \"%" . $search . "%\"";	
 		
 	if ($code != "")
-		$where = "produto_precos.id = " . $code;
+		$where = "estabelecimento_produtos_preco.id = " . $code;
 	
 	if (isset($_GET["friendly"]))
-		$where = "produto_precos.produto_preco = \"" . removeLine($_GET["friendly"]) . "\"";	
+		$where = "estabelecimento_produtos_preco.preco = \"" . removeLine($_GET["friendly"]) . "\"";	
 		
 	$limit = "";	
 		
@@ -37,7 +37,7 @@
 				
 	} else {
 		if ($position > 0 && $itensPerPage > 0) {
-			$limit = "produto_precos.id DESC LIMIT " . 
+			$limit = "estabelecimento_produtos_preco.id DESC LIMIT " . 
 					(($position * $itensPerPage) - $itensPerPage) . ", " . $itensPerPage;	
 		}
 	}
@@ -58,16 +58,16 @@
 		$view->setKeywords("");
 		
 		$daoFactory->beginTransaction();
-		$response["produto_precos"] = $daoFactory->getProduto_precosDao()->read($where, $limit, true);
+		$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, $limit, true);
 		$daoFactory->close();
 		
 		if (isset($_GET["friendly"]))
-			$view->setTitle($response["produto_precos"][0]["produto_precos.produto_preco"]);
+			$view->setTitle($response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.preco"]);
 
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/header.html");
 		
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . 
-				(isset($_GET["friendly"]) ? "/html/@_PAGE.html" : "/html/produto_precos.html"), $response);
+				(isset($_GET["friendly"]) ? "/html/@_PAGE.html" : "/html/estabelecimento_produtos_preco.html"), $response);
 		
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/footer.html");
 	}
@@ -86,14 +86,13 @@
 			// $request[0]["@_PARAM"] = $daoFactory->prepare($request[0]["@_PARAM"]); // Prepare with sql injection.
 
 			$daoFactory->beginTransaction();
-			$produto_precos = new model\Produto_precos();
-			$produto_precos->setProduto_preco(logicZero(controllerDouble($request["produto_precos.produto_preco"])));
-			$produto_precos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$produto_precos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$produto_precos->setProduto($request["produto_precos.produto"]);
-			$produto_precos->setEstabelecimento($request["produto_precos.estabelecimento"]);
+			$estabelecimento_produtos_preco = new model\Estabelecimento_produtos_preco();
+			$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($request["estabelecimento_produtos_preco.preco"])));
+			$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco->setEstabelecimeto_produto($request["estabelecimento_produtos_preco.estabelecimeto_produto"]);
 			
-			$resultDao = $daoFactory->getProduto_precosDao()->create($produto_precos);
+			$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->create($estabelecimento_produtos_preco);
 
 			if ($resultDao) {
 				$daoFactory->commit();
@@ -120,16 +119,16 @@
 		if (isset($_POST["request"])) {
 			$request = json_decode($_POST["request"], true);
 			
-			$limit = "produto_precos.id DESC LIMIT " . 
+			$limit = "estabelecimento_produtos_preco.id DESC LIMIT " . 
 					(($request[0]["page"] * $request[0]["pageSize"]) - 
 					$request[0]["pageSize"]) . ", " . $request[0]["pageSize"];	
 		}
 		
 		$daoFactory->beginTransaction();
-		$produto_precos = $daoFactory->getProduto_precosDao()->read("", $limit, false);
+		$estabelecimento_produtos_preco = $daoFactory->getEstabelecimento_produtos_precoDao()->read("", $limit, false);
 		$daoFactory->close();
 		
-		echo $view->json($produto_precos);
+		echo $view->json($estabelecimento_produtos_preco);
 	}
 	
 	/*
@@ -141,16 +140,15 @@
 			$request = json_decode($_POST["request"], true);
 			// $request[0]["@_PARAM"] = $daoFactory->prepare($request[0]["@_PARAM"]); // Prepare with sql injection.
 			
-			$produto_precos = new model\Produto_precos();
-			$produto_precos->setId($request["produto_precos.id"]);
-			$produto_precos->setProduto_preco(logicZero(controllerDouble($request["produto_precos.produto_preco"])));
-			$produto_precos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$produto_precos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$produto_precos->setProduto($request["produto_precos.produto"]);
-			$produto_precos->setEstabelecimento($request["produto_precos.estabelecimento"]);
+			$estabelecimento_produtos_preco = new model\Estabelecimento_produtos_preco();
+			$estabelecimento_produtos_preco->setId($request["estabelecimento_produtos_preco.id"]);
+			$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($request["estabelecimento_produtos_preco.preco"])));
+			$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco->setEstabelecimeto_produto($request["estabelecimento_produtos_preco.estabelecimeto_produto"]);
 			
 			$daoFactory->beginTransaction();
-			$resultDao = $daoFactory->getProduto_precosDao()->update($produto_precos);
+			$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->update($estabelecimento_produtos_preco);
 
 			if ($resultDao) {
 				$daoFactory->commit();
@@ -175,17 +173,17 @@
 		enableCORS();
 		if (isset($_POST["request"])) {
 			$request = json_decode($_POST["request"], true);
-			$request["produto_precos.id"] = $daoFactory->prepare($request["produto_precos.id"]); // Prepare with sql injection.
+			$request["estabelecimento_produtos_preco.id"] = $daoFactory->prepare($request["estabelecimento_produtos_preco.id"]); // Prepare with sql injection.
 				
 			$result = true;
-			$lines = explode("<gz>", $request["produto_precos.id"]);
+			$lines = explode("<gz>", $request["estabelecimento_produtos_preco.id"]);
 
 			$daoFactory->beginTransaction();
 
 			for ($i = 0; $i < sizeof($lines); $i++) {
-				$where = "produto_precos.id = " . $lines[$i];
+				$where = "estabelecimento_produtos_preco.id = " . $lines[$i];
 				
-				$resultDao = $daoFactory->getProduto_precosDao()->delete($where);
+				$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->delete($where);
 				$result = !$result ? false : (!$resultDao ? false : true);
 			}
 
@@ -222,12 +220,11 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["produtos"] = $daoFactory->getProdutosDao()->read("", "produtos.id ASC", false);
-					$response["estabelecimentos"] = $daoFactory->getEstabelecimentosDao()->read("", "estabelecimentos.id ASC", false);
+					$response["estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read("", "estabelecimento_produtos.id ASC", false);
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/produto_precos/produto_precosCRT.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoCRT.html", $response);
 				}
 			}
 
@@ -240,14 +237,14 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["produto_precos"] = $daoFactory->getProduto_precosDao()->read($where, $limit, true);
-					if (!is_array($response["produto_precos"])) {
+					$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, $limit, true);
+					if (!is_array($response["estabelecimento_produtos_preco"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/produto_precos/produto_precosRD.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoRD.html", $response);
 				}
 			}
 
@@ -260,25 +257,18 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["produto_precos"] = $daoFactory->getProduto_precosDao()->read($where, "", true);
-					$response["produto_precos"][0]["produto_precos.produtos"] = $daoFactory->getProdutosDao()->read("", "produtos.id ASC", false);
-					for ($x = 0; $x < sizeof($response["produto_precos"][0]["produto_precos.produtos"]); $x++) {
-						if ($response["produto_precos"][0]["produto_precos.produtos"][$x]["produtos.id"] == 
-								$response["produto_precos"][0]["produto_precos.produto"]) {
-							$response["produto_precos"][0]["produto_precos.produtos"][$x]["produtos.selected"] = "selected";
-						}
-					}
-					$response["produto_precos"][0]["produto_precos.estabelecimentos"] = $daoFactory->getEstabelecimentosDao()->read("", "estabelecimentos.id ASC", false);
-					for ($x = 0; $x < sizeof($response["produto_precos"][0]["produto_precos.estabelecimentos"]); $x++) {
-						if ($response["produto_precos"][0]["produto_precos.estabelecimentos"][$x]["estabelecimentos.id"] == 
-								$response["produto_precos"][0]["produto_precos.estabelecimento"]) {
-							$response["produto_precos"][0]["produto_precos.estabelecimentos"][$x]["estabelecimentos.selected"] = "selected";
+					$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, "", true);
+					$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read("", "estabelecimento_produtos.id ASC", false);
+					for ($x = 0; $x < sizeof($response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"]); $x++) {
+						if ($response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"][$x]["estabelecimento_produtos.id"] == 
+								$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimeto_produto"]) {
+							$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"][$x]["estabelecimento_produtos.selected"] = "selected";
 						}
 					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/produto_precos/produto_precosUPD.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoUPD.html", $response);
 				}
 			}
 
@@ -293,20 +283,20 @@
 					 * Insert your foreign key here
 					 */
 					if ($where != "")
-						$where .= " AND produto_precos.@_FOREIGN_KEY = " . $base;
+						$where .= " AND estabelecimento_produtos_preco.@_FOREIGN_KEY = " . $base;
 					else 
-						$where = "produto_precos.@_FOREIGN_KEY = " . $base;
+						$where = "estabelecimento_produtos_preco.@_FOREIGN_KEY = " . $base;
 						
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["produto_precos"] = $daoFactory->getProduto_precosDao()->read($where, $limit, true);
-					if (!is_array($response["produto_precos"])) {
+					$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, $limit, true);
+					if (!is_array($response["estabelecimento_produtos_preco"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/produto_precos/produto_precosCLL.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoCLL.html", $response);
 				}
 			}
 
@@ -319,21 +309,21 @@
 					
 					if (sizeof($arrBase) > 1) {
 						if ($where != "")
-							$where .= " AND produto_precos.@_FOREIGN_KEY = " . $arrBase[1];
+							$where .= " AND estabelecimento_produtos_preco.@_FOREIGN_KEY = " . $arrBase[1];
 						else
-							$where = "produto_precos.@_FOREIGN_KEY = " . $arrBase[1];
+							$where = "estabelecimento_produtos_preco.@_FOREIGN_KEY = " . $arrBase[1];
 					}
 				}
 				
-				$limit = "produto_precos.id DESC LIMIT " . (($position * 5) - 5) . ", 5";
+				$limit = "estabelecimento_produtos_preco.id DESC LIMIT " . (($position * 5) - 5) . ", 5";
 
 				$daoFactory->beginTransaction();
 				$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-				$response["produto_precos"] = $daoFactory->getProduto_precosDao()->read($where, $limit, true);
+				$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, $limit, true);
 				$daoFactory->close();
 
-				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/produto_precos/produto_precosSCR.html", $response) . 
-						"<size>" . (is_array($response["produto_precos"]) ? $response["produto_precos"][0]["produto_precos.size"] : 0) . "<theme>455a64";
+				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoSCR.html", $response) . 
+						"<size>" . (is_array($response["estabelecimento_produtos_preco"]) ? $response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.size"] : 0) . "<theme>455a64";
 			}
 
 			/*
@@ -346,13 +336,13 @@
 				$cmb = explode("<gz>", $search);
 
 				if ($cmb[1] != "")
-					$where = "produto_precos.id = " . $cmb[1];
+					$where = "estabelecimento_produtos_preco.id = " . $cmb[1];
 
 				$daoFactory->beginTransaction();
-				$response["produto_precos"] = $daoFactory->getProduto_precosDao()->comboScr($where);
+				$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->comboScr($where);
 				$daoFactory->close();
 
-				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/produto_precos/produto_precosCMB.html", $response);
+				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoCMB.html", $response);
 			}
 
 			/*
@@ -364,15 +354,14 @@
 					
 					echo $view->json($response);
 				} else {
-					$produto_precos = new model\Produto_precos();
-					$produto_precos->setProduto_preco(logicZero(controllerDouble($form[0])));
-					$produto_precos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$produto_precos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$produto_precos->setProduto($form[1]);
-					$produto_precos->setEstabelecimento($form[2]);
+					$estabelecimento_produtos_preco = new model\Estabelecimento_produtos_preco();
+					$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($form[0])));
+					$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco->setEstabelecimeto_produto($form[1]);
 					
 					$daoFactory->beginTransaction();
-					$resultDao = $daoFactory->getProduto_precosDao()->create($produto_precos);
+					$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->create($estabelecimento_produtos_preco);
 
 					if ($resultDao) {
 						$daoFactory->commit();
@@ -397,16 +386,15 @@
 					
 					echo $view->json($response);
 				} else {
-					$produto_precos = new model\Produto_precos();
-					$produto_precos->setId($code);
-					$produto_precos->setProduto_preco(logicZero(controllerDouble($form[0])));
-					$produto_precos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$produto_precos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$produto_precos->setProduto($form[1]);
-					$produto_precos->setEstabelecimento($form[2]);
+					$estabelecimento_produtos_preco = new model\Estabelecimento_produtos_preco();
+					$estabelecimento_produtos_preco->setId($code);
+					$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($form[0])));
+					$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco->setEstabelecimeto_produto($form[1]);
 					
 					$daoFactory->beginTransaction();
-					$resultDao = $daoFactory->getProduto_precosDao()->update($produto_precos);
+					$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->update($estabelecimento_produtos_preco);
 
 					if ($resultDao) {
 						$daoFactory->commit();
@@ -437,9 +425,9 @@
 					$daoFactory->beginTransaction();
 
 					for ($i = 1; $i < sizeof($lines); $i++) {
-						$where = "produto_precos.id = " . $lines[$i];
+						$where = "estabelecimento_produtos_preco.id = " . $lines[$i];
 						
-						$resultDao = $daoFactory->getProduto_precosDao()->delete($where);
+						$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->delete($where);
 						$result = !$result ? false : (!$resultDao ? false : true);
 					}
 
