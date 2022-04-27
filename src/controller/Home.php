@@ -13,9 +13,6 @@
 	require_once($_DOCUMENT_ROOT . "/lib/getz/Activator.php");
 
 
-	echo $search;
-
-
 	if ($method == "page") {
 		$daoFactory->beginTransaction();
 		$response["usuarios"] = $daoFactory->getUsuariosDao()->read("", "usuarios.id ASC", true);

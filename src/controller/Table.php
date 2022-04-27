@@ -10,23 +10,37 @@
 	use lib\getz;
 	use src\model;	 
 	
-			echo $search;
-			echo $code;
-
 	require_once($_DOCUMENT_ROOT . "/lib/getz/Activator.php");
 
-	if ($method == "page") {
-		$daoFactory->beginTransaction();
+	
 
-		$response["produtos"] = $daoFactory->getProdutosDao()->read("", "produtos.id ASC", true);
+	
+
+	if ($method == "page") {
+		
+	
+		if($search != ""){
+
+			$daoFactory->beginTransaction();
+			$where = explode("<gz>", $search);
+			echo $where[0];
+			echo $where[1];
+			echo $where[2];
+			$response["produtos"] = $daoFactory->getProdutosDao()->read("produtos.produto LIKE \"%" . $where[0] . "%\"", "produtos.id ASC", true);
+			$daoFactory->close();
+			
+		}
+	
+		
 		// $response["cards"] = $daoFactory->getCardsDao()->read("", "cards.id ASC", true);
 
-		$daoFactory->close();
+	
+		
+
 		
 		$response["print"] = "true";
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/header.html");
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/table.html", $response);
-		// echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/home.html", $response);
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/footer.html");
 	}
 
