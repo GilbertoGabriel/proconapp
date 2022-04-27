@@ -22,7 +22,7 @@
 				preco
 				, cadastrado
 				, modificado
-				, estabelecimeto_produto
+				, estabelecimeto_produtos
 				) VALUES";
 				
 		public $read = 
@@ -30,7 +30,7 @@
 				, estabelecimento_produtos_preco.preco AS \"estabelecimento_produtos_preco.preco\"
 				, estabelecimento_produtos_preco.cadastrado AS \"estabelecimento_produtos_preco.cadastrado\"
 				, estabelecimento_produtos_preco.modificado AS \"estabelecimento_produtos_preco.modificado\"
-				, estabelecimento_produtos_preco.estabelecimeto_produto AS \"estabelecimento_produtos_preco.estabelecimeto_produto\"
+				, estabelecimento_produtos_preco.estabelecimeto_produtos AS \"estabelecimento_produtos_preco.estabelecimeto_produtos\"
 				";
 				
 		private $update = "UPDATE estabelecimento_produtos_preco SET";
@@ -65,7 +65,7 @@
 					$estabelecimento_produtos_preco->getPreco() .
 					"\", \"" . $estabelecimento_produtos_preco->getCadastrado() .
 					"\", \"" . $estabelecimento_produtos_preco->getModificado() .
-					"\", \"" . $estabelecimento_produtos_preco->getEstabelecimeto_produto() .
+					"\", \"" . $estabelecimento_produtos_preco->getEstabelecimeto_produtos() .
 					"\")";
 		}
 		
@@ -88,8 +88,8 @@
 			
 			$this->sql = "SELECT " . $this->read . ", " . $estabelecimento_produtosDao->read . 
 					" FROM " . $this->getFrom() .", " . $estabelecimento_produtosDao->from . 
-					($this->getWhere() == "" ? " WHERE estabelecimento_produtos_preco.estabelecimeto_produto = estabelecimento_produtos.id" : $this->getWhere()) . 
-					" AND estabelecimento_produtos_preco.estabelecimeto_produto = estabelecimento_produtos.id" . $this->getOrder();
+					($this->getWhere() == "" ? " WHERE estabelecimento_produtos_preco.estabelecimeto_produtos = estabelecimento_produtos.id" : $this->getWhere()) . 
+					" AND estabelecimento_produtos_preco.estabelecimeto_produtos = estabelecimento_produtos.id" . $this->getOrder();
 		}
 		
 		/**
@@ -110,7 +110,7 @@
 					" id = \"" . $estabelecimento_produtos_preco->getId() . 
 					"\", preco = \"" . $estabelecimento_produtos_preco->getPreco() . 
 					"\", modificado = \"" . $estabelecimento_produtos_preco->getModificado() . 
-					"\", estabelecimeto_produto = \"" . $estabelecimento_produtos_preco->getEstabelecimeto_produto() . 
+					"\", estabelecimeto_produtos = \"" . $estabelecimento_produtos_preco->getEstabelecimeto_produtos() . 
 					"\"" . $this->getWhere();
 		}
 		
@@ -293,8 +293,8 @@
 				$this->setResponse($line, "estabelecimento_produtos_preco.preco", modelDouble($row["estabelecimento_produtos_preco.preco"]));
 				$this->setResponse($line, "estabelecimento_produtos_preco.cadastrado", modelDateTime($row["estabelecimento_produtos_preco.cadastrado"]));
 				$this->setResponse($line, "estabelecimento_produtos_preco.modificado", modelDateTime($row["estabelecimento_produtos_preco.modificado"]));
-				$this->setResponse($line, "estabelecimento_produtos_preco.estabelecimeto_produto", $row["estabelecimento_produtos_preco.estabelecimeto_produto"]);
-				$this->setResponse($line, "estabelecimento_produtos.estabelecimeto_produto", $row["estabelecimento_produtos.estabelecimeto_produto"]);
+				$this->setResponse($line, "estabelecimento_produtos_preco.estabelecimeto_produtos", $row["estabelecimento_produtos_preco.estabelecimeto_produtos"]);
+				$this->setResponse($line, "estabelecimento_produtos.estabelecimeto_produtos", $row["estabelecimento_produtos.estabelecimeto_produtos"]);
 			
 				$this->setResponse($line, "estabelecimento_produtos_preco.line", $line);
 			

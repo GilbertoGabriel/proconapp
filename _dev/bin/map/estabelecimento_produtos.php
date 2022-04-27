@@ -49,10 +49,10 @@
 	);
 				
 	// Set the table if this screen call another
-	$call = "estabelecimento_produtos_preco";
+	$call = "";
 	
 	// Set the column for answer after the call
-	$answer = "";
+	$answer = "estabelecimento_produtos_preco";
 
 	/*
 	 * Builder

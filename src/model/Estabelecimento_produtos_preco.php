@@ -15,7 +15,7 @@
 		private $preco;
 		private $cadastrado;
 		private $modificado;
-		private $estabelecimeto_produto;
+		private $estabelecimeto_produtos;
 			
 		public function __construct() { }
 			
@@ -51,12 +51,12 @@
 			return $this->modificado;
 		}
 					
-		public function setEstabelecimeto_produto($estabelecimeto_produto) {
-			$this->estabelecimeto_produto = $estabelecimeto_produto;
+		public function setEstabelecimeto_produtos($estabelecimeto_produtos) {
+			$this->estabelecimeto_produtos = $estabelecimeto_produtos;
 		}
 		
-		public function getEstabelecimeto_produto() {
-			return $this->estabelecimeto_produto;
+		public function getEstabelecimeto_produtos() {
+			return $this->estabelecimeto_produtos;
 		}
 					
 	}

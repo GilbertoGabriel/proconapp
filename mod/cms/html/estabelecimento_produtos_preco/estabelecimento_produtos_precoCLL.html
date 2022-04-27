@@ -1,4 +1,4 @@
-<!-- Read View -->
+<!-- Called View -->
 	
 	<!-- Content -->
 	
@@ -7,12 +7,31 @@
 		<!-- Header -->
 
 		<div id="gz-header" class="dv-f-l dv-pt-mdpi dv-pb-mdpi" onclick="clearSelection();">
+			
+			<!-- History back -->
+
+			<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-xdpi" 
+					 onclick="window.history.go(gz_historyBack); return false;">
+		
+				<a href="#" class="gz-tooltip" onclick="return false;">
+
+					<img src="@_ROOT/mod/cms/img/icon/back.png">
+
+					<span class="gz-span-bottom-right @_THEME">
+
+						@_LAN_GO_BACK
+
+					</span>
+
+				</a>
+
+			</div>		
 		
 			<!-- Create -->
 
-			<div id="gz-button-create" class="gz-button dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-xdpi" 
+			<div id="gz-button-create" class="gz-button dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-hdpi" 
 					onclick="showCreate();">
-		
+				
 				<a href="#" class="gz-tooltip" onclick="return false;">
 
 					<img src="@_ROOT/mod/cms/img/icon/create.png" />
@@ -73,7 +92,7 @@
 		<!-- Table -->
 		
 		<div class="dv-pl-xdpi dv-pr-xdpi">
-		
+			
 			<p class="dv-mb-hdpi gz-gray">
 			
 				<one(titles)>
@@ -94,34 +113,48 @@
 				
 				<tr>
 
-					<th id="estabelecimento_produtos.id" style="display:none;"
+					<th id="estabelecimento_produtos_preco.id" style="display:none;"
 							onclick="orderBy(this.id);">
 
 						Id
 
 					</th>
 					
-					<th id="estabelecimento_produtos.cadastrado" style="width:100%;" 
+					<th id="estabelecimento_produtos_preco.preco" style="width:50%;" 
 							onclick="orderBy(this.id);">
 							
-						Cadastrado
+						Preco
 						
 					</th>
 					
+					<th style="width:50%;">
+							
+						Estabelecimento_produtos
+						
+					</th>			
+						
 				</tr>
-				
+					
 				<one(data_not_found)><tr><td colspan="2"><gz>value</gz></td></tr></one>		
 
-				<for(estabelecimento_produtos)>
+				<for(estabelecimento_produtos_preco)>
 
-					<tr id="<gz>estabelecimento_produtos.line</gz>" 
-							onMouseOver="onFocus(<gz>estabelecimento_produtos.line</gz>);" 
-							onMouseOut="outFocus(<gz>estabelecimento_produtos.line</gz>);" 
-							onclick="selected(<gz>estabelecimento_produtos.line</gz>);">
+					<tr id="<gz>estabelecimento_produtos_preco.line</gz>" 
+							onMouseOver="onFocus(<gz>estabelecimento_produtos_preco.line</gz>);" 
+							onMouseOut="outFocus(<gz>estabelecimento_produtos_preco.line</gz>);" 
+							>
 
-						<td style="display:none;"><gz>estabelecimento_produtos.id</gz></td>
+						<td style="display:none;"><gz>estabelecimento_produtos_preco.id</gz></td>
 
-						<td><gz>estabelecimento_produtos.cadastrado</gz></td>
+						<td onclick="selected(<gz>estabelecimento_produtos_preco.line</gz>);"><gz>estabelecimento_produtos_preco.preco</gz></td>
+					
+						<td class="gz-link" onclick="goTo('/estabelecimento_produtos/called/<gz>estabelecimento_produtos_preco.id</gz>/1/historyBack/0');">
+									
+							<img class="dv-mr-ldpi" src="@_ROOT/mod/cms/img/icon/grid-next.png" />
+									
+							Estabelecimento_produtos
+
+						</td>
 						
 					</tr>
 
@@ -135,19 +168,19 @@
 
 		<div id="gz-footer" class="dv-f-l dv-pt-mdpi dv-pb-mdpi">
 		
-			<one(estabelecimento_produtos)>
-		
+			<one(estabelecimento_produtos_preco)>
+			
 				<div class="dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-xdpi dv-pt-mdpi">
 				
-					<p><gz>estabelecimento_produtos.size</gz> @_LAN_ITEMS_PAGE</p>
+					<p><gz>estabelecimento_produtos_preco.size</gz> @_LAN_ITEMS_PAGE</p>
 						
 				</div>
 				
-				<gz>estabelecimento_produtos.pagination</gz>
+				<gz>estabelecimento_produtos_preco.pagination</gz>
 					
 				<div class="dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-mdpi dv-pt-mdpi">
 			
-					<p>@_LAN_OF <gz>estabelecimento_produtos.pages</gz></p>
+					<p>@_LAN_OF <gz>estabelecimento_produtos_preco.pages</gz></p>
 
 				</div>
 
@@ -164,8 +197,8 @@
 
 						</span>
 
-					</a>	
-			
+					</a>		
+						
 				</div>
 				
 				<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" onclick="goBack();">
@@ -185,7 +218,7 @@
 				</div>
 				
 				<div id="gz-button-next" class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" 
-						onclick="goNext(<gz>estabelecimento_produtos.size</gz>);">
+						onclick="goNext(<gz>estabelecimento_produtos_preco.size</gz>);">
 			
 					<a href="#" class="gz-tooltip" onclick="return false;">
 
@@ -194,7 +227,7 @@
 						<span class="gz-span-top-right @_THEME">
 
 							@_LAN_NEXT
-							
+
 						</span>
 
 					</a>	
@@ -202,7 +235,7 @@
 				</div>
 				
 				<div id="gz-button-last" class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" 
-						onclick="goLast(<gz>estabelecimento_produtos.size</gz>);">
+						onclick="goLast(<gz>estabelecimento_produtos_preco.size</gz>);">
 
 					<a href="#" class="gz-tooltip" onclick="return false;">
 
@@ -217,7 +250,7 @@
 					</a>	
 						
 				</div>
-				
+			
 			</one>
 			
 		</div>

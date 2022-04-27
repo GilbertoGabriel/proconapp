@@ -1,0 +1,115 @@
+<!-- Screen View -->
+
+	<!-- Header -->
+
+	<div id="gz-header-screen" class="dv-f-l dv-mt-mdpi dv-pb-mdpi">
+
+		<!-- Close -->
+
+		<div class="gz-button dv-f-l dv-mt-mdpi dv-mr-hdpi dv-ml-xdpi" onclick="closeScreen();">
+
+			<a href="#" class="gz-tooltip" onclick="return false;">
+
+				<img src="@_ROOT/mod/cms/img/icon/back.png" />
+
+				<span class="gz-span-bottom-right @_THEME">
+
+					@_LAN_GO_BACK
+
+				</span>
+
+			</a>
+
+		</div>
+
+		<!-- Create -->
+
+		<div id="gz-button-create" class="gz-button dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi"
+				onclick="goToBlank('/estabelecimento_produtos_preco/create/1#from-screen');">
+	
+			<a href="#" class="gz-tooltip" onclick="return false;">
+
+				<img src="@_ROOT/mod/cms/img/icon/create.png" />
+
+				<span class="gz-span-bottom-right @_THEME">
+
+					@_LAN_ADD
+
+				</span>
+
+			</a>
+
+		</div>	
+
+		<!-- Search -->
+
+		<input id="gz-search" class="gz-textbox-mdpi dv-f-l dv-mt-mdpi dv-mr-hdpi dv-mb-mdpi dv-ml-hdpi gz-gray" 
+				type="text" value="@_LAN_SEARCH_FOR" onfocus="emptySearch(this.id);" onblur="showSearch(this.id);">
+
+		<div id="gz-button-search" class="gz-button dv-f-l dv-mt-mdpi" 
+				onclick="screenSearch();">
+
+			<a href="#" class="gz-tooltip" onclick="return false;">
+
+				<img src="@_ROOT/mod/cms/img/icon/search.png" />
+
+				<span class="gz-span-bottom-right @_THEME">
+
+					@_LAN_SEARCH
+
+				</span>
+
+			</a>
+
+		</div>
+
+	</div>
+	
+	<!-- Table -->
+	
+	<div class="dv-pl-xdpi dv-pr-xdpi">
+	
+		<p id="gz-title-screen" class="gz-gray dv-f-l">
+			
+			<one(titles)>
+			
+				<gz>menus.menu</gz> /
+				
+				<span class="gz-black gz-bold">
+				
+					<gz>telas.tela</gz>
+					
+				</span>
+				
+			</one>	
+				
+		</p>
+
+		<table id="gz-table-screen" class="dv-f-l">
+
+			<tr>
+
+				<th style="display:none;">Id</th>
+
+				<th style="width:100%;">Preco</th>
+
+			</tr>
+
+			<for(estabelecimento_produtos_preco)>
+
+				<tr id="<gz>estabelecimento_produtos_preco.line</gz>" 
+						onMouseOver="onFocus(<gz>estabelecimento_produtos_preco.line</gz>);" 
+						onMouseOut="outFocus(<gz>estabelecimento_produtos_preco.line</gz>);" 
+						onClick="selected(<gz>estabelecimento_produtos_preco.line</gz>);">
+
+					<td style="display:none;"><gz>estabelecimento_produtos_preco.id</gz></td>
+
+					<td><gz>estabelecimento_produtos_preco.preco</gz></td>			
+					
+				</tr>
+
+			</for>
+
+		</table>
+	
+	</div>
