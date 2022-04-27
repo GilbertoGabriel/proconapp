@@ -409,7 +409,5 @@ function getSearch() {
 }
 
 function goToSearch() {
-
-	// console.log("/table/search/" + gV(gI("produtos")) + "#" + gV(gI("enderecos")) + "#" + gV(gI("precos")));
 	goTo("/table/search/" + gV(gI("produtos")) + "<gz>" + gV(gI("enderecos")) + "<gz>" + gV(gI("precos")));
 }

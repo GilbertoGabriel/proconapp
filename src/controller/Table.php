@@ -13,25 +13,27 @@
 	require_once($_DOCUMENT_ROOT . "/lib/getz/Activator.php");
 
 	
+	if($search != ""){
 
+		$daoFactory->beginTransaction();
+		$where = explode("<gz>", $search);
+
+		$response["produtoSelect"] = $daoFactory->getProdutosDao()->read("produtos.produto LIKE \"%" . $where[0] . "%\"", "produtos.produto ASC", true);
+
+		$daoFactory->close();
+		
+	}
 	
 
 	if ($method == "page") {
 		
-	
-		if($search != ""){
+		$daoFactory->beginTransaction();
+		$response["produtos"] = $daoFactory->getProdutosDao()->read("", "produtos.id ASC", true);
+		$daoFactory->close();
 
-			$daoFactory->beginTransaction();
-			$where = explode("<gz>", $search);
-			$response["produtos"] = $daoFactory->getProdutosDao()->read("produtos.produto LIKE \"%" . $where[0] . "%\"", "produtos.id ASC", true);
-			$daoFactory->close();
-			
-		}
-
-		
 		$response["print"] = "true";
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/header.html");
-		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/table.html");
+		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/table.html", $response);
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/table_dinamic.html", $response);
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/footer.html");
 	}
