@@ -4,11 +4,10 @@
 
         <div class="dv-column dv-horizontal-align-center dv-text-align-center">
 
-            <table id="tableProducts" class="dv-margin-mdpi"
-                style="margin-left: 0; margin-right:0px; max-width: 95%;">
+            <table id="tableProducts" class="dv-margin-mdpi" style="margin-left: 0; margin-right:0px; max-width: 95%;">
                 <tr>
                     <th class="titleTable blue">Produto</th>
-                    <th class="titleTable blue">Categoria</th>
+                    <th class="titleTable blue">Estabelecimento</th>
                     <th class="titleTable blue">Marca</th>
                 </tr>
 
@@ -37,6 +36,41 @@
                     </tr>
 
                     </for>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="dv-line">
+
+        <div class="dv-column dv-horizontal-align-center dv-text-align-center">
+
+            <table id="tableProducts" class="dv-margin-mdpi" style="margin-left: 0; margin-right:0px; max-width: 95%;">
+                <tr>
+                    <th class="titleTable blue">Estabelecimento</th>
+
+                </tr>
+
+                <for(produtoSelect)>
+
+                    <for(estabelecimentos)>
+                        <tr class="dv-border">
+
+                            <td class="dv-text-align-center">
+
+                                <gz>estabelecimentos.estabelecimento</gz>
+
+                            </td>
+
+                        </tr>
+
+                    </for>
+ 
+                </for>
 
             </table>
 

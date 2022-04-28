@@ -28,7 +28,11 @@
 	if ($method == "page") {
 		
 		$daoFactory->beginTransaction();
-		$response["produtos"] = $daoFactory->getProdutosDao()->read("", "produtos.id ASC", true);
+		// $response["produtos"] = $daoFactory->getProdutosDao()->read("", "produtos.id ASC", true);
+		for ($x = 0; $x < sizeof($response["produtoSelect"]); $x++) {
+			$response["produtoSelect"][$x]["estabelecimentos"] = $daoFactory->getEstabelecimento_produtosDao()->read(
+					"estabelecimento_produtos.produto = " . $response["produtoSelect"][$x]["produtos.id"], "", true);
+		}
 		$daoFactory->close();
 
 		$response["print"] = "true";
