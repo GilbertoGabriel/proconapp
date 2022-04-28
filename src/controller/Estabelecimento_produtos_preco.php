@@ -19,13 +19,13 @@
 	$where = "";
 	
 	if ($search != "")
-		$where = "enderecos.logradouro LIKE \"%" . $search . "%\"";	
+		$where = "estabelecimento_produtos_preco.preco LIKE \"%" . $search . "%\"";	
 		
 	if ($code != "")
-		$where = "enderecos.id = " . $code;
+		$where = "estabelecimento_produtos_preco.id = " . $code;
 	
 	if (isset($_GET["friendly"]))
-		$where = "enderecos.logradouro = \"" . removeLine($_GET["friendly"]) . "\"";	
+		$where = "estabelecimento_produtos_preco.preco = \"" . removeLine($_GET["friendly"]) . "\"";	
 		
 	$limit = "";	
 		
@@ -37,7 +37,7 @@
 				
 	} else {
 		if ($position > 0 && $itensPerPage > 0) {
-			$limit = "enderecos.id DESC LIMIT " . 
+			$limit = "estabelecimento_produtos_preco.id DESC LIMIT " . 
 					(($position * $itensPerPage) - $itensPerPage) . ", " . $itensPerPage;	
 		}
 	}
@@ -58,16 +58,16 @@
 		$view->setKeywords("");
 		
 		$daoFactory->beginTransaction();
-		$response["enderecos"] = $daoFactory->getEnderecosDao()->read($where, $limit, true);
+		$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, $limit, true);
 		$daoFactory->close();
 		
 		if (isset($_GET["friendly"]))
-			$view->setTitle($response["enderecos"][0]["enderecos.logradouro"]);
+			$view->setTitle($response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.preco"]);
 
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/header.html");
 		
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . 
-				(isset($_GET["friendly"]) ? "/html/@_PAGE.html" : "/html/enderecos.html"), $response);
+				(isset($_GET["friendly"]) ? "/html/@_PAGE.html" : "/html/estabelecimento_produtos_preco.html"), $response);
 		
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/footer.html");
 	}
@@ -86,17 +86,13 @@
 			// $request[0]["@_PARAM"] = $daoFactory->prepare($request[0]["@_PARAM"]); // Prepare with sql injection.
 
 			$daoFactory->beginTransaction();
-			$enderecos = new model\Enderecos();
-			$enderecos->setLogradouro(logicNull($request["enderecos.logradouro"]));
-			$enderecos->setNumero(logicNull($request["enderecos.numero"]));
-			$enderecos->setBairro(logicNull($request["enderecos.bairro"]));
-			$enderecos->setCidade(logicNull($request["enderecos.cidade"]));
-			$enderecos->setComplemento(logicNull($request["enderecos.complemento"]));
-			$enderecos->setCep(logicNull($request["enderecos.cep"]));
-			$enderecos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$enderecos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco = new model\Estabelecimento_produtos_preco();
+			$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($request["estabelecimento_produtos_preco.preco"])));
+			$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco->setEstabelecimeto_produtos($request["estabelecimento_produtos_preco.estabelecimeto_produtos"]);
 			
-			$resultDao = $daoFactory->getEnderecosDao()->create($enderecos);
+			$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->create($estabelecimento_produtos_preco);
 
 			if ($resultDao) {
 				$daoFactory->commit();
@@ -123,16 +119,16 @@
 		if (isset($_POST["request"])) {
 			$request = json_decode($_POST["request"], true);
 			
-			$limit = "enderecos.id DESC LIMIT " . 
+			$limit = "estabelecimento_produtos_preco.id DESC LIMIT " . 
 					(($request[0]["page"] * $request[0]["pageSize"]) - 
 					$request[0]["pageSize"]) . ", " . $request[0]["pageSize"];	
 		}
 		
 		$daoFactory->beginTransaction();
-		$enderecos = $daoFactory->getEnderecosDao()->read("", $limit, false);
+		$estabelecimento_produtos_preco = $daoFactory->getEstabelecimento_produtos_precoDao()->read("", $limit, false);
 		$daoFactory->close();
 		
-		echo $view->json($enderecos);
+		echo $view->json($estabelecimento_produtos_preco);
 	}
 	
 	/*
@@ -144,19 +140,15 @@
 			$request = json_decode($_POST["request"], true);
 			// $request[0]["@_PARAM"] = $daoFactory->prepare($request[0]["@_PARAM"]); // Prepare with sql injection.
 			
-			$enderecos = new model\Enderecos();
-			$enderecos->setId($request["enderecos.id"]);
-			$enderecos->setLogradouro(logicNull($request["enderecos.logradouro"]));
-			$enderecos->setNumero(logicNull($request["enderecos.numero"]));
-			$enderecos->setBairro(logicNull($request["enderecos.bairro"]));
-			$enderecos->setCidade(logicNull($request["enderecos.cidade"]));
-			$enderecos->setComplemento(logicNull($request["enderecos.complemento"]));
-			$enderecos->setCep(logicNull($request["enderecos.cep"]));
-			$enderecos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$enderecos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco = new model\Estabelecimento_produtos_preco();
+			$estabelecimento_produtos_preco->setId($request["estabelecimento_produtos_preco.id"]);
+			$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($request["estabelecimento_produtos_preco.preco"])));
+			$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco->setEstabelecimeto_produtos($request["estabelecimento_produtos_preco.estabelecimeto_produtos"]);
 			
 			$daoFactory->beginTransaction();
-			$resultDao = $daoFactory->getEnderecosDao()->update($enderecos);
+			$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->update($estabelecimento_produtos_preco);
 
 			if ($resultDao) {
 				$daoFactory->commit();
@@ -181,17 +173,17 @@
 		enableCORS();
 		if (isset($_POST["request"])) {
 			$request = json_decode($_POST["request"], true);
-			$request["enderecos.id"] = $daoFactory->prepare($request["enderecos.id"]); // Prepare with sql injection.
+			$request["estabelecimento_produtos_preco.id"] = $daoFactory->prepare($request["estabelecimento_produtos_preco.id"]); // Prepare with sql injection.
 				
 			$result = true;
-			$lines = explode("<gz>", $request["enderecos.id"]);
+			$lines = explode("<gz>", $request["estabelecimento_produtos_preco.id"]);
 
 			$daoFactory->beginTransaction();
 
 			for ($i = 0; $i < sizeof($lines); $i++) {
-				$where = "enderecos.id = " . $lines[$i];
+				$where = "estabelecimento_produtos_preco.id = " . $lines[$i];
 				
-				$resultDao = $daoFactory->getEnderecosDao()->delete($where);
+				$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->delete($where);
 				$result = !$result ? false : (!$resultDao ? false : true);
 			}
 
@@ -228,10 +220,11 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
+					$response["estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read("", "estabelecimento_produtos.id ASC", false);
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/enderecos/enderecosCRT.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoCRT.html", $response);
 				}
 			}
 
@@ -244,14 +237,14 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["enderecos"] = $daoFactory->getEnderecosDao()->read($where, $limit, true);
-					if (!is_array($response["enderecos"])) {
+					$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, $limit, true);
+					if (!is_array($response["estabelecimento_produtos_preco"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/enderecos/enderecosRD.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoRD.html", $response);
 				}
 			}
 
@@ -264,11 +257,18 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["enderecos"] = $daoFactory->getEnderecosDao()->read($where, "", true);
+					$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, "", true);
+					$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read("", "estabelecimento_produtos.id ASC", false);
+					for ($x = 0; $x < sizeof($response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"]); $x++) {
+						if ($response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"][$x]["estabelecimento_produtos.id"] == 
+								$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimeto_produtos"]) {
+							$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"][$x]["estabelecimento_produtos.selected"] = "selected";
+						}
+					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/enderecos/enderecosUPD.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoUPD.html", $response);
 				}
 			}
 
@@ -283,20 +283,20 @@
 					 * Insert your foreign key here
 					 */
 					if ($where != "")
-						$where .= " AND enderecos.@_FOREIGN_KEY = " . $base;
+						$where .= " AND estabelecimento_produtos_preco.@_FOREIGN_KEY = " . $base;
 					else 
-						$where = "enderecos.@_FOREIGN_KEY = " . $base;
+						$where = "estabelecimento_produtos_preco.@_FOREIGN_KEY = " . $base;
 						
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["enderecos"] = $daoFactory->getEnderecosDao()->read($where, $limit, true);
-					if (!is_array($response["enderecos"])) {
+					$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, $limit, true);
+					if (!is_array($response["estabelecimento_produtos_preco"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/enderecos/enderecosCLL.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoCLL.html", $response);
 				}
 			}
 
@@ -309,21 +309,21 @@
 					
 					if (sizeof($arrBase) > 1) {
 						if ($where != "")
-							$where .= " AND enderecos.@_FOREIGN_KEY = " . $arrBase[1];
+							$where .= " AND estabelecimento_produtos_preco.@_FOREIGN_KEY = " . $arrBase[1];
 						else
-							$where = "enderecos.@_FOREIGN_KEY = " . $arrBase[1];
+							$where = "estabelecimento_produtos_preco.@_FOREIGN_KEY = " . $arrBase[1];
 					}
 				}
 				
-				$limit = "enderecos.id DESC LIMIT " . (($position * 5) - 5) . ", 5";
+				$limit = "estabelecimento_produtos_preco.id DESC LIMIT " . (($position * 5) - 5) . ", 5";
 
 				$daoFactory->beginTransaction();
 				$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-				$response["enderecos"] = $daoFactory->getEnderecosDao()->read($where, $limit, true);
+				$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, $limit, true);
 				$daoFactory->close();
 
-				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/enderecos/enderecosSCR.html", $response) . 
-						"<size>" . (is_array($response["enderecos"]) ? $response["enderecos"][0]["enderecos.size"] : 0) . "<theme>455a64";
+				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoSCR.html", $response) . 
+						"<size>" . (is_array($response["estabelecimento_produtos_preco"]) ? $response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.size"] : 0) . "<theme>455a64";
 			}
 
 			/*
@@ -336,13 +336,13 @@
 				$cmb = explode("<gz>", $search);
 
 				if ($cmb[1] != "")
-					$where = "enderecos.id = " . $cmb[1];
+					$where = "estabelecimento_produtos_preco.id = " . $cmb[1];
 
 				$daoFactory->beginTransaction();
-				$response["enderecos"] = $daoFactory->getEnderecosDao()->comboScr($where);
+				$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->comboScr($where);
 				$daoFactory->close();
 
-				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/enderecos/enderecosCMB.html", $response);
+				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoCMB.html", $response);
 			}
 
 			/*
@@ -354,18 +354,14 @@
 					
 					echo $view->json($response);
 				} else {
-					$enderecos = new model\Enderecos();
-					$enderecos->setLogradouro(logicNull($form[0]));
-					$enderecos->setNumero(logicNull($form[1]));
-					$enderecos->setBairro(logicNull($form[2]));
-					$enderecos->setCidade(logicNull($form[3]));
-					$enderecos->setComplemento(logicNull($form[4]));
-					$enderecos->setCep(logicNull($form[5]));
-					$enderecos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$enderecos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco = new model\Estabelecimento_produtos_preco();
+					$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($form[0])));
+					$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco->setEstabelecimeto_produtos($form[1]);
 					
 					$daoFactory->beginTransaction();
-					$resultDao = $daoFactory->getEnderecosDao()->create($enderecos);
+					$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->create($estabelecimento_produtos_preco);
 
 					if ($resultDao) {
 						$daoFactory->commit();
@@ -390,19 +386,15 @@
 					
 					echo $view->json($response);
 				} else {
-					$enderecos = new model\Enderecos();
-					$enderecos->setId($code);
-					$enderecos->setLogradouro(logicNull($form[0]));
-					$enderecos->setNumero(logicNull($form[1]));
-					$enderecos->setBairro(logicNull($form[2]));
-					$enderecos->setCidade(logicNull($form[3]));
-					$enderecos->setComplemento(logicNull($form[4]));
-					$enderecos->setCep(logicNull($form[5]));
-					$enderecos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$enderecos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco = new model\Estabelecimento_produtos_preco();
+					$estabelecimento_produtos_preco->setId($code);
+					$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($form[0])));
+					$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco->setEstabelecimeto_produtos($form[1]);
 					
 					$daoFactory->beginTransaction();
-					$resultDao = $daoFactory->getEnderecosDao()->update($enderecos);
+					$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->update($estabelecimento_produtos_preco);
 
 					if ($resultDao) {
 						$daoFactory->commit();
@@ -433,9 +425,9 @@
 					$daoFactory->beginTransaction();
 
 					for ($i = 1; $i < sizeof($lines); $i++) {
-						$where = "enderecos.id = " . $lines[$i];
+						$where = "estabelecimento_produtos_preco.id = " . $lines[$i];
 						
-						$resultDao = $daoFactory->getEnderecosDao()->delete($where);
+						$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->delete($where);
 						$result = !$result ? false : (!$resultDao ? false : true);
 					}
 

@@ -22,70 +22,44 @@
 				
 		</p>
 	
-		<for(produto_precos)>
+		<for(estabelecimento_produtos_preco)>
 	
 			<!-- Form -->
 				
 			<form id="gz-form" class="dv-f-l dv-ml-xdpi dv-pt-ldpi">
 						
-				<!-- Produto_preco -->
+				<!-- Preco -->
 				
 				<div class="gz-block dv-f-l">
 		
-					<div class="gz-label-ldpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Produto_preco</div>
+					<div class="gz-label-ldpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Preco</div>
 
 				</div>
 
 				<div class="gz-block dv-f-l">
 					
 					<input class="gz-textbox-ldpi dv-f-l dv-mt-ldpi gz-double" type="text" 
-							id="produto_precos.produto_preco" name="produto_precos.produto_preco" value="<gz>produto_precos.produto_preco</gz>">
+							id="estabelecimento_produtos_preco.preco" name="estabelecimento_produtos_preco.preco" value="<gz>estabelecimento_produtos_preco.preco</gz>">
 				
 				</div>
 					
-				<!-- Produto -->
+				<!-- Estabelecimeto_produtos -->
 		
 				<div class="gz-block dv-f-l">
 		
-					<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Produto</div> 
+					<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Estabelecimeto_produtos</div> 
 					
 				</div>
 				
 				<div class="gz-block dv-f-l">
 				
-					<select id="produto_precos.produtos" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
+					<select id="estabelecimento_produtos_preco.estabelecimento_produtos" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
 							
-						<for(produto_precos.produtos)>
+						<for(estabelecimento_produtos_preco.estabelecimento_produtos)>
 						
-							<option value="<gz>produtos.id</gz>" <gz>produtos.selected</gz>>
+							<option value="<gz>estabelecimento_produtos.id</gz>" <gz>estabelecimento_produtos.selected</gz>>
 							
-								<gz>produtos.produto</gz>
-							
-							</option>
-
-						</for>
-					
-					</select>
-				
-				</div>
-					
-				<!-- Estabelecimento -->
-		
-				<div class="gz-block dv-f-l">
-		
-					<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Estabelecimento</div> 
-					
-				</div>
-				
-				<div class="gz-block dv-f-l">
-				
-					<select id="produto_precos.estabelecimentos" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
-							
-						<for(produto_precos.estabelecimentos)>
-						
-							<option value="<gz>estabelecimentos.id</gz>" <gz>estabelecimentos.selected</gz>>
-							
-								<gz>estabelecimentos.estabelecimento</gz>
+								<gz>estabelecimento_produtos.estabelecimeto_produtos</gz>
 							
 							</option>
 
@@ -99,7 +73,7 @@
 
 				<div class="gz-button dv-f-l dv-mt-mdpi dv-mr-hdpi dv-mb-xdpi">
 
-					<a href="#" onclick="request('produto_precos', 'update'); return false;" class="gz-tooltip">
+					<a href="#" onclick="request('estabelecimento_produtos_preco', 'update'); return false;" class="gz-tooltip">
 
 						<img src="@_ROOT/mod/cms/img/icon/ok.png" />
 

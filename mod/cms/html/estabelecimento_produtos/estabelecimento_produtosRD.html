@@ -1,4 +1,4 @@
-<!-- Called View -->
+<!-- Read View -->
 	
 	<!-- Content -->
 	
@@ -7,31 +7,12 @@
 		<!-- Header -->
 
 		<div id="gz-header" class="dv-f-l dv-pt-mdpi dv-pb-mdpi" onclick="clearSelection();">
-			
-			<!-- History back -->
-
-			<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-xdpi" 
-					 onclick="window.history.go(gz_historyBack); return false;">
-		
-				<a href="#" class="gz-tooltip" onclick="return false;">
-
-					<img src="@_ROOT/mod/cms/img/icon/back.png">
-
-					<span class="gz-span-bottom-right @_THEME">
-
-						@_LAN_GO_BACK
-
-					</span>
-
-				</a>
-
-			</div>		
 		
 			<!-- Create -->
 
-			<div id="gz-button-create" class="gz-button dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-hdpi" 
+			<div id="gz-button-create" class="gz-button dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-xdpi" 
 					onclick="showCreate();">
-				
+		
 				<a href="#" class="gz-tooltip" onclick="return false;">
 
 					<img src="@_ROOT/mod/cms/img/icon/create.png" />
@@ -92,7 +73,7 @@
 		<!-- Table -->
 		
 		<div class="dv-pl-xdpi dv-pr-xdpi">
-			
+		
 			<p class="dv-mb-hdpi gz-gray">
 			
 				<one(titles)>
@@ -113,34 +94,34 @@
 				
 				<tr>
 
-					<th id="enderecos.id" style="display:none;"
+					<th id="estabelecimento_produtos.id" style="display:none;"
 							onclick="orderBy(this.id);">
 
 						Id
 
 					</th>
 					
-					<th id="enderecos.logradouro" style="width:100%;" 
+					<th id="estabelecimento_produtos.cadastrado" style="width:100%;" 
 							onclick="orderBy(this.id);">
 							
-						Logradouro
+						Produtos
 						
 					</th>
 					
 				</tr>
-					
+				
 				<one(data_not_found)><tr><td colspan="2"><gz>value</gz></td></tr></one>		
 
-				<for(enderecos)>
+				<for(estabelecimento_produtos)>
 
-					<tr id="<gz>enderecos.line</gz>" 
-							onMouseOver="onFocus(<gz>enderecos.line</gz>);" 
-							onMouseOut="outFocus(<gz>enderecos.line</gz>);" 
-							onclick="selected(<gz>enderecos.line</gz>);">
+					<tr id="<gz>estabelecimento_produtos.line</gz>" 
+							onMouseOver="onFocus(<gz>estabelecimento_produtos.line</gz>);" 
+							onMouseOut="outFocus(<gz>estabelecimento_produtos.line</gz>);" 
+							onclick="selected(<gz>estabelecimento_produtos.line</gz>);">
 
-						<td style="display:none;"><gz>enderecos.id</gz></td>
+						<td style="display:none;"><gz>estabelecimento_produtos.id</gz></td>
 
-						<td><gz>enderecos.logradouro</gz></td>
+						<td><gz>produtos.produto</gz></td>
 						
 					</tr>
 
@@ -154,19 +135,19 @@
 
 		<div id="gz-footer" class="dv-f-l dv-pt-mdpi dv-pb-mdpi">
 		
-			<one(enderecos)>
-			
+			<one(estabelecimento_produtos)>
+		
 				<div class="dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-xdpi dv-pt-mdpi">
 				
-					<p><gz>enderecos.size</gz> @_LAN_ITEMS_PAGE</p>
+					<p><gz>estabelecimento_produtos.size</gz> @_LAN_ITEMS_PAGE</p>
 						
 				</div>
 				
-				<gz>enderecos.pagination</gz>
+				<gz>estabelecimento_produtos.pagination</gz>
 					
 				<div class="dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-mdpi dv-pt-mdpi">
 			
-					<p>@_LAN_OF <gz>enderecos.pages</gz></p>
+					<p>@_LAN_OF <gz>estabelecimento_produtos.pages</gz></p>
 
 				</div>
 
@@ -183,8 +164,8 @@
 
 						</span>
 
-					</a>		
-						
+					</a>	
+			
 				</div>
 				
 				<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" onclick="goBack();">
@@ -204,7 +185,7 @@
 				</div>
 				
 				<div id="gz-button-next" class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" 
-						onclick="goNext(<gz>enderecos.size</gz>);">
+						onclick="goNext(<gz>estabelecimento_produtos.size</gz>);">
 			
 					<a href="#" class="gz-tooltip" onclick="return false;">
 
@@ -213,7 +194,7 @@
 						<span class="gz-span-top-right @_THEME">
 
 							@_LAN_NEXT
-
+							
 						</span>
 
 					</a>	
@@ -221,7 +202,7 @@
 				</div>
 				
 				<div id="gz-button-last" class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" 
-						onclick="goLast(<gz>enderecos.size</gz>);">
+						onclick="goLast(<gz>estabelecimento_produtos.size</gz>);">
 
 					<a href="#" class="gz-tooltip" onclick="return false;">
 
@@ -236,7 +217,7 @@
 					</a>	
 						
 				</div>
-			
+				
 			</one>
 			
 		</div>

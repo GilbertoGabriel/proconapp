@@ -151,6 +151,7 @@ a:focus {
 	margin: 10px;
 }
 
+
 .blue {
 	background-color: #12295d;
 }
@@ -192,14 +193,26 @@ text-decoration: underline;
 	width: 50%;
 }
 
+.searchBox:focus{
+	outline-width: 0px !important;
+}
+
+.searchBox:hover{
+	outline-width: 0px !important;
+}
+
 .titleTable {
 	color: white;
 	border: 1px solid black;
 }
 
-.botaoTable{
+.pesquisarLabel:hover{
+	transition: 0.5s;
 	background-color: #12295d;
+	color: white;
 }
+
+
 /* --------------------------------------------------------------------- */
 
 /* FOOTER */

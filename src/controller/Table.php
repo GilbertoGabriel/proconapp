@@ -9,20 +9,32 @@
 
 	use lib\getz;
 	use src\model;	 
-	 
+	
 	require_once($_DOCUMENT_ROOT . "/lib/getz/Activator.php");
 
-	if ($method == "page") {
-		$daoFactory->beginTransaction();
+	
+	if($search != ""){
 
-		$response["produtos"] = $daoFactory->getProdutosDao()->read("", "produtos.id ASC", true);
-		$response["cards"] = $daoFactory->getCardsDao()->read("", "cards.id ASC", true);
+		$daoFactory->beginTransaction();
+		$where = explode("<gz>", $search);
+
+		$response["produtoSelect"] = $daoFactory->getProdutosDao()->read("produtos.produto LIKE \"%" . $where[0] . "%\"", "produtos.produto ASC", true);
 
 		$daoFactory->close();
 		
+	}
+	
+
+	if ($method == "page") {
+		
+		$daoFactory->beginTransaction();
+		$response["produtos"] = $daoFactory->getProdutosDao()->read("", "produtos.id ASC", true);
+		$daoFactory->close();
+
 		$response["print"] = "true";
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/header.html");
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/table.html", $response);
+		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/table_dinamic.html", $response);
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/footer.html");
 	}
 

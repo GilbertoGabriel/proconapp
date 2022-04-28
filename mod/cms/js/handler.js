@@ -485,3 +485,66 @@ function cardsRES(response, method) {
 	} else
 		showMessage(gz_titleAttetion, gz_msgErrorServer, "cancel();");
 }
+			
+function estabelecimento_produtosHDL() { /* Insert your code here... */ }
+				
+function estabelecimento_produtosRES(response, method) {
+	var res = JSON.parse(response);
+
+	if (res["message"] == "success") {
+		if (location.hash == "#from-screen") {
+			window.close();
+		} else {
+			requestHandler(method);
+		}
+	} else
+		showMessage(gz_titleAttetion, gz_msgErrorServer, "cancel();");
+}
+					
+function datalistReferenceEstabelecimento(datalist) {
+	if (document.getElementsByName("estabelecimento")[0].value == "") {
+		for (var i = 0; i < gI("estabelecimentos").options.length; i++) {
+			if (gI("estabelecimentos").options[i].value == datalistReference) {
+				document.getElementsByName("estabelecimento")[0].value = datalistReference;
+			}
+		}	
+	}
+	isNull(datalist);
+}
+					
+function datalistReferenceProduto(datalist) {
+	if (document.getElementsByName("produto")[0].value == "") {
+		for (var i = 0; i < gI("produtos").options.length; i++) {
+			if (gI("produtos").options[i].value == datalistReference) {
+				document.getElementsByName("produto")[0].value = datalistReference;
+			}
+		}	
+	}
+	isNull(datalist);
+}
+			
+function estabelecimento_produtos_precoHDL() { /* Insert your code here... */ }
+				
+function estabelecimento_produtos_precoRES(response, method) {
+	var res = JSON.parse(response);
+
+	if (res["message"] == "success") {
+		if (location.hash == "#from-screen") {
+			window.close();
+		} else {
+			requestHandler(method);
+		}
+	} else
+		showMessage(gz_titleAttetion, gz_msgErrorServer, "cancel();");
+}
+					
+function datalistReferenceEstabelecimeto_produto(datalist) {
+	if (document.getElementsByName("estabelecimeto_produto")[0].value == "") {
+		for (var i = 0; i < gI("estabelecimento_produtos").options.length; i++) {
+			if (gI("estabelecimento_produtos").options[i].value == datalistReference) {
+				document.getElementsByName("estabelecimeto_produto")[0].value = datalistReference;
+			}
+		}	
+	}
+	isNull(datalist);
+}

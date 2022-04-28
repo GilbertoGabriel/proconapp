@@ -16,7 +16,7 @@
 			
 	use lib\getz;
 			
-	$table = "enderecos";
+	$table = "estabelecimento_produtos_preco";
 			
 	/*
 	 * $fields = array("field" => "type");
@@ -28,12 +28,7 @@
 	 * photo, photoWithPosition, position, upload
 	 */ 
 	$fields = array("id" => "integer",
-			"logradouro" => "string32",
-			"numero" => "string16",
-			"bairro" => "string32",
-			"cidade" => "string32",
-			"complemento" => "string32",
-			"cep" => "cep",
+			"preco" => "double",
 			"cadastrado" => "new",
 			"modificado" => "now"
 	);
@@ -41,7 +36,7 @@
 	/*
 	 *$fk = array("table" => "field");
 	 */
-	$fk = array(
+	$fk = array("estabelecimento_produtos" => "estabelecimeto_produtos"
 	);
 			
 	/*
@@ -49,11 +44,11 @@
 	 *
 	 * types: session, base, standard, advanced, autocomplete
 	 */ 
-	$fkFields = array(
+	$fkFields = array("estabelecimento_produtos" => "standard"
 	);
 				
 	// Set the table if this screen call another
-	$call = "";
+	$call = "estabelecimento_produtos";
 	
 	// Set the column for answer after the call
 	$answer = "";

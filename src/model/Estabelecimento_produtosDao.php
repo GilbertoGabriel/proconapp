@@ -11,34 +11,32 @@
 	
 	use src\model;
 	
-	class Produto_precosDao {
+	class Estabelecimento_produtosDao {
 	
 		private $connection;
 		
 		/*
 		 * Constant variables
 		 */
-		private $create = "INSERT INTO produto_precos (
-				produto_preco
-				, cadastrado
+		private $create = "INSERT INTO estabelecimento_produtos (
+				cadastrado
 				, modificado
-				, produto
 				, estabelecimento
+				, produto
 				) VALUES";
 				
 		public $read = 
-				"produto_precos.id AS \"produto_precos.id\"
-				, produto_precos.produto_preco AS \"produto_precos.produto_preco\"
-				, produto_precos.cadastrado AS \"produto_precos.cadastrado\"
-				, produto_precos.modificado AS \"produto_precos.modificado\"
-				, produto_precos.produto AS \"produto_precos.produto\"
-				, produto_precos.estabelecimento AS \"produto_precos.estabelecimento\"
+				"estabelecimento_produtos.id AS \"estabelecimento_produtos.id\"
+				, estabelecimento_produtos.cadastrado AS \"estabelecimento_produtos.cadastrado\"
+				, estabelecimento_produtos.modificado AS \"estabelecimento_produtos.modificado\"
+				, estabelecimento_produtos.estabelecimento AS \"estabelecimento_produtos.estabelecimento\"
+				, estabelecimento_produtos.produto AS \"estabelecimento_produtos.produto\"
 				";
 				
-		private $update = "UPDATE produto_precos SET";
-		private $delete = "DELETE FROM produto_precos";
+		private $update = "UPDATE estabelecimento_produtos SET";
+		private $delete = "DELETE FROM estabelecimento_produtos";
 		
-		public $from = "produto_precos produto_precos";
+		public $from = "estabelecimento_produtos estabelecimento_produtos";
 		
 		/*
 		 * Parameters
@@ -60,15 +58,14 @@
 		}
 
 		/**
-		 * @param {Produto_precos}produto_precos
+		 * @param {Estabelecimento_produtos}estabelecimento_produtos
 		 */
-		public function setCreate($produto_precos) {		
+		public function setCreate($estabelecimento_produtos) {		
 			$this->sql = $this->create . " (\"" . 
-					$produto_precos->getProduto_preco() .
-					"\", \"" . $produto_precos->getCadastrado() .
-					"\", \"" . $produto_precos->getModificado() .
-					"\", \"" . $produto_precos->getProduto() .
-					"\", \"" . $produto_precos->getEstabelecimento() .
+					$estabelecimento_produtos->getCadastrado() .
+					"\", \"" . $estabelecimento_produtos->getModificado() .
+					"\", \"" . $estabelecimento_produtos->getEstabelecimento() .
+					"\", \"" . $estabelecimento_produtos->getProduto() .
 					"\")";
 		}
 		
@@ -84,16 +81,16 @@
 		 * @param {String} order
 		 */
 		public function setRead($where, $order) {
-			$produtosDao = new model\ProdutosDao($this->connection);
 			$estabelecimentosDao = new model\EstabelecimentosDao($this->connection);
+			$produtosDao = new model\ProdutosDao($this->connection);
 			
 			$this->setWhere($where);
 			$this->setOrder($order);
 			
-			$this->sql = "SELECT " . $this->read . ", " . $produtosDao->read . ", " . $estabelecimentosDao->read . 
-					" FROM " . $this->getFrom() .", " . $produtosDao->from . ", " . $estabelecimentosDao->from . 
-					($this->getWhere() == "" ? " WHERE produto_precos.produto = produtos.id AND produto_precos.estabelecimento = estabelecimentos.id" : $this->getWhere()) . 
-					" AND produto_precos.produto = produtos.id AND produto_precos.estabelecimento = estabelecimentos.id" . $this->getOrder();
+			$this->sql = "SELECT " . $this->read . ", " . $estabelecimentosDao->read . ", " . $produtosDao->read . 
+					" FROM " . $this->getFrom() .", " . $estabelecimentosDao->from . ", " . $produtosDao->from . 
+					($this->getWhere() == "" ? " WHERE estabelecimento_produtos.estabelecimento = estabelecimentos.id AND estabelecimento_produtos.produto = produtos.id" : $this->getWhere()) . 
+					" AND estabelecimento_produtos.estabelecimento = estabelecimentos.id AND estabelecimento_produtos.produto = produtos.id" . $this->getOrder();
 		}
 		
 		/**
@@ -104,18 +101,17 @@
 		}
 		
 		/**
-		 * @param {Produto_precos}produto_precos  
+		 * @param {Estabelecimento_produtos}estabelecimento_produtos  
 		 * @param {String} where
 		 */
-		public function setUpdate($produto_precos, $where) {
+		public function setUpdate($estabelecimento_produtos, $where) {
 			$this->setWhere($where);
 			
 			$this->sql = $this->update . 
-					" id = \"" . $produto_precos->getId() . 
-					"\", produto_preco = \"" . $produto_precos->getProduto_preco() . 
-					"\", modificado = \"" . $produto_precos->getModificado() . 
-					"\", produto = \"" . $produto_precos->getProduto() . 
-					"\", estabelecimento = \"" . $produto_precos->getEstabelecimento() . 
+					" id = \"" . $estabelecimento_produtos->getId() . 
+					"\", modificado = \"" . $estabelecimento_produtos->getModificado() . 
+					"\", estabelecimento = \"" . $estabelecimento_produtos->getEstabelecimento() . 
+					"\", produto = \"" . $estabelecimento_produtos->getProduto() . 
 					"\"" . $this->getWhere();
 		}
 		
@@ -206,15 +202,15 @@
 			$this->setWhere($where);
 			
 			$result = $this->connection->execute(
-					"SELECT count(1) AS \"produto_precos.size\" from produto_precos" . $this->getWhere());
+					"SELECT count(1) AS \"estabelecimento_produtos.size\" from estabelecimento_produtos" . $this->getWhere());
 
 			while ($row = $result->fetch_assoc()) {		
-				$this->setResponse(0, "produto_precos.size", $row["produto_precos.size"]);
+				$this->setResponse(0, "estabelecimento_produtos.size", $row["estabelecimento_produtos.size"]);
 				
-				$pages = ceil($row["produto_precos.size"] / $this->connection->getItensPerPage());
+				$pages = ceil($row["estabelecimento_produtos.size"] / $this->connection->getItensPerPage());
 				
-				$this->setResponse(0, "produto_precos.page", $this->connection->getPosition());
-				$this->setResponse(0, "produto_precos.pages", $pages);
+				$this->setResponse(0, "estabelecimento_produtos.page", $this->connection->getPosition());
+				$this->setResponse(0, "estabelecimento_produtos.pages", $pages);
 				
 				$pagination = "<select id='gz-select-pagination' onchange='goPage();'>";
 				
@@ -227,7 +223,7 @@
 
 				$pagination .= "</select>";
 						
-				$this->setResponse(0, "produto_precos.pagination", $pagination);
+				$this->setResponse(0, "estabelecimento_produtos.pagination", $pagination);
 			}
 
 			$this->connection->free($result);
@@ -269,13 +265,13 @@
 		}
 		
 		/**
-		 * @param {Produto_precos} produto_precos 
+		 * @param {Estabelecimento_produtos} estabelecimento_produtos 
 		 * @return {Boolean}
 		 */
-		public function create($produto_precos) {
+		public function create($estabelecimento_produtos) {
 			$result = "";
 
-			$this->setCreate($produto_precos);
+			$this->setCreate($estabelecimento_produtos);
 			$result = $this->connection->execute($this->getCreate());
 			
 			return $result;
@@ -294,16 +290,15 @@
 			$result = $this->connection->execute($this->getRead());
 
 			while ($row = $result->fetch_assoc()) {
-				$this->setResponse($line, "produto_precos.id", $row["produto_precos.id"]);
-				$this->setResponse($line, "produto_precos.produto_preco", modelDouble($row["produto_precos.produto_preco"]));
-				$this->setResponse($line, "produto_precos.cadastrado", modelDateTime($row["produto_precos.cadastrado"]));
-				$this->setResponse($line, "produto_precos.modificado", modelDateTime($row["produto_precos.modificado"]));
-				$this->setResponse($line, "produto_precos.produto", $row["produto_precos.produto"]);
-				$this->setResponse($line, "produtos.produto", $row["produtos.produto"]);
-				$this->setResponse($line, "produto_precos.estabelecimento", $row["produto_precos.estabelecimento"]);
+				$this->setResponse($line, "estabelecimento_produtos.id", $row["estabelecimento_produtos.id"]);
+				$this->setResponse($line, "estabelecimento_produtos.cadastrado", modelDateTime($row["estabelecimento_produtos.cadastrado"]));
+				$this->setResponse($line, "estabelecimento_produtos.modificado", modelDateTime($row["estabelecimento_produtos.modificado"]));
+				$this->setResponse($line, "estabelecimento_produtos.estabelecimento", $row["estabelecimento_produtos.estabelecimento"]);
 				$this->setResponse($line, "estabelecimentos.estabelecimento", $row["estabelecimentos.estabelecimento"]);
+				$this->setResponse($line, "estabelecimento_produtos.produto", $row["estabelecimento_produtos.produto"]);
+				$this->setResponse($line, "produtos.produto", $row["produtos.produto"]);
 			
-				$this->setResponse($line, "produto_precos.line", $line);
+				$this->setResponse($line, "estabelecimento_produtos.line", $line);
 			
 				$line++;
 				
@@ -323,13 +318,13 @@
 		}
 
 		/**
-		 * @param {Produto_precos} produto_precos 
+		 * @param {Estabelecimento_produtos} estabelecimento_produtos 
 		 * @return {Boolean}
 		 */
-		public function update($produto_precos) {
+		public function update($estabelecimento_produtos) {
 			$result = "";
 			
-			$this->setUpdate($produto_precos, "produto_precos.id = " . $produto_precos->getId());
+			$this->setUpdate($estabelecimento_produtos, "estabelecimento_produtos.id = " . $estabelecimento_produtos->getId());
 			$result = $this->connection->execute($this->getUpdate());
 
 			return $result;
@@ -360,13 +355,13 @@
 			$result = $this->connection->execute($this->getRead());
 
 			while ($row = $result->fetch_assoc()) {
-				$this->setResponse($size, "produto_precos.id", $row["produto_precos.id"]);
-				$this->setResponse($size, "produto_precos.produto_preco", $row["produto_precos.produto_preco"]);
+				$this->setResponse($size, "estabelecimento_produtos.id", $row["estabelecimento_produtos.id"]);
+				$this->setResponse($size, "estabelecimento_produtos.cadastrado", $row["estabelecimento_produtos.cadastrado"]);
 			
-				if ($row["produto_precos.id"] == $selected)
-					$this->setResponse($size, "produto_precos.selected", "selected");
+				if ($row["estabelecimento_produtos.id"] == $selected)
+					$this->setResponse($size, "estabelecimento_produtos.selected", "selected");
 				else
-					$this->setResponse($size, "produto_precos.selected", "");
+					$this->setResponse($size, "estabelecimento_produtos.selected", "");
 					
 				$size++;
 			}
@@ -389,9 +384,9 @@
 			$result = $this->connection->execute($this->getRead());
 
 			while ($row = $result->fetch_assoc()) {
-				$this->setResponse($size, "produto_precos.id", $row["produto_precos.id"]);
-				$this->setResponse($size, "produto_precos.produto_preco", $row["produto_precos.produto_preco"]);
-				$this->setResponse($size, "produto_precos.selected", "selected");
+				$this->setResponse($size, "estabelecimento_produtos.id", $row["estabelecimento_produtos.id"]);
+				$this->setResponse($size, "estabelecimento_produtos.cadastrado", $row["estabelecimento_produtos.cadastrado"]);
+				$this->setResponse($size, "estabelecimento_produtos.selected", "selected");
 					
 				$size++;
 			}

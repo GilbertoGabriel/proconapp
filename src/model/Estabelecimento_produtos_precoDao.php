@@ -9,40 +9,34 @@
 	 
 	namespace src\model; 
 	
-	class EnderecosDao {
+	use src\model;
+	
+	class Estabelecimento_produtos_precoDao {
 	
 		private $connection;
 		
 		/*
 		 * Constant variables
 		 */
-		private $create = "INSERT INTO enderecos (
-				logradouro
-				, numero
-				, bairro
-				, cidade
-				, complemento
-				, cep
+		private $create = "INSERT INTO estabelecimento_produtos_preco (
+				preco
 				, cadastrado
 				, modificado
+				, estabelecimeto_produtos
 				) VALUES";
 				
 		public $read = 
-				"enderecos.id AS \"enderecos.id\"
-				, enderecos.logradouro AS \"enderecos.logradouro\"
-				, enderecos.numero AS \"enderecos.numero\"
-				, enderecos.bairro AS \"enderecos.bairro\"
-				, enderecos.cidade AS \"enderecos.cidade\"
-				, enderecos.complemento AS \"enderecos.complemento\"
-				, enderecos.cep AS \"enderecos.cep\"
-				, enderecos.cadastrado AS \"enderecos.cadastrado\"
-				, enderecos.modificado AS \"enderecos.modificado\"
+				"estabelecimento_produtos_preco.id AS \"estabelecimento_produtos_preco.id\"
+				, estabelecimento_produtos_preco.preco AS \"estabelecimento_produtos_preco.preco\"
+				, estabelecimento_produtos_preco.cadastrado AS \"estabelecimento_produtos_preco.cadastrado\"
+				, estabelecimento_produtos_preco.modificado AS \"estabelecimento_produtos_preco.modificado\"
+				, estabelecimento_produtos_preco.estabelecimeto_produtos AS \"estabelecimento_produtos_preco.estabelecimeto_produtos\"
 				";
 				
-		private $update = "UPDATE enderecos SET";
-		private $delete = "DELETE FROM enderecos";
+		private $update = "UPDATE estabelecimento_produtos_preco SET";
+		private $delete = "DELETE FROM estabelecimento_produtos_preco";
 		
-		public $from = "enderecos enderecos";
+		public $from = "estabelecimento_produtos_preco estabelecimento_produtos_preco";
 		
 		/*
 		 * Parameters
@@ -64,18 +58,14 @@
 		}
 
 		/**
-		 * @param {Enderecos}enderecos
+		 * @param {Estabelecimento_produtos_preco}estabelecimento_produtos_preco
 		 */
-		public function setCreate($enderecos) {		
+		public function setCreate($estabelecimento_produtos_preco) {		
 			$this->sql = $this->create . " (\"" . 
-					$enderecos->getLogradouro() .
-					"\", \"" . $enderecos->getNumero() .
-					"\", \"" . $enderecos->getBairro() .
-					"\", \"" . $enderecos->getCidade() .
-					"\", \"" . $enderecos->getComplemento() .
-					"\", \"" . $enderecos->getCep() .
-					"\", \"" . $enderecos->getCadastrado() .
-					"\", \"" . $enderecos->getModificado() .
+					$estabelecimento_produtos_preco->getPreco() .
+					"\", \"" . $estabelecimento_produtos_preco->getCadastrado() .
+					"\", \"" . $estabelecimento_produtos_preco->getModificado() .
+					"\", \"" . $estabelecimento_produtos_preco->getEstabelecimeto_produtos() .
 					"\")";
 		}
 		
@@ -91,13 +81,15 @@
 		 * @param {String} order
 		 */
 		public function setRead($where, $order) {
+			$estabelecimento_produtosDao = new model\Estabelecimento_produtosDao($this->connection);
 			
 			$this->setWhere($where);
 			$this->setOrder($order);
 			
-			$this->sql = "SELECT " . $this->read . " FROM " . $this->getFrom() . 
-					$this->getWhere() . "
-				" . $this->getOrder();
+			$this->sql = "SELECT " . $this->read . ", " . $estabelecimento_produtosDao->read . 
+					" FROM " . $this->getFrom() .", " . $estabelecimento_produtosDao->from . 
+					($this->getWhere() == "" ? " WHERE estabelecimento_produtos_preco.estabelecimeto_produtos = estabelecimento_produtos.id" : $this->getWhere()) . 
+					" AND estabelecimento_produtos_preco.estabelecimeto_produtos = estabelecimento_produtos.id" . $this->getOrder();
 		}
 		
 		/**
@@ -108,21 +100,17 @@
 		}
 		
 		/**
-		 * @param {Enderecos}enderecos  
+		 * @param {Estabelecimento_produtos_preco}estabelecimento_produtos_preco  
 		 * @param {String} where
 		 */
-		public function setUpdate($enderecos, $where) {
+		public function setUpdate($estabelecimento_produtos_preco, $where) {
 			$this->setWhere($where);
 			
 			$this->sql = $this->update . 
-					" id = \"" . $enderecos->getId() . 
-					"\", logradouro = \"" . $enderecos->getLogradouro() . 
-					"\", numero = \"" . $enderecos->getNumero() . 
-					"\", bairro = \"" . $enderecos->getBairro() . 
-					"\", cidade = \"" . $enderecos->getCidade() . 
-					"\", complemento = \"" . $enderecos->getComplemento() . 
-					"\", cep = \"" . $enderecos->getCep() . 
-					"\", modificado = \"" . $enderecos->getModificado() . 
+					" id = \"" . $estabelecimento_produtos_preco->getId() . 
+					"\", preco = \"" . $estabelecimento_produtos_preco->getPreco() . 
+					"\", modificado = \"" . $estabelecimento_produtos_preco->getModificado() . 
+					"\", estabelecimeto_produtos = \"" . $estabelecimento_produtos_preco->getEstabelecimeto_produtos() . 
 					"\"" . $this->getWhere();
 		}
 		
@@ -213,15 +201,15 @@
 			$this->setWhere($where);
 			
 			$result = $this->connection->execute(
-					"SELECT count(1) AS \"enderecos.size\" from enderecos" . $this->getWhere());
+					"SELECT count(1) AS \"estabelecimento_produtos_preco.size\" from estabelecimento_produtos_preco" . $this->getWhere());
 
 			while ($row = $result->fetch_assoc()) {		
-				$this->setResponse(0, "enderecos.size", $row["enderecos.size"]);
+				$this->setResponse(0, "estabelecimento_produtos_preco.size", $row["estabelecimento_produtos_preco.size"]);
 				
-				$pages = ceil($row["enderecos.size"] / $this->connection->getItensPerPage());
+				$pages = ceil($row["estabelecimento_produtos_preco.size"] / $this->connection->getItensPerPage());
 				
-				$this->setResponse(0, "enderecos.page", $this->connection->getPosition());
-				$this->setResponse(0, "enderecos.pages", $pages);
+				$this->setResponse(0, "estabelecimento_produtos_preco.page", $this->connection->getPosition());
+				$this->setResponse(0, "estabelecimento_produtos_preco.pages", $pages);
 				
 				$pagination = "<select id='gz-select-pagination' onchange='goPage();'>";
 				
@@ -234,7 +222,7 @@
 
 				$pagination .= "</select>";
 						
-				$this->setResponse(0, "enderecos.pagination", $pagination);
+				$this->setResponse(0, "estabelecimento_produtos_preco.pagination", $pagination);
 			}
 
 			$this->connection->free($result);
@@ -276,13 +264,13 @@
 		}
 		
 		/**
-		 * @param {Enderecos} enderecos 
+		 * @param {Estabelecimento_produtos_preco} estabelecimento_produtos_preco 
 		 * @return {Boolean}
 		 */
-		public function create($enderecos) {
+		public function create($estabelecimento_produtos_preco) {
 			$result = "";
 
-			$this->setCreate($enderecos);
+			$this->setCreate($estabelecimento_produtos_preco);
 			$result = $this->connection->execute($this->getCreate());
 			
 			return $result;
@@ -301,24 +289,14 @@
 			$result = $this->connection->execute($this->getRead());
 
 			while ($row = $result->fetch_assoc()) {
-				$this->setResponse($line, "enderecos.id", $row["enderecos.id"]);
-				$this->setResponse($line, "enderecos.logradouro", $row["enderecos.logradouro"]);
-				$this->setResponse($line, "enderecos.logradouro.format.json", modelDoubleQuotesJson($row["enderecos.logradouro"]));
-				$this->setResponse($line, "enderecos.logradouro.format", modelDoubleQuotes($row["enderecos.logradouro"]));
-				$this->setResponse($line, "enderecos.logradouro.view", addLine($row["enderecos.logradouro"]));
-				$this->setResponse($line, "enderecos.numero", $row["enderecos.numero"]);
-				$this->setResponse($line, "enderecos.numero.format.json", modelDoubleQuotesJson($row["enderecos.numero"]));
-				$this->setResponse($line, "enderecos.bairro", $row["enderecos.bairro"]);
-				$this->setResponse($line, "enderecos.bairro.format.json", modelDoubleQuotesJson($row["enderecos.bairro"]));
-				$this->setResponse($line, "enderecos.cidade", $row["enderecos.cidade"]);
-				$this->setResponse($line, "enderecos.cidade.format.json", modelDoubleQuotesJson($row["enderecos.cidade"]));
-				$this->setResponse($line, "enderecos.complemento", $row["enderecos.complemento"]);
-				$this->setResponse($line, "enderecos.complemento.format.json", modelDoubleQuotesJson($row["enderecos.complemento"]));
-				$this->setResponse($line, "enderecos.cep", $row["enderecos.cep"]);
-				$this->setResponse($line, "enderecos.cadastrado", modelDateTime($row["enderecos.cadastrado"]));
-				$this->setResponse($line, "enderecos.modificado", modelDateTime($row["enderecos.modificado"]));
+				$this->setResponse($line, "estabelecimento_produtos_preco.id", $row["estabelecimento_produtos_preco.id"]);
+				$this->setResponse($line, "estabelecimento_produtos_preco.preco", modelDouble($row["estabelecimento_produtos_preco.preco"]));
+				$this->setResponse($line, "estabelecimento_produtos_preco.cadastrado", modelDateTime($row["estabelecimento_produtos_preco.cadastrado"]));
+				$this->setResponse($line, "estabelecimento_produtos_preco.modificado", modelDateTime($row["estabelecimento_produtos_preco.modificado"]));
+				$this->setResponse($line, "estabelecimento_produtos_preco.estabelecimeto_produtos", $row["estabelecimento_produtos_preco.estabelecimeto_produtos"]);
+				$this->setResponse($line, "estabelecimento_produtos.estabelecimeto_produtos", $row["estabelecimento_produtos.estabelecimeto_produtos"]);
 			
-				$this->setResponse($line, "enderecos.line", $line);
+				$this->setResponse($line, "estabelecimento_produtos_preco.line", $line);
 			
 				$line++;
 				
@@ -338,13 +316,13 @@
 		}
 
 		/**
-		 * @param {Enderecos} enderecos 
+		 * @param {Estabelecimento_produtos_preco} estabelecimento_produtos_preco 
 		 * @return {Boolean}
 		 */
-		public function update($enderecos) {
+		public function update($estabelecimento_produtos_preco) {
 			$result = "";
 			
-			$this->setUpdate($enderecos, "enderecos.id = " . $enderecos->getId());
+			$this->setUpdate($estabelecimento_produtos_preco, "estabelecimento_produtos_preco.id = " . $estabelecimento_produtos_preco->getId());
 			$result = $this->connection->execute($this->getUpdate());
 
 			return $result;
@@ -375,13 +353,13 @@
 			$result = $this->connection->execute($this->getRead());
 
 			while ($row = $result->fetch_assoc()) {
-				$this->setResponse($size, "enderecos.id", $row["enderecos.id"]);
-				$this->setResponse($size, "enderecos.logradouro", $row["enderecos.logradouro"]);
+				$this->setResponse($size, "estabelecimento_produtos_preco.id", $row["estabelecimento_produtos_preco.id"]);
+				$this->setResponse($size, "estabelecimento_produtos_preco.preco", $row["estabelecimento_produtos_preco.preco"]);
 			
-				if ($row["enderecos.id"] == $selected)
-					$this->setResponse($size, "enderecos.selected", "selected");
+				if ($row["estabelecimento_produtos_preco.id"] == $selected)
+					$this->setResponse($size, "estabelecimento_produtos_preco.selected", "selected");
 				else
-					$this->setResponse($size, "enderecos.selected", "");
+					$this->setResponse($size, "estabelecimento_produtos_preco.selected", "");
 					
 				$size++;
 			}
@@ -404,9 +382,9 @@
 			$result = $this->connection->execute($this->getRead());
 
 			while ($row = $result->fetch_assoc()) {
-				$this->setResponse($size, "enderecos.id", $row["enderecos.id"]);
-				$this->setResponse($size, "enderecos.logradouro", $row["enderecos.logradouro"]);
-				$this->setResponse($size, "enderecos.selected", "selected");
+				$this->setResponse($size, "estabelecimento_produtos_preco.id", $row["estabelecimento_produtos_preco.id"]);
+				$this->setResponse($size, "estabelecimento_produtos_preco.preco", $row["estabelecimento_produtos_preco.preco"]);
+				$this->setResponse($size, "estabelecimento_produtos_preco.selected", "selected");
 					
 				$size++;
 			}

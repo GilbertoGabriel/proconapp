@@ -1,0 +1,134 @@
+<!-- Create View -->
+	
+	<!-- Content -->
+
+	<div id="gz-content" class="dv-f-r">
+	
+		<p class="dv-mt-mdpi dv-mr-xdpi dv-mb-mdpi dv-ml-xdpi gz-gray">
+		
+			<one(titles)>
+			
+				<gz>menus.menu</gz> /
+
+				<gz>telas.tela</gz> / 
+				
+				<span class="gz-black gz-bold">
+				
+					@_LAN_CREATE
+					
+				</span>
+				
+			</one>	
+				
+		</p>
+	
+		<!-- Form -->
+
+		<form id="gz-form" class="dv-f-l dv-ml-xdpi dv-pt-ldpi">
+						
+			<!-- Preco -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-ldpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Preco</div>
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+							
+				<input class="gz-textbox-ldpi dv-f-l dv-mt-ldpi gz-double" type="text" 
+						id="estabelecimento_produtos_preco.preco" name="estabelecimento_produtos_preco.preco" value="">
+				
+			</div>
+					
+			<!-- Estabelecimeto_produtos -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Estabelecimeto</div> 
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+			
+				<select id="estabelecimento_produtos_preco.estabelecimento_produtos" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
+					
+					<for(estabelecimento_produtos)>
+
+						<option value="<gz>estabelecimento_produtos.id</gz>">
+						
+							<gz>estabelecimentos.estabelecimento</gz>
+						
+						</option>
+
+					</for>
+					
+				</select>
+
+			</div>
+
+
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Produto</div> 
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+			
+				<select id="estabelecimento_produtos_preco.estabelecimento_produtos" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
+					
+					<for(estabelecimento_produtos)>
+
+						<option value="<gz>estabelecimento_produtos.id</gz>">
+						
+							<gz>produtos.produto</gz>
+						
+						</option>
+
+					</for>
+					
+				</select>
+
+			</div>
+
+
+			<!-- Ok -->
+
+			<div class="gz-button dv-f-l dv-mt-mdpi dv-mr-hdpi dv-mb-xdpi">
+
+				<a href="#" onclick="request('estabelecimento_produtos_preco', 'create'); return false;" class="gz-tooltip">
+
+					<img src="@_ROOT/mod/cms/img/icon/ok.png" />
+
+					<span class="gz-span-top-right @_THEME">
+
+						@_LAN_CONFIRM
+
+					</span>
+
+				</a>
+
+			</div>
+			
+			<!-- Cancel -->
+			
+			<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-xdpi">
+
+				<a href="#" onclick="cancel(); return false;" class="gz-tooltip">
+
+					<img src="@_ROOT/mod/cms/img/icon/cancel.png" />
+
+					<span class="gz-span-top-right @_THEME">
+
+						@_LAN_CANCEL
+
+					</span>
+
+				</a>
+
+			</div>
+				
+		</form>
+	
+	</div>

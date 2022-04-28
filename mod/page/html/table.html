@@ -1,104 +1,120 @@
 <!--===================================Pesquisa usando label===================================-->
-<div class="dv-center" >
 
-    <div class="dv-line">
+<div class="dv-screen">
 
-        <div class="dv-column dv-horizontal-align-center dv-margin-mdpi">
+    <div class="dv-center">
 
-            <input class="dv-padding-mdpi dv-margin-mdpi dv-radius dv-bold " type="text" id="users.produtos"
-                name="users.produto" autocomplete="off" placeholder="Nome">
+        <div class="dv-line">
 
-            <input class="dv-padding-mdpi dv-margin-mdpi dv-radius dv-bold " type="text" id="users.produtos"
-                name="users.produto" autocomplete="off" placeholder="Endereço">
+            <div class="dv-column dv-margin-mdpi">
 
-            <input class="dv-padding-mdpi dv-margin-mdpi dv-radius dv-bold " type="text" id="users.produtos"
-                name="users.produto" autocomplete="off" placeholder="Preço">
+                <h1>Filtro de pesquisa:</h1>
+
+            </div>
+            
+        </div>
+        <div class="dv-line">
+
+            <div class="dv-column dv-horizontal-align-center dv-margin-mdpi" style="margin-bottom: 0;">
+
+                <input class="dv-padding-mdpi dv-margin-mdpi dv-radius dv-bold searchBox" type="text" id="produtos"
+                    name="users.produto" autocomplete="off" placeholder="Nome" style="margin-left: 0;">
+
+                <input class="dv-padding-mdpi dv-margin-mdpi  dv-radius dv-bold searchBox" type="text" id="enderecos"
+                    name="users.produto" autocomplete="off" placeholder="Estabelecimento">
+
+                <input class="dv-padding-mdpi dv-margin-mdpi  dv-radius dv-bold searchBox" type="text" id="precos"
+                    name="users.produto" autocomplete="off" placeholder="Preço">
+
+            </div>
 
         </div>
 
     </div>
 
 </div>
+
+<div class="dv-mobile">
+
+    <div class="dv-line">
+
+        <div class="dv-column dv-margin-mdpi">
+
+            <h1>Filtro de pesquisa:</h1>
+
+        </div>
+    </div>
+    
+    <div class="dv-center">
+
+        <div class="dv-line">
+
+            <div class="dv-column dv-horizontal-align-center dv-margin-mdpi">
+
+                <input class="dv-padding-mdpi dv-radius dv-bold searchBox" type="text" id="produtos"
+                    name="users.produto" autocomplete="off" placeholder="Nome">
+
+            </div>
+
+        </div>
+
+
+        <div class="dv-line">
+
+            <div class="dv-column dv-horizontal-align-center dv-margin-mdpi">
+
+                <input class="dv-padding-mdpi dv-radius dv-bold searchBox" type="text" id="enderecos"
+                    name="users.produto" autocomplete="off" placeholder="Estabelecimento">
+
+            </div>
+
+        </div>
+
+
+        <div class="dv-line">
+
+            <div class="dv-column dv-horizontal-align-center dv-margin-mdpi">
+
+                <input class="dv-padding-mdpi dv-radius dv-bold searchBox" type="text" id="precos"
+                    name="users.produto" autocomplete="off" placeholder="Preço">
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
 
+
+
 <!--===================================Pesquisa usando select===================================-->
-<div class="dv-center" >
+<div class="dv-center">
 
     <div class="dv-line">
 
         <div class="dv-column dv-horizontal-align-center">
 
-
-            <select class="selectTable dv-margin-mdpi">
-
-                <for(cards)>
-                    <option value="valor">
-                        <gz>cards.nome_categoria</gz>
-                    </option>
-                    </for>
-
-            </select>
-            
-            <input type="submit" class="dv-padding-sdpi dv-margin-mdpi dv-text-align-center dv-radius dv-gray-bg dv-bold dv-black dv-cursor" value="Pesquisar">
-
-                       
-
-    </div>
-
-</div>
-
-
-
-<!--===================================Tabela===================================-->
-<div class="dv-center" >
-
-    <div class="dv-line">
-
-
-
-        <div class="dv-column dv-horizontal-align-center dv-text-align-center">
-
-            <table id="tableProducts" class="dv-margin-mdpi" style="margin-left: 0; margin-right:0px; max-width: 95%;">
-                <tr>
-                    <th class="titleTable blue">Produto</th>
-                    <th class="titleTable blue">Categoria</th>
-                    <th class="titleTable blue">Marca</th>
-                </tr>
+            <select class="searchBox dv-text-align-center dv-margin-mdpi" onChange="getValue()" id="cards.name">
 
                 <for(produtos)>
+                    <option value="<gz>categorias.categoria</gz>">
+                        <gz>categorias.categoria</gz>
+                    </option>
+                </for>
 
-                    <tr class="dv-border">
+            </select>
 
-                        <td class="dv-text-align-center">
-
-                            <gz>produtos.produto</gz>
-
-                        </td>
-
-                        <td class="dv-text-align-center">
-
-                            <gz>categorias.categoria</gz>
-
-                        </td>
-
-                        <td class="dv-text-align-center">
-
-                            <gz>marcas.marca</gz>
-
-                        </td>
-
-                    </tr>
-
-                    </for>
-
-
-            </table>
+            <input onclick="goToSearch()" type="submit"
+                class="pesquisarLabel dv-padding-sdpi dv-margin-mdpi dv-text-align-center dv-radius dv-gray-bg dv-bold dv-black dv-cursor"
+                value="Pesquisar">
 
         </div>
 
     </div>
+</div>
 
 
-</div>
-</div>
+    <!--===================================Tabela===================================-->
+    

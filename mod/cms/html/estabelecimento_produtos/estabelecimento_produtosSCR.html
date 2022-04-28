@@ -25,7 +25,7 @@
 		<!-- Create -->
 
 		<div id="gz-button-create" class="gz-button dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi"
-				onclick="goToBlank('/enderecos/create/1#from-screen');">
+				onclick="goToBlank('/estabelecimento_produtos/create/1#from-screen');">
 	
 			<a href="#" class="gz-tooltip" onclick="return false;">
 
@@ -91,20 +91,20 @@
 
 				<th style="display:none;">Id</th>
 
-				<th style="width:100%;">Logradouro</th>
+				<th style="width:100%;">Cadastrado</th>
 
 			</tr>
 
-			<for(enderecos)>
+			<for(estabelecimento_produtos)>
 
-				<tr id="<gz>enderecos.line</gz>" 
-						onMouseOver="onFocus(<gz>enderecos.line</gz>);" 
-						onMouseOut="outFocus(<gz>enderecos.line</gz>);" 
-						onClick="selected(<gz>enderecos.line</gz>);">
+				<tr id="<gz>estabelecimento_produtos.line</gz>" 
+						onMouseOver="onFocus(<gz>estabelecimento_produtos.line</gz>);" 
+						onMouseOut="outFocus(<gz>estabelecimento_produtos.line</gz>);" 
+						onClick="selected(<gz>estabelecimento_produtos.line</gz>);">
 
-					<td style="display:none;"><gz>enderecos.id</gz></td>
+					<td style="display:none;"><gz>estabelecimento_produtos.id</gz></td>
 
-					<td><gz>enderecos.logradouro</gz></td>			
+					<td><gz>estabelecimento_produtos.cadastrado</gz></td>			
 					
 				</tr>
 

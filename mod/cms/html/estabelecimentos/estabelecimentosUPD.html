@@ -117,30 +117,79 @@
 							id="estabelecimentos.email" name="estabelecimentos.email" value="<gz>estabelecimentos.email</gz>">
 				
 				</div>
-					
-				<!-- Endereco -->
-		
-				<div class="gz-block dv-f-l">
-		
-					<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Endereco</div> 
-					
-				</div>
-				
-				<div class="gz-block dv-f-l">
-				
-					<select id="estabelecimentos.enderecos" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
-							
-						<for(estabelecimentos.enderecos)>
 						
-							<option value="<gz>enderecos.id</gz>" <gz>enderecos.selected</gz>>
-							
-								<gz>enderecos.endereco</gz>
-							
-							</option>
+				<!-- Logradouro -->
+				
+				<div class="gz-block dv-f-l">
+		
+					<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Logradouro</div>
 
-						</for>
+				</div>
+
+				<div class="gz-block dv-f-l">
 					
-					</select>
+					<input class="gz-textbox-mdpi dv-f-l dv-mt-ldpi" type="text" 
+							id="estabelecimentos.logradouro" name="estabelecimentos.logradouro" value="<gz>estabelecimentos.logradouro.format.json</gz>">
+				
+				</div>
+						
+				<!-- Bairro -->
+				
+				<div class="gz-block dv-f-l">
+		
+					<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Bairro</div>
+
+				</div>
+
+				<div class="gz-block dv-f-l">
+					
+					<input class="gz-textbox-mdpi dv-f-l dv-mt-ldpi" type="text" 
+							id="estabelecimentos.bairro" name="estabelecimentos.bairro" value="<gz>estabelecimentos.bairro.format.json</gz>">
+				
+				</div>
+						
+				<!-- Numero -->
+				
+				<div class="gz-block dv-f-l">
+		
+					<div class="gz-label-ldpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Numero</div>
+
+				</div>
+
+				<div class="gz-block dv-f-l">
+					
+					<input class="gz-textbox-ldpi dv-f-l dv-mt-ldpi gz-integer" type="text" 
+							id="estabelecimentos.numero" name="estabelecimentos.numero" value="<gz>estabelecimentos.numero</gz>">
+				
+				</div>
+						
+				<!-- Cidade -->
+				
+				<div class="gz-block dv-f-l">
+		
+					<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Cidade</div>
+
+				</div>
+
+				<div class="gz-block dv-f-l">
+					
+					<input class="gz-textbox-mdpi dv-f-l dv-mt-ldpi" type="text" 
+							id="estabelecimentos.cidade" name="estabelecimentos.cidade" value="<gz>estabelecimentos.cidade.format.json</gz>">
+				
+				</div>
+						
+				<!-- Cep -->
+				
+				<div class="gz-block dv-f-l">
+		
+					<div class="gz-label-ldpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Cep</div>
+
+				</div>
+
+				<div class="gz-block dv-f-l">
+					
+					<input class="gz-textbox-ldpi dv-f-l dv-mt-ldpi gz-cep" type="text" 
+							id="estabelecimentos.cep" name="estabelecimentos.cep" value="<gz>estabelecimentos.cep</gz>">
 				
 				</div>
 
