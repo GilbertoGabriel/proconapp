@@ -305,7 +305,9 @@
 				$this->setResponse($line, "categorias.categoria", $row["categorias.categoria"]);
 				$this->setResponse($line, "produtos.marca", $row["produtos.marca"]);
 				$this->setResponse($line, "marcas.marca", $row["marcas.marca"]);
-				
+			
+				$this->setResponse($line, "produtos.line", $line);
+			
 				$line++;
 				
 				if ($wp)

@@ -120,13 +120,19 @@
 
 					</th>
 					
-					<th id="estabelecimento_produtos.cadastrado" style="width:100%;" 
+					<th id="estabelecimento_produtos.cadastrado" style="width:50%;" 
 							onclick="orderBy(this.id);">
 							
 						Cadastrado
 						
 					</th>
 					
+					<th style="width:50%;">
+							
+						Estabelecimento_produtos_preco
+						
+					</th>			
+						
 				</tr>
 					
 				<one(data_not_found)><tr><td colspan="2"><gz>value</gz></td></tr></one>		
@@ -136,11 +142,19 @@
 					<tr id="<gz>estabelecimento_produtos.line</gz>" 
 							onMouseOver="onFocus(<gz>estabelecimento_produtos.line</gz>);" 
 							onMouseOut="outFocus(<gz>estabelecimento_produtos.line</gz>);" 
-							onclick="selected(<gz>estabelecimento_produtos.line</gz>);">
+							>
 
 						<td style="display:none;"><gz>estabelecimento_produtos.id</gz></td>
 
-						<td><gz>estabelecimento_produtos.cadastrado</gz></td>
+						<td onclick="selected(<gz>estabelecimento_produtos.line</gz>);"><gz>estabelecimento_produtos.cadastrado</gz></td>
+					
+						<td class="gz-link" onclick="goTo('/estabelecimento_produtos_preco/called/<gz>estabelecimento_produtos.id</gz>/1/historyBack/0');">
+									
+							<img class="dv-mr-ldpi" src="@_ROOT/mod/cms/img/icon/grid-next.png" />
+									
+							Estabelecimento_produtos_preco
+
+						</td>
 						
 					</tr>
 
