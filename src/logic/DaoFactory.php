@@ -83,6 +83,14 @@
 			return new model\CardsDao($this->getConnection());
 		}
 		
+		public function getEstabelecimento_produtosDao() {
+			return new model\Estabelecimento_produtosDao($this->getConnection());
+		}
+		
+		public function getEstabelecimento_produtos_precoDao() {
+			return new model\Estabelecimento_produtos_precoDao($this->getConnection());
+		}
+		
 	}
 	
 ?>

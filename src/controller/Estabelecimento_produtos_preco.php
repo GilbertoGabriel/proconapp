@@ -19,13 +19,13 @@
 	$where = "";
 	
 	if ($search != "")
-		$where = "perfil_tela.modificado LIKE \"%" . $search . "%\"";	
+		$where = "estabelecimento_produtos_preco.preco LIKE \"%" . $search . "%\"";	
 		
 	if ($code != "")
-		$where = "perfil_tela.id = " . $code;
+		$where = "estabelecimento_produtos_preco.id = " . $code;
 	
 	if (isset($_GET["friendly"]))
-		$where = "perfil_tela.modificado = \"" . removeLine($_GET["friendly"]) . "\"";	
+		$where = "estabelecimento_produtos_preco.preco = \"" . removeLine($_GET["friendly"]) . "\"";	
 		
 	$limit = "";	
 		
@@ -37,7 +37,7 @@
 				
 	} else {
 		if ($position > 0 && $itensPerPage > 0) {
-			$limit = "perfil_tela.id DESC LIMIT " . 
+			$limit = "estabelecimento_produtos_preco.id DESC LIMIT " . 
 					(($position * $itensPerPage) - $itensPerPage) . ", " . $itensPerPage;	
 		}
 	}
@@ -58,16 +58,16 @@
 		$view->setKeywords("");
 		
 		$daoFactory->beginTransaction();
-		$response["perfil_tela"] = $daoFactory->getPerfil_telaDao()->read($where, $limit, true);
+		$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, $limit, true);
 		$daoFactory->close();
 		
 		if (isset($_GET["friendly"]))
-			$view->setTitle($response["perfil_tela"][0]["perfil_tela.modificado"]);
+			$view->setTitle($response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.preco"]);
 
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/header.html");
 		
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . 
-				(isset($_GET["friendly"]) ? "/html/@_PAGE.html" : "/html/perfil_tela.html"), $response);
+				(isset($_GET["friendly"]) ? "/html/@_PAGE.html" : "/html/estabelecimento_produtos_preco.html"), $response);
 		
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/footer.html");
 	}
@@ -86,14 +86,13 @@
 			// $request[0]["@_PARAM"] = $daoFactory->prepare($request[0]["@_PARAM"]); // Prepare with sql injection.
 
 			$daoFactory->beginTransaction();
-			$perfil_tela = new model\Perfil_tela();
-			$perfil_tela->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$perfil_tela->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$perfil_tela->setPerfil($request["perfil_tela.perfil"]);
-			$perfil_tela->setPermissao($request["perfil_tela.permissao"]);
-			$perfil_tela->setTela($request["perfil_tela.tela"]);
+			$estabelecimento_produtos_preco = new model\Estabelecimento_produtos_preco();
+			$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($request["estabelecimento_produtos_preco.preco"])));
+			$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco->setEstabelecimeto_produto($request["estabelecimento_produtos_preco.estabelecimeto_produto"]);
 			
-			$resultDao = $daoFactory->getPerfil_telaDao()->create($perfil_tela);
+			$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->create($estabelecimento_produtos_preco);
 
 			if ($resultDao) {
 				$daoFactory->commit();
@@ -120,16 +119,16 @@
 		if (isset($_POST["request"])) {
 			$request = json_decode($_POST["request"], true);
 			
-			$limit = "perfil_tela.id DESC LIMIT " . 
+			$limit = "estabelecimento_produtos_preco.id DESC LIMIT " . 
 					(($request[0]["page"] * $request[0]["pageSize"]) - 
 					$request[0]["pageSize"]) . ", " . $request[0]["pageSize"];	
 		}
 		
 		$daoFactory->beginTransaction();
-		$perfil_tela = $daoFactory->getPerfil_telaDao()->read("", $limit, false);
+		$estabelecimento_produtos_preco = $daoFactory->getEstabelecimento_produtos_precoDao()->read("", $limit, false);
 		$daoFactory->close();
 		
-		echo $view->json($perfil_tela);
+		echo $view->json($estabelecimento_produtos_preco);
 	}
 	
 	/*
@@ -141,16 +140,15 @@
 			$request = json_decode($_POST["request"], true);
 			// $request[0]["@_PARAM"] = $daoFactory->prepare($request[0]["@_PARAM"]); // Prepare with sql injection.
 			
-			$perfil_tela = new model\Perfil_tela();
-			$perfil_tela->setId($request["perfil_tela.id"]);
-			$perfil_tela->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$perfil_tela->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$perfil_tela->setPerfil($request["perfil_tela.perfil"]);
-			$perfil_tela->setPermissao($request["perfil_tela.permissao"]);
-			$perfil_tela->setTela($request["perfil_tela.tela"]);
+			$estabelecimento_produtos_preco = new model\Estabelecimento_produtos_preco();
+			$estabelecimento_produtos_preco->setId($request["estabelecimento_produtos_preco.id"]);
+			$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($request["estabelecimento_produtos_preco.preco"])));
+			$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$estabelecimento_produtos_preco->setEstabelecimeto_produto($request["estabelecimento_produtos_preco.estabelecimeto_produto"]);
 			
 			$daoFactory->beginTransaction();
-			$resultDao = $daoFactory->getPerfil_telaDao()->update($perfil_tela);
+			$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->update($estabelecimento_produtos_preco);
 
 			if ($resultDao) {
 				$daoFactory->commit();
@@ -175,17 +173,17 @@
 		enableCORS();
 		if (isset($_POST["request"])) {
 			$request = json_decode($_POST["request"], true);
-			$request["perfil_tela.id"] = $daoFactory->prepare($request["perfil_tela.id"]); // Prepare with sql injection.
+			$request["estabelecimento_produtos_preco.id"] = $daoFactory->prepare($request["estabelecimento_produtos_preco.id"]); // Prepare with sql injection.
 				
 			$result = true;
-			$lines = explode("<gz>", $request["perfil_tela.id"]);
+			$lines = explode("<gz>", $request["estabelecimento_produtos_preco.id"]);
 
 			$daoFactory->beginTransaction();
 
 			for ($i = 0; $i < sizeof($lines); $i++) {
-				$where = "perfil_tela.id = " . $lines[$i];
+				$where = "estabelecimento_produtos_preco.id = " . $lines[$i];
 				
-				$resultDao = $daoFactory->getPerfil_telaDao()->delete($where);
+				$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->delete($where);
 				$result = !$result ? false : (!$resultDao ? false : true);
 			}
 
@@ -222,13 +220,11 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["perfis"] = $daoFactory->getPerfisDao()->read("", "perfis.id ASC", false);
-					$response["permissoes"] = $daoFactory->getPermissoesDao()->read("", "permissoes.id ASC", false);
-					$response["telas"] = $daoFactory->getTelasDao()->read("", "telas.id ASC", false);
+					$response["estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read("", "estabelecimento_produtos.id ASC", false);
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/perfil_tela/perfil_telaCRT.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoCRT.html", $response);
 				}
 			}
 
@@ -241,14 +237,14 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["perfil_tela"] = $daoFactory->getPerfil_telaDao()->read($where, $limit, true);
-					if (!is_array($response["perfil_tela"])) {
+					$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, $limit, true);
+					if (!is_array($response["estabelecimento_produtos_preco"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/perfil_tela/perfil_telaRD.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoRD.html", $response);
 				}
 			}
 
@@ -261,32 +257,18 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["perfil_tela"] = $daoFactory->getPerfil_telaDao()->read($where, "", true);
-					$response["perfil_tela"][0]["perfil_tela.perfis"] = $daoFactory->getPerfisDao()->read("", "perfis.id ASC", false);
-					for ($x = 0; $x < sizeof($response["perfil_tela"][0]["perfil_tela.perfis"]); $x++) {
-						if ($response["perfil_tela"][0]["perfil_tela.perfis"][$x]["perfis.id"] == 
-								$response["perfil_tela"][0]["perfil_tela.perfil"]) {
-							$response["perfil_tela"][0]["perfil_tela.perfis"][$x]["perfis.selected"] = "selected";
-						}
-					}
-					$response["perfil_tela"][0]["perfil_tela.permissoes"] = $daoFactory->getPermissoesDao()->read("", "permissoes.id ASC", false);
-					for ($x = 0; $x < sizeof($response["perfil_tela"][0]["perfil_tela.permissoes"]); $x++) {
-						if ($response["perfil_tela"][0]["perfil_tela.permissoes"][$x]["permissoes.id"] == 
-								$response["perfil_tela"][0]["perfil_tela.permissao"]) {
-							$response["perfil_tela"][0]["perfil_tela.permissoes"][$x]["permissoes.selected"] = "selected";
-						}
-					}
-					$response["perfil_tela"][0]["perfil_tela.telas"] = $daoFactory->getTelasDao()->read("", "telas.id ASC", false);
-					for ($x = 0; $x < sizeof($response["perfil_tela"][0]["perfil_tela.telas"]); $x++) {
-						if ($response["perfil_tela"][0]["perfil_tela.telas"][$x]["telas.id"] == 
-								$response["perfil_tela"][0]["perfil_tela.tela"]) {
-							$response["perfil_tela"][0]["perfil_tela.telas"][$x]["telas.selected"] = "selected";
+					$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, "", true);
+					$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read("", "estabelecimento_produtos.id ASC", false);
+					for ($x = 0; $x < sizeof($response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"]); $x++) {
+						if ($response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"][$x]["estabelecimento_produtos.id"] == 
+								$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimeto_produto"]) {
+							$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"][$x]["estabelecimento_produtos.selected"] = "selected";
 						}
 					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/perfil_tela/perfil_telaUPD.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoUPD.html", $response);
 				}
 			}
 
@@ -301,20 +283,20 @@
 					 * Insert your foreign key here
 					 */
 					if ($where != "")
-						$where .= " AND perfil_tela.@_FOREIGN_KEY = " . $base;
+						$where .= " AND estabelecimento_produtos_preco.@_FOREIGN_KEY = " . $base;
 					else 
-						$where = "perfil_tela.@_FOREIGN_KEY = " . $base;
+						$where = "estabelecimento_produtos_preco.@_FOREIGN_KEY = " . $base;
 						
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["perfil_tela"] = $daoFactory->getPerfil_telaDao()->read($where, $limit, true);
-					if (!is_array($response["perfil_tela"])) {
+					$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, $limit, true);
+					if (!is_array($response["estabelecimento_produtos_preco"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/perfil_tela/perfil_telaCLL.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoCLL.html", $response);
 				}
 			}
 
@@ -327,21 +309,21 @@
 					
 					if (sizeof($arrBase) > 1) {
 						if ($where != "")
-							$where .= " AND perfil_tela.@_FOREIGN_KEY = " . $arrBase[1];
+							$where .= " AND estabelecimento_produtos_preco.@_FOREIGN_KEY = " . $arrBase[1];
 						else
-							$where = "perfil_tela.@_FOREIGN_KEY = " . $arrBase[1];
+							$where = "estabelecimento_produtos_preco.@_FOREIGN_KEY = " . $arrBase[1];
 					}
 				}
 				
-				$limit = "perfil_tela.id DESC LIMIT " . (($position * 5) - 5) . ", 5";
+				$limit = "estabelecimento_produtos_preco.id DESC LIMIT " . (($position * 5) - 5) . ", 5";
 
 				$daoFactory->beginTransaction();
 				$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-				$response["perfil_tela"] = $daoFactory->getPerfil_telaDao()->read($where, $limit, true);
+				$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, $limit, true);
 				$daoFactory->close();
 
-				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/perfil_tela/perfil_telaSCR.html", $response) . 
-						"<size>" . (is_array($response["perfil_tela"]) ? $response["perfil_tela"][0]["perfil_tela.size"] : 0) . "<theme>455a64";
+				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoSCR.html", $response) . 
+						"<size>" . (is_array($response["estabelecimento_produtos_preco"]) ? $response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.size"] : 0) . "<theme>455a64";
 			}
 
 			/*
@@ -354,13 +336,13 @@
 				$cmb = explode("<gz>", $search);
 
 				if ($cmb[1] != "")
-					$where = "perfil_tela.id = " . $cmb[1];
+					$where = "estabelecimento_produtos_preco.id = " . $cmb[1];
 
 				$daoFactory->beginTransaction();
-				$response["perfil_tela"] = $daoFactory->getPerfil_telaDao()->comboScr($where);
+				$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->comboScr($where);
 				$daoFactory->close();
 
-				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/perfil_tela/perfil_telaCMB.html", $response);
+				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/estabelecimento_produtos_preco/estabelecimento_produtos_precoCMB.html", $response);
 			}
 
 			/*
@@ -372,15 +354,14 @@
 					
 					echo $view->json($response);
 				} else {
-					$perfil_tela = new model\Perfil_tela();
-					$perfil_tela->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$perfil_tela->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$perfil_tela->setPerfil($form[0]);
-					$perfil_tela->setPermissao($form[1]);
-					$perfil_tela->setTela($form[2]);
+					$estabelecimento_produtos_preco = new model\Estabelecimento_produtos_preco();
+					$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($form[0])));
+					$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco->setEstabelecimeto_produto($form[1]);
 					
 					$daoFactory->beginTransaction();
-					$resultDao = $daoFactory->getPerfil_telaDao()->create($perfil_tela);
+					$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->create($estabelecimento_produtos_preco);
 
 					if ($resultDao) {
 						$daoFactory->commit();
@@ -405,16 +386,15 @@
 					
 					echo $view->json($response);
 				} else {
-					$perfil_tela = new model\Perfil_tela();
-					$perfil_tela->setId($code);
-					$perfil_tela->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$perfil_tela->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$perfil_tela->setPerfil($form[0]);
-					$perfil_tela->setPermissao($form[1]);
-					$perfil_tela->setTela($form[2]);
+					$estabelecimento_produtos_preco = new model\Estabelecimento_produtos_preco();
+					$estabelecimento_produtos_preco->setId($code);
+					$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($form[0])));
+					$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$estabelecimento_produtos_preco->setEstabelecimeto_produto($form[1]);
 					
 					$daoFactory->beginTransaction();
-					$resultDao = $daoFactory->getPerfil_telaDao()->update($perfil_tela);
+					$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->update($estabelecimento_produtos_preco);
 
 					if ($resultDao) {
 						$daoFactory->commit();
@@ -445,9 +425,9 @@
 					$daoFactory->beginTransaction();
 
 					for ($i = 1; $i < sizeof($lines); $i++) {
-						$where = "perfil_tela.id = " . $lines[$i];
+						$where = "estabelecimento_produtos_preco.id = " . $lines[$i];
 						
-						$resultDao = $daoFactory->getPerfil_telaDao()->delete($where);
+						$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->delete($where);
 						$result = !$result ? false : (!$resultDao ? false : true);
 					}
 

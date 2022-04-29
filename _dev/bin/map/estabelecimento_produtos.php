@@ -16,7 +16,7 @@
 			
 	use lib\getz;
 			
-	$table = "estabelecimentos";
+	$table = "estabelecimento_produtos";
 			
 	/*
 	 * $fields = array("field" => "type");
@@ -28,25 +28,15 @@
 	 * photo, photoWithPosition, position, upload
 	 */ 
 	$fields = array("id" => "integer",
-			"estabelecimento" => "string32",
-			"cnpj" => "cnpj",
-			"telefone" => "phone",
-			"celular" => "cellphone",
-			"celular2" => "string16",
-			"email" => "email",
-			"cadastrado" => "new",
-			"modificado" => "now",
-			"logradouro" => "string32",
-			"bairro" => "string32",
-			"numero" => "integer",
-			"cidade" => "string32",
-			"cep" => "cep"
+			"cadastro" => "datetime",
+			"modificado" => "now"
 	);
 				
 	/*
 	 *$fk = array("table" => "field");
 	 */
-	$fk = array(
+	$fk = array("estabelecimentos" => "estabelecimento",
+			"produtos" => "produto"
 	);
 			
 	/*
@@ -54,7 +44,8 @@
 	 *
 	 * types: session, base, standard, advanced, autocomplete
 	 */ 
-	$fkFields = array(
+	$fkFields = array("estabelecimentos" => "standard",
+			"produtos" => "standard"
 	);
 				
 	// Set the table if this screen call another

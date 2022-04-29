@@ -45,16 +45,16 @@
 	 *
 	 * types: session, base, standard, advanced, autocomplete
 	 */ 
-	$fkFields = array("perfis" => "base",
+	$fkFields = array("perfis" => "standard",
 			"permissoes" => "standard",
-			"telas" => "advanced"
+			"telas" => "standard"
 	);
 				
 	// Set the table if this screen call another
 	$call = "";
 	
 	// Set the column for answer after the call
-	$answer = "perfil";
+	$answer = "";
 
 	/*
 	 * Builder

@@ -95,7 +95,11 @@
 			$estabelecimentos->setEmail(logicNull($request["estabelecimentos.email"]));
 			$estabelecimentos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 			$estabelecimentos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$estabelecimentos->setEndereco($request["estabelecimentos.endereco"]);
+			$estabelecimentos->setLogradouro(logicNull($request["estabelecimentos.logradouro"]));
+			$estabelecimentos->setBairro(logicNull($request["estabelecimentos.bairro"]));
+			$estabelecimentos->setNumero(logicZero($request["estabelecimentos.numero"]));
+			$estabelecimentos->setCidade(logicNull($request["estabelecimentos.cidade"]));
+			$estabelecimentos->setCep(logicNull($request["estabelecimentos.cep"]));
 			
 			$resultDao = $daoFactory->getEstabelecimentosDao()->create($estabelecimentos);
 
@@ -155,7 +159,11 @@
 			$estabelecimentos->setEmail(logicNull($request["estabelecimentos.email"]));
 			$estabelecimentos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 			$estabelecimentos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$estabelecimentos->setEndereco($request["estabelecimentos.endereco"]);
+			$estabelecimentos->setLogradouro(logicNull($request["estabelecimentos.logradouro"]));
+			$estabelecimentos->setBairro(logicNull($request["estabelecimentos.bairro"]));
+			$estabelecimentos->setNumero(logicZero($request["estabelecimentos.numero"]));
+			$estabelecimentos->setCidade(logicNull($request["estabelecimentos.cidade"]));
+			$estabelecimentos->setCep(logicNull($request["estabelecimentos.cep"]));
 			
 			$daoFactory->beginTransaction();
 			$resultDao = $daoFactory->getEstabelecimentosDao()->update($estabelecimentos);
@@ -230,7 +238,6 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["enderecos"] = $daoFactory->getEnderecosDao()->read("", "enderecos.id ASC", false);
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
@@ -268,13 +275,6 @@
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
 					$response["estabelecimentos"] = $daoFactory->getEstabelecimentosDao()->read($where, "", true);
-					$response["estabelecimentos"][0]["estabelecimentos.enderecos"] = $daoFactory->getEnderecosDao()->read("", "enderecos.id ASC", false);
-					for ($x = 0; $x < sizeof($response["estabelecimentos"][0]["estabelecimentos.enderecos"]); $x++) {
-						if ($response["estabelecimentos"][0]["estabelecimentos.enderecos"][$x]["enderecos.id"] == 
-								$response["estabelecimentos"][0]["estabelecimentos.endereco"]) {
-							$response["estabelecimentos"][0]["estabelecimentos.enderecos"][$x]["enderecos.selected"] = "selected";
-						}
-					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
@@ -373,7 +373,11 @@
 					$estabelecimentos->setEmail(logicNull($form[5]));
 					$estabelecimentos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 					$estabelecimentos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$estabelecimentos->setEndereco($form[6]);
+					$estabelecimentos->setLogradouro(logicNull($form[6]));
+					$estabelecimentos->setBairro(logicNull($form[7]));
+					$estabelecimentos->setNumero(logicZero($form[8]));
+					$estabelecimentos->setCidade(logicNull($form[9]));
+					$estabelecimentos->setCep(logicNull($form[10]));
 					
 					$daoFactory->beginTransaction();
 					$resultDao = $daoFactory->getEstabelecimentosDao()->create($estabelecimentos);
@@ -411,7 +415,11 @@
 					$estabelecimentos->setEmail(logicNull($form[5]));
 					$estabelecimentos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 					$estabelecimentos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$estabelecimentos->setEndereco($form[6]);
+					$estabelecimentos->setLogradouro(logicNull($form[6]));
+					$estabelecimentos->setBairro(logicNull($form[7]));
+					$estabelecimentos->setNumero(logicZero($form[8]));
+					$estabelecimentos->setCidade(logicNull($form[9]));
+					$estabelecimentos->setCep(logicNull($form[10]));
 					
 					$daoFactory->beginTransaction();
 					$resultDao = $daoFactory->getEstabelecimentosDao()->update($estabelecimentos);
