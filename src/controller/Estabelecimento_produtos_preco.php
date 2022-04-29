@@ -283,16 +283,22 @@
 					 * Insert your foreign key here
 					 */
 					if ($where != "")
-						$where .= " AND estabelecimento_produtos_preco.produtos = " . $base;
+						$where .= " AND estabelecimento_produtos_preco.estabelecimeto_produtos  = " . $base;
 					else 
-						$where = "estabelecimento_produtos_preco.produtos = " . $base;
+						$where = "estabelecimento_produtos_preco.estabelecimeto_produtos  = " . $base;
 					
+
+						echo $base;
+
+
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read("", "", true);
+					$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read($where, "", true);
+					
 					if (!is_array($response["estabelecimento_produtos_preco"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
+					
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));

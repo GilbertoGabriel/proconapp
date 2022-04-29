@@ -296,16 +296,19 @@
 				else {
 					
 					if ($where != "")
-						$where .= " AND produtos.estabelecimentos = " . $base;
+						$where .= " AND estabelecimento_produtos.estabelecimento = " . $base;
 					else 
-						$where = "produtos.estabelecimentos = " . $base;
+						$where = "estabelecimento_produtos.estabelecimento = " . $base;
 
-
+						echo $where;
+						echo $base;
+				
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["produtos"] = $daoFactory->getProdutosDao()->read($base, "", true);
+					$response["estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read($where, "", true);
 
-					if (!is_array($response["produtos"])) {
+			
+					if (!is_array($response["estabelecimento_produtos"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
 

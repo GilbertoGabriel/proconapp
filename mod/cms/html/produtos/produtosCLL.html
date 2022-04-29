@@ -129,7 +129,7 @@
 					
 					<th style="width:50%;">
 							
-						Estabelecimento_produtos_preco
+						Precos
 						
 					</th>			
 						
@@ -137,7 +137,7 @@
 					
 				<one(data_not_found)><tr><td colspan="2"><gz>value</gz></td></tr></one>		
 
-				<for(produtos)>
+				<for(estabelecimento_produtos)>
 
 					<tr id="<gz>produtos.line</gz>" 
 							onMouseOver="onFocus(<gz>produtos.line</gz>);" 
@@ -148,11 +148,11 @@
 
 						<td onclick="selected(<gz>produtos.line</gz>);"><gz>produtos.produto</gz></td>
 					
-						<td class="gz-link" onclick="goTo('/estabelecimento_produtos_preco/called/<gz>produtos.id</gz>/1/historyBack/0');">
+						<td class="gz-link" onclick="goTo('/estabelecimento_produtos_preco/called/<gz>estabelecimento_produtos.id</gz>/1/historyBack/0');">
 									
 							<img class="dv-mr-ldpi" src="@_ROOT/mod/cms/img/icon/grid-next.png" />
 									
-							Estabelecimento_produtos_preco
+							Preços
 
 						</td>
 						
