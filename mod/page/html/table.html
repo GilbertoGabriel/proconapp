@@ -21,7 +21,14 @@
 
             </div>
             <div class="dv-column dv-horizontal-align-left  dv-margin-mdpi" style="margin-bottom: 0;">
+                <select class="searchBox dv-text-align-center dv-margin-mdpi select-categoorias" onChange="getValue()" id="cards.name">
 
+                    <for(produtos)>
+                        <option value="<gz>categorias.categoria</gz>">
+                            <gz>categorias.categoria</gz>
+                        </option>
+                    </for>S
+                </select>
             </div>
 
         </div>
@@ -57,32 +64,18 @@
 
 </div>
 
-
-
-
 <!--===================================Pesquisa usando select===================================-->
 <div class="dv-center">
 
     <div class="dv-line">
 
-        <div class="dv-column dv-horizontal-align-center">
-
-            <select class="searchBox dv-text-align-center dv-margin-mdpi" onChange="getValue()" id="cards.name">
-
-                <for(produtos)>
-                    <option value="<gz>categorias.categoria</gz>">
-                        <gz>categorias.categoria</gz>
-                    </option>
-                </for>
-
-            </select>
-
-            <input onclick="goToSearch()" type="submit" class="pesquisarLabel dv-padding-sdpi dv-margin-mdpi dv-text-align-center dv-radius dv-gray-bg dv-bold dv-black dv-cursor" value="Pesquisar">
-
+        <div class="dv-column dv-horizontal-align-left">
+            <div class="column">
+                <input onclick="goToSearch()" type="submit" class="pesquisarLabel dv-padding-mdpi dv-margin-mdpi dv-text-align-center dv-radius dv-bold dv-black dv-cursor" value="Pesquisar">
+            </div>
         </div>
 
     </div>
 </div>
-
 
 <!--===================================Tabela===================================-->

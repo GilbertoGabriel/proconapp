@@ -197,6 +197,10 @@ a:focus {
     width: 100%;
 }
 
+.select-categoorias{
+    width: 300px;
+}
+
 .searchBox:focus {
     outline-width: 0px !important;
 }
@@ -209,7 +213,11 @@ a:focus {
     color: white;
     border: 1px solid black;
 }
-
+.pesquisarLabel{
+    width: 150px;
+    background-color: #00bef2;
+    color: #001859;
+}
 .pesquisarLabel:hover {
     transition: 0.5s;
     background-color: #001859;
