@@ -294,7 +294,7 @@
 				$this->setResponse($line, "estabelecimento_produtos_preco.cadastrado", modelDateTime($row["estabelecimento_produtos_preco.cadastrado"]));
 				$this->setResponse($line, "estabelecimento_produtos_preco.modificado", modelDateTime($row["estabelecimento_produtos_preco.modificado"]));
 				$this->setResponse($line, "estabelecimento_produtos_preco.estabelecimeto_produtos", $row["estabelecimento_produtos_preco.estabelecimeto_produtos"]);
-				$this->setResponse($line, "estabelecimento_produtos.estabelecimeto_produtos", $row["estabelecimento_produtos.estabelecimeto_produtos"]);
+				// $this->setResponse($line, "estabelecimento_produtos.estabelecimeto_produtos", $row["estabelecimento_produtos.estabelecimeto_produtos"]);
 			
 				$this->setResponse($line, "estabelecimento_produtos_preco.line", $line);
 			

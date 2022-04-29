@@ -392,24 +392,8 @@ function showMenu() {
 	}
 }
 
-function getValue() {
-	var data = {
-		"cards.name": gV(gI("cards.name")),
-	}
-	console.log(data)
-}
-
-function getSearch() {
-	var data = {
-		"produto": gV(gI("produtos")),
-		"endereco": gV(gI("enderecos")),
-		"preco": gV(gI("precos")),
-	}
-	console.log(data)
-}
-
 function goToSearch() {
-	goTo("/table/search/" + gV(gI("produtos")) + "<gz>" + gV(gI("enderecos")) + "<gz>" + gV(gI("precos")));
+	goTo("/table/search/" + gV(gI("produtos")));
 }
 
 //Pesquisar usando enter

@@ -294,9 +294,12 @@
 					 */
 					if ($where != "")
 						$where .= " AND estabelecimentos.@_FOREIGN_KEY = " . $base;
+	
 					else 
 						$where = "estabelecimentos.@_FOREIGN_KEY = " . $base;
 						
+
+					
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
 					$response["estabelecimentos"] = $daoFactory->getEstabelecimentosDao()->read($where, $limit, true);

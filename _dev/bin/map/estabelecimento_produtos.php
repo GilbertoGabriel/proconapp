@@ -52,7 +52,7 @@
 	$call = "";
 	
 	// Set the column for answer after the call
-	$answer = "estabelecimento_produtos_preco";
+	$answer = "";
 
 	/*
 	 * Builder

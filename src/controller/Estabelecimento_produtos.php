@@ -291,9 +291,9 @@
 					 * Insert your foreign key here
 					 */
 					if ($where != "")
-						$where .= " AND estabelecimento_produtos.estabelecimento_produtos_preco = " . $base;
+						$where .= " AND estabelecimento_produtos.@_FOREIGN_KEY = " . $base;
 					else 
-						$where = "estabelecimento_produtos.estabelecimento_produtos_preco = " . $base;
+						$where = "estabelecimento_produtos.@_FOREIGN_KEY = " . $base;
 						
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);

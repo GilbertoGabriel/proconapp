@@ -235,9 +235,11 @@
 			 * Read
 			 */
 			else if ($method == "stateRead") {
+
 				if (!getPermission($_ROOT . $_MODULE, $daoFactory, $screen, $method))
 					echo "<script>goTo(\"/login/1\");</script>";	
 				else {
+
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
 					$response["produtos"] = $daoFactory->getProdutosDao()->read($where, $limit, true);
@@ -245,6 +247,7 @@
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
 					$daoFactory->close();
+
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/produtos/produtosRD.html", $response);
@@ -258,6 +261,8 @@
 				if (!getPermission($_ROOT . $_MODULE, $daoFactory, $screen, $method))
 					echo "<script>goTo(\"/login/1\");</script>";	
 				else {
+
+			
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
 					$response["produtos"] = $daoFactory->getProdutosDao()->read($where, "", true);
@@ -289,20 +294,24 @@
 				if (!getPermission($_ROOT . $_MODULE, $daoFactory, $screen, $method))
 					echo "<script>goTo(\"/login/1\");</script>";	
 				else {
-					/*
-					 * Insert your foreign key here
-					 */
+					
 					if ($where != "")
-						$where .= " AND produtos.@_FOREIGN_KEY = " . $base;
+						$where .= " AND estabelecimento_produtos.estabelecimento = " . $base;
 					else 
-						$where = "produtos.@_FOREIGN_KEY = " . $base;
-						
+						$where = "estabelecimento_produtos.estabelecimento = " . $base;
+
+						echo $where;
+						echo $base;
+				
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["produtos"] = $daoFactory->getProdutosDao()->read($where, $limit, true);
-					if (!is_array($response["produtos"])) {
+					$response["estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read($where, "", true);
+
+			
+					if (!is_array($response["estabelecimento_produtos"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
+
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));

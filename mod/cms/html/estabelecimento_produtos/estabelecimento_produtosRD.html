@@ -101,13 +101,19 @@
 
 					</th>
 					
-					<th id="estabelecimento_produtos.cadastrado" style="width:100%;" 
+					<th id="estabelecimento_produtos.produto" style="width:100%;" 
 							onclick="orderBy(this.id);">
 							
 						Produtos
 						
 					</th>
 					
+					<th id="estabelecimento_produtos.estabelecimento" style="width:100%;" 
+					onclick="orderBy(this.id);">
+					
+						Estabelecimento
+				
+					</th>
 				</tr>
 				
 				<one(data_not_found)><tr><td colspan="2"><gz>value</gz></td></tr></one>		
@@ -123,6 +129,7 @@
 
 						<td><gz>produtos.produto</gz></td>
 						
+						<td><gz>estabelecimentos.estabelecimento</gz></td>
 					</tr>
 
 				</for>
