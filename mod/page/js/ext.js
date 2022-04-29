@@ -393,7 +393,7 @@ function showMenu() {
 }
 
 function goToSearch() {
-	goTo("/table/search/" + gV(gI("produtos")) + "<gz>" + gV(gI("enderecos")) + "<gz>" + gV(gI("precos")));
+	goTo("/table/search/" + gV(gI("produtos")));
 }
 
 //Pesquisar usando enter
