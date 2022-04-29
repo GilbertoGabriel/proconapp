@@ -6,9 +6,11 @@
  * @see     https://wtag.com.br/divmon
  */
 
+
 /*
  * Reset
  */
+
 html,
 body,
 div,
@@ -44,7 +46,9 @@ iframe {}
 
 html {}
 
-body {}
+body {
+    background-color: #eeeeee;
+}
 
 div {}
 
@@ -99,150 +103,202 @@ img {}
 a {}
 
 a:focus {
-	outline-width: 0px !important;
+    outline-width: 0px !important;
 }
 
+
 /* --------------------------------------------------------------------- */
+
+
 /* HOME PAGE */
 
 .search-icon {
-	filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(105%) contrast(103%);
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(105%) contrast(103%);
 }
 
 .cardsInfo {
-	margin-bottom: 15px;
-	padding: 30px;
-	border-radius: 5px;
-	background-color: #f6f6f6;
-	border-bottom: 3px solid #1c3c89;
-	box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.22);
-	transition: 0.5s;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
+    margin-bottom: 15px;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+    border-bottom: 3px solid #00bef2;
+    box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.22);
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-.cardsInfo:hover{
-	transform: translateY(-1px);
-	cursor: pointer;
-	-webkit-box-shadow: 0px 7px 22px -10px #000000; 
-	box-shadow: 0px 7px 22px -10px #000000;
+.cardsInfo:hover {
+    transform: translateY(-1px);
+    cursor: pointer;
+    -webkit-box-shadow: 0px 7px 22px -10px #000000;
+    box-shadow: 0px 7px 22px -10px #000000;
 }
 
-.cardsInfo:hover > .imgCards{
-	-webkit-transform: scale(1.1);
-   transform: scale(1.1);
+.cardsInfo:hover>.imgCards {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
 
-.cardsInfo:hover > .title{
-	-webkit-transform: scale(0.9);
-   transform: scale(0.9);
+.cardsInfo:hover>.title {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
 }
 
 .imgCards {
-	width: 150px;
-	height: 150px;
-	display: flex;
-	align-items: center;
-	transition: 0.5s;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    transition: 0.5s;
 }
-
-.menu {
-	margin: 10px;
-}
-
 
 .blue {
-	background-color: #12295d;
-}
-
-.link:hover {
-text-decoration: underline;
+    background-color: #001859;
 }
 
 .white-procon {
-	width: 80%;
+    width: 80%;
 }
 
 .title {
-	font-size: 30px;
-	color: #0000ed;
-	transition: 0.5s;
+    font-weight: 600;
+    font-size: 30px;
+    color: #00216c !important;
+    transition: 0.5s;
 }
 
 #pesquisa {
-	background-color: #12295d;
-	border: 2px solid #0000ed;
-	color: white;
+    background-color: #00216c;
+    border: 2px solid #00bef2;
+    color: white;
 }
 
 #pesquisa:focus {
-	outline-width: 0px !important;
+    outline-width: 0px !important;
 }
 
 #pesquisar:hover {
-	border: 2px solid #0000ed;
+    border: 2px solid #00bef2;
 }
 
-/* --------------------------------------------------------------------- */
 
 /* --------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------- */
+
+
 /* TABLE PAGE */
-.selectTable{
-	border: 1.5px solid black;
-	width: 50%;
+
+.selectTable {
+    border: 1.5px solid black;
+    width: 100%;
 }
 
-.searchBox:focus{
-	outline-width: 0px !important;
+.searchBox:focus {
+    outline-width: 0px !important;
 }
 
-.searchBox:hover{
-	outline-width: 0px !important;
+.searchBox:hover {
+    outline-width: 0px !important;
 }
 
 .titleTable {
-	color: white;
-	border: 1px solid black;
+    color: white;
+    border: 1px solid black;
 }
 
-.pesquisarLabel:hover{
-	transition: 0.5s;
-	background-color: #12295d;
-	color: white;
+.pesquisarLabel:hover {
+    transition: 0.5s;
+    background-color: #001859;
+    color: white;
 }
 
 
 /* --------------------------------------------------------------------- */
 
+
 /* FOOTER */
-.suporte{
-	width: 95%;
-	height: 85%;
+
+.suporte {
+    width: 95%;
+    height: 85%;
 }
 
-
-.footer-img{
-	width: 60%;
+.footer-img {
+    width: 60%;
 }
 
 
 /* FOOTER MOBILE */
-.footer-img-mobile{
-	width: 40%;
+
+.footer-img-mobile {
+    width: 40%;
 }
-.suporte-mobile{
-	width: 65%;
-	height: 60%;
+
+.suporte-mobile {
+    width: 65%;
+    height: 60%;
 }
+
+.menu-screen {
+    padding: 22px 22px 22px 22px
+}
+
+.menu-mobile {
+    padding-right: 100%;
+}
+
+.menu-mobile:hover {
+    transition: 0.5s;
+    color: white;
+    background-color: #12295d;
+}
+
+.menu-screen:hover {
+    transition: 0.5s;
+    color: white;
+    background-color: #12295d;
+}
+
+.links-menu {
+    font-size: 22px;
+    color: #00216c;
+    font-weight: 700;
+}
+
+.espaco-menu {
+    margin-left: 3%;
+}
+
+.topo-background {
+    background: linear-gradient(90deg, #001859 50%, #00216c 50%)
+}
+
+.background-pesquisar {
+    background: #00216c;
+}
+
+.dv-line .dv-column-three,
+.dv-line-mobile .dv-column-three {
+    flex: 0 31.5%;
+    margin: 10px;
+}
+
+
 /* --------------------------------------------------------------------- */
+
+
 /* --------------- */
+
 
 /**
  * Id
  */
+
+
 /*
  * Class
  */
-
-
