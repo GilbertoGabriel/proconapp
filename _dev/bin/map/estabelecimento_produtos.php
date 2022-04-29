@@ -28,7 +28,7 @@
 	 * photo, photoWithPosition, position, upload
 	 */ 
 	$fields = array("id" => "integer",
-			"cadastro" => "datetime",
+			"cadastrado" => "new",
 			"modificado" => "now"
 	);
 				
@@ -52,7 +52,7 @@
 	$call = "";
 	
 	// Set the column for answer after the call
-	$answer = "";
+	$answer = "estabelecimento_produtos_preco";
 
 	/*
 	 * Builder

@@ -101,13 +101,19 @@
 
 					</th>
 					
-					<th id="estabelecimento_produtos_preco.preco" style="width:100%;" 
+					<th id="estabelecimento_produtos_preco.preco" style="width:50%;" 
 							onclick="orderBy(this.id);">
 							
 						Preco
 						
 					</th>
-					
+						
+					<th style="width:50%;">
+							
+						Estabelecimento_produtos
+						
+					</th>
+				
 				</tr>
 				
 				<one(data_not_found)><tr><td colspan="2"><gz>value</gz></td></tr></one>		
@@ -117,11 +123,19 @@
 					<tr id="<gz>estabelecimento_produtos_preco.line</gz>" 
 							onMouseOver="onFocus(<gz>estabelecimento_produtos_preco.line</gz>);" 
 							onMouseOut="outFocus(<gz>estabelecimento_produtos_preco.line</gz>);" 
-							onclick="selected(<gz>estabelecimento_produtos_preco.line</gz>);">
+							>
 
 						<td style="display:none;"><gz>estabelecimento_produtos_preco.id</gz></td>
 
-						<td><gz>estabelecimento_produtos_preco.preco</gz></td>
+						<td onclick="selected(<gz>estabelecimento_produtos_preco.line</gz>);"><gz>estabelecimento_produtos_preco.preco</gz></td>
+				
+						<td class="gz-link" onclick="goTo('/estabelecimento_produtos/called/<gz>estabelecimento_produtos_preco.id</gz>/1/historyBack/0');">
+									
+							<img class="dv-mr-ldpi" src="@_ROOT/mod/cms/img/icon/grid-next.png" />
+									
+							Estabelecimento_produtos
+								
+						</td>
 						
 					</tr>
 

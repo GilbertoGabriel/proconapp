@@ -6,126 +6,299 @@
  * @see     https://wtag.com.br/divmon
  */
 
+
 /*
  * Reset
  */
-html, body, div, span,
-table, thead, tbody, tfoot, tr, th, td,
-form, label, input, textarea, select, option, button,
-ul, li,
-h1, h2, h3, h4, h5, h6, p,
+
+html,
+body,
+div,
+span,
+table,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td,
+form,
+label,
+input,
+textarea,
+select,
+option,
+button,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
 img,
 a,
-pre, code, 
-iframe { }
+pre,
+code,
+iframe {}
 
-html { }
+html {}
 
-body { }
+body {
+    background-color: #eeeeee;
+}
 
-div { }
+div {}
 
-span { }
+span {}
 
-table { }
+table {}
 
-	thead { }
+thead {}
 
-	tbody { }
+tbody {}
 
-	tfoot { }
+tfoot {}
 
-		tr { }
+tr {}
 
-			th { }
+th {}
 
-			td { }
-		
-form { }
+td {}
 
-	label { }
+form {}
 
-	input { }
-	
-	textarea { }
+label {}
 
-	select { }
-	
-		option { }
+input {}
 
-ul { }
+textarea {}
 
-	li { }
-	
-h1 { }
+select {}
 
-h2 { }
+option {}
 
-h3 { }
+ul {}
 
-h4 { }
+li {}
 
-h5 { }
+h1 {}
 
-h6 { }
+h2 {}
 
-p { }
+h3 {}
 
-img { }
+h4 {}
+
+h5 {}
+
+h6 {}
+
+p {}
+
+img {}
 
 a {}
 
-a:focus { outline-width: 0px !important; }
-
-
-.pesquisar{
-	width: 20%;
+a:focus {
+    outline-width: 0px !important;
 }
 
-.link:hover{
-	text-decoration: underline;
-}
-.pesquisar::-webkit-input-placeholder { /* WebKit browsers */
-    padding-left: 15px;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-	padding-left: 15px;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-	padding-left: 15px;
-}
-:-ms-input-placeholder { /* Internet Explorer 10+ */
-	padding-left: 15px;
+
+/* --------------------------------------------------------------------- */
+
+
+/* HOME PAGE */
+
+.search-icon {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(105%) contrast(103%);
 }
 
-.blue{
-	background-color: #12295d;
-}
-
-.white-procon{
-	width: 25%;
-}
-
-.card:hover{
-	transform: translateY(-5px);
-    cursor: pointer;
-}
-
-.card{
-	text-decoration:  none;
+.cardsInfo {
+    margin-bottom: 15px;
+    padding: 30px;
     border-radius: 5px;
-    box-shadow: 7px 7px 13px 7px rgba(50, 50, 50, 0.22);
-	margin-top: 5%;
-	margin-left: 3%;
-	margin-bottom: 5%;
-	text-align: center;	
-    transition: all 0.3s ease-out;
+    background-color: #fff;
+    border-bottom: 3px solid #00bef2;
+    box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.22);
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
+
+.cardsInfo:hover {
+    transform: translateY(-1px);
+    cursor: pointer;
+    -webkit-box-shadow: 0px 7px 22px -10px #000000;
+    box-shadow: 0px 7px 22px -10px #000000;
+}
+
+.cardsInfo:hover>.imgCards {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.cardsInfo:hover>.title {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+}
+
+.imgCards {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.blue {
+    background-color: #001859;
+}
+
+.white-procon {
+    width: 80%;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 30px;
+    color: #00216c !important;
+    transition: 0.5s;
+}
+
+#pesquisa {
+    background-color: #00216c;
+    border: 2px solid #00bef2;
+    color: white;
+}
+
+#pesquisa:focus {
+    outline-width: 0px !important;
+}
+
+#pesquisar:hover {
+    border: 2px solid #00bef2;
+}
+
+
+/* --------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------- */
+
+
+/* TABLE PAGE */
+
+.selectTable {
+    border: 1.5px solid black;
+    width: 100%;
+}
+
+.searchBox:focus {
+    outline-width: 0px !important;
+}
+
+.searchBox:hover {
+    outline-width: 0px !important;
+}
+
+.titleTable {
+    color: white;
+    border: 1px solid black;
+}
+
+.pesquisarLabel:hover {
+    transition: 0.5s;
+    background-color: #001859;
+    color: white;
+}
+
+
+/* --------------------------------------------------------------------- */
+
+
+/* FOOTER */
+
+.suporte {
+    width: 95%;
+    height: 85%;
+}
+
+.footer-img {
+    width: 60%;
+}
+
+
+/* FOOTER MOBILE */
+
+.footer-img-mobile {
+    width: 40%;
+}
+
+.suporte-mobile {
+    width: 65%;
+    height: 60%;
+}
+
+.menu-screen {
+    padding: 22px 22px 22px 22px
+}
+
+.menu-mobile {
+    padding-right: 100%;
+}
+
+.menu-mobile:hover {
+    transition: 0.5s;
+    color: white;
+    background-color: #12295d;
+}
+
+.menu-screen:hover {
+    transition: 0.5s;
+    color: white;
+    background-color: #12295d;
+}
+
+.links-menu {
+    font-size: 22px;
+    color: #00216c;
+    font-weight: 700;
+}
+
+.espaco-menu {
+    margin-left: 3%;
+}
+
+.topo-background {
+    background: linear-gradient(90deg, #001859 50%, #00216c 50%)
+}
+
+.background-pesquisar {
+    background: #00216c;
+}
+
+.dv-line .dv-column-three,
+.dv-line-mobile .dv-column-three {
+    flex: 0 31.5%;
+    margin: 10px;
+}
+
+
+/* --------------------------------------------------------------------- */
+
+
+/* --------------- */
 
 
 /**
  * Id
  */
+
+
 /*
  * Class
  */

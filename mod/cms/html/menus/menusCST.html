@@ -1,17 +1,17 @@
 <!-- Custom View -->
 
-	<div id="gz-menu" class="@_THEME-bg">
+	<div id="gz-menu" class="@_THEME-bg" style="background-color: #12295d;">
 	
 		<div class="dv-pt-hdpi dv-pr-xdpi dv-pb-hdpi dv-pl-xdpi">
 		
-			<div class="gz-profile-border">
+			<div class="gz-profile-border ">
 	
 				<for(usuarios)>
 				
 					<div class="gz-tooltip">
 
 						<img onclick="goToTable('mudar_foto');" id="gz-profile"
-								src="@_ROOT/mod/cms/img/icon/<gz>usuarios.foto</gz>" />
+								src="@_ROOT/mod/cms/img/icon/user.png" />
 
 						<span class="gz-span-profile gz-dark-blue-grey" onclick="goToTable('mudar_foto');">
 
@@ -32,7 +32,7 @@
 			<li class="dv-mb-hdpi dv-ml-xdpi dv-mr-hdpi dv-pt-mdpi">
 			
 				<span class="gz-icon-chart" 
-						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700;" 
+						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700; color: white;" 
 						onclick="goToTable('dashboard');">Indicadores</span>
 
 			</li>	
@@ -41,7 +41,7 @@
 					style="display: none; <one(pre-cadastros)>display: block;</one>">
 			
 				<span class="gz-icon-folder" 
-						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700;" 
+						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700; color: white;" 
 						onclick="menuShow('gz-pre-cadastros');">Pré-cadastros</span>
 				
 				<ul id="gz-pre-cadastros" class="dv-mt-hdpi" style="display:none;">		
@@ -65,7 +65,7 @@
 					style="display: none; <one(cadastros)>display: block;</one>">
 			
 				<span class="gz-icon-folder" 
-						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700;" 
+						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700; color: white;" 
 						onclick="menuShow('gz-cadastros');">Cadastros</span>
 				
 				<ul id="gz-cadastros" class="dv-mt-hdpi" style="display:none;">
@@ -73,7 +73,7 @@
 					<for(cadastros)>
 
 						<li id="gz-<gz>telas.identificador</gz>" class="dv-mr-hdpi dv-pt-mdpi dv-pb-mdpi dv-pl-hdpi <gz>telas.selected</gz>" 
-								onclick="goToTable('<gz>telas.identificador</gz>');">
+								onclick="goToTable('<gz>telas.identificador</gz>');" style="color: white;">
 
 							<gz>telas.tela</gz>
 
@@ -89,7 +89,7 @@
 					style="display: none; <one(relatorios)>display: block;</one>">
 			
 				<span class="gz-icon-operation" 
-						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700;" 
+						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700; color: white;" 
 						onclick="menuShow('gz-relatorios');">Relatórios</span>
 				
 				<ul id="gz-relatorios" class="dv-mt-hdpi" style="display:none;">		
@@ -113,7 +113,7 @@
 					style="display: none; <one(configuracoes)>display: block;</one>">
 			
 				<span class="gz-icon-configuration" 
-						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700;" 
+						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700;color: white;" 
 						onclick="menuShow('gz-configuracoes');">Configurações</span>
 				
 				<ul id="gz-configuracoes" class="dv-mt-hdpi" style="display:none;">		
@@ -121,7 +121,7 @@
 					<for(configuracoes)>
 
 						<li id="gz-<gz>telas.identificador</gz>" class="dv-mr-hdpi dv-pt-mdpi dv-pb-mdpi dv-pl-hdpi <gz>telas.selected</gz>" 
-								onclick="goToTable('<gz>telas.identificador</gz>');">
+								onclick="goToTable('<gz>telas.identificador</gz>');" style="color: white;">
 
 							<gz>telas.tela</gz>
 
@@ -136,7 +136,7 @@
 			<li class="dv-mb-hdpi dv-ml-xdpi dv-mr-hdpi dv-pt-mdpi">
 
 				<span class="gz-icon-user" 
-						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700;" 
+						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700; color: white;" 
 						onclick="goToTable('minha_conta');">Minha conta</span>
 
 			</li>
@@ -144,7 +144,7 @@
 			<li class="dv-mb-hdpi dv-ml-xdpi dv-mr-hdpi dv-pt-mdpi">
 
 				<span class="gz-icon-exit" 
-						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700;" 
+						style="font-size: 12px; cursor: pointer; font-family: 'Open Sans', sans-serif; font-weight: 700; color: white;" 
 						onclick="request('logout', 'logout');">Sair</span>
 
 			</li>

@@ -41,11 +41,11 @@
 				
 			</div>
 					
-			<!-- Estabelecimeto_produto -->
+			<!-- Estabelecimeto_produtos -->
 			
 			<div class="gz-block dv-f-l">
 		
-				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Estabelecimeto_produto</div> 
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Estabelecimeto</div> 
 			
 			</div>
 			
@@ -57,7 +57,7 @@
 
 						<option value="<gz>estabelecimento_produtos.id</gz>">
 						
-							<gz>estabelecimento_produtos.estabelecimeto_produto</gz>
+							<gz>estabelecimentos.estabelecimento</gz>
 						
 						</option>
 
@@ -66,6 +66,32 @@
 				</select>
 
 			</div>
+
+
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Produto</div> 
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+			
+				<select id="estabelecimento_produtos_preco.estabelecimento_produtos" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
+					
+					<for(estabelecimento_produtos)>
+
+						<option value="<gz>estabelecimento_produtos.id</gz>">
+						
+							<gz>produtos.produto</gz>
+						
+						</option>
+
+					</for>
+					
+				</select>
+
+			</div>
+
 
 			<!-- Ok -->
 

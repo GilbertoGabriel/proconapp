@@ -90,7 +90,7 @@
 			$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($request["estabelecimento_produtos_preco.preco"])));
 			$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 			$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$estabelecimento_produtos_preco->setEstabelecimeto_produto($request["estabelecimento_produtos_preco.estabelecimeto_produto"]);
+			$estabelecimento_produtos_preco->setEstabelecimeto_produtos($request["estabelecimento_produtos_preco.estabelecimeto_produtos"]);
 			
 			$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->create($estabelecimento_produtos_preco);
 
@@ -145,7 +145,7 @@
 			$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($request["estabelecimento_produtos_preco.preco"])));
 			$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 			$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$estabelecimento_produtos_preco->setEstabelecimeto_produto($request["estabelecimento_produtos_preco.estabelecimeto_produto"]);
+			$estabelecimento_produtos_preco->setEstabelecimeto_produtos($request["estabelecimento_produtos_preco.estabelecimeto_produtos"]);
 			
 			$daoFactory->beginTransaction();
 			$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->update($estabelecimento_produtos_preco);
@@ -261,7 +261,7 @@
 					$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read("", "estabelecimento_produtos.id ASC", false);
 					for ($x = 0; $x < sizeof($response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"]); $x++) {
 						if ($response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"][$x]["estabelecimento_produtos.id"] == 
-								$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimeto_produto"]) {
+								$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimeto_produtos"]) {
 							$response["estabelecimento_produtos_preco"][0]["estabelecimento_produtos_preco.estabelecimento_produtos"][$x]["estabelecimento_produtos.selected"] = "selected";
 						}
 					}
@@ -358,7 +358,7 @@
 					$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($form[0])));
 					$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 					$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$estabelecimento_produtos_preco->setEstabelecimeto_produto($form[1]);
+					$estabelecimento_produtos_preco->setEstabelecimeto_produtos($form[1]);
 					
 					$daoFactory->beginTransaction();
 					$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->create($estabelecimento_produtos_preco);
@@ -391,7 +391,7 @@
 					$estabelecimento_produtos_preco->setPreco(logicZero(controllerDouble($form[0])));
 					$estabelecimento_produtos_preco->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 					$estabelecimento_produtos_preco->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$estabelecimento_produtos_preco->setEstabelecimeto_produto($form[1]);
+					$estabelecimento_produtos_preco->setEstabelecimeto_produtos($form[1]);
 					
 					$daoFactory->beginTransaction();
 					$resultDao = $daoFactory->getEstabelecimento_produtos_precoDao()->update($estabelecimento_produtos_preco);

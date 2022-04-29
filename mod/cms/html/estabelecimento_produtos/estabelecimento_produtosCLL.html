@@ -1,244 +1,251 @@
 <!-- Called View -->
-	
-	<!-- Content -->
-	
-	<div id="gz-content" class="dv-f-r dv-mt-xdpi dv-pt-xdpi">
 
-		<!-- Header -->
+<!-- Content -->
 
-		<div id="gz-header" class="dv-f-l dv-pt-mdpi dv-pb-mdpi" onclick="clearSelection();">
-			
-			<!-- History back -->
+<div id="gz-content" class="dv-f-r dv-mt-xdpi dv-pt-xdpi">
 
-			<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-xdpi" 
-					 onclick="window.history.go(gz_historyBack); return false;">
-		
-				<a href="#" class="gz-tooltip" onclick="return false;">
+	<!-- Header -->
 
-					<img src="@_ROOT/mod/cms/img/icon/back.png">
+	<div id="gz-header" class="dv-f-l dv-pt-mdpi dv-pb-mdpi" onclick="clearSelection();">
 
-					<span class="gz-span-bottom-right @_THEME">
+		<!-- History back -->
 
-						@_LAN_GO_BACK
+		<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-xdpi"
+			onclick="window.history.go(gz_historyBack); return false;">
 
-					</span>
+			<a href="#" class="gz-tooltip" onclick="return false;">
 
-				</a>
+				<img src="@_ROOT/mod/cms/img/icon/back.png">
 
-			</div>		
-		
-			<!-- Create -->
+				<span class="gz-span-bottom-right @_THEME">
 
-			<div id="gz-button-create" class="gz-button dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-hdpi" 
-					onclick="showCreate();">
-				
-				<a href="#" class="gz-tooltip" onclick="return false;">
+					@_LAN_GO_BACK
 
-					<img src="@_ROOT/mod/cms/img/icon/create.png" />
+				</span>
 
-					<span class="gz-span-bottom-right @_THEME">
-
-						@_LAN_ADD
-
-					</span>
-
-				</a>
-
-			</div>
-			
-			<!-- Search -->
-
-			<input id="gz-search" class="gz-textbox-mdpi dv-f-l dv-mt-mdpi dv-mr-hdpi dv-mb-mdpi dv-ml-hdpi gz-gray" 
-					type="text" value="@_LAN_SEARCH_FOR"
-					onfocus="emptySearch(this.id);" onblur="showSearch(this.id);">
-
-			<div id="gz-button-search" class="gz-button dv-f-l dv-mt-mdpi" 
-					onclick="goSearch();">
-
-				<a href="#" class="gz-tooltip" onclick="return false;">
-
-					<img src="@_ROOT/mod/cms/img/icon/search.png" />
-
-					<span class="gz-span-bottom-right @_THEME">
-
-						@_LAN_SEARCH
-
-					</span>
-
-				</a>
-
-			</div>
-
-			<!-- Delete -->
-
-			<div class="gz-button dv-f-r dv-mt-mdpi dv-mr-xdpi" onclick="showDelete();">
-
-				<a href="#" class="gz-tooltip" onclick="return false;">
-
-					<img src="@_ROOT/mod/cms/img/icon/delete.png" />
-					
-					<span class="gz-span-bottom-left @_THEME">
-
-						@_LAN_DELETE
-
-					</span>
-					
-				</a>
-
-			</div>
+			</a>
 
 		</div>
 
-		<!-- Table -->
-		
-		<div class="dv-pl-xdpi dv-pr-xdpi">
-			
-			<p class="dv-mb-hdpi gz-gray">
-			
-				<one(titles)>
-				
-					<gz>menus.menu</gz> /
-					
-					<span class="gz-black gz-bold">
-					
-						<gz>telas.tela</gz>
-						
-					</span>
-					
-				</one>	
-					
-			</p>
-		
-			<table>
-				
-				<tr>
+		<!-- Create -->
 
-					<th id="estabelecimento_produtos.id" style="display:none;"
-							onclick="orderBy(this.id);">
+		<div id="gz-button-create" class="gz-button dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-hdpi"
+			onclick="showCreate();">
 
-						Id
+			<a href="#" class="gz-tooltip" onclick="return false;">
 
-					</th>
-					
-					<th id="estabelecimento_produtos.cadastro" style="width:100%;" 
-							onclick="orderBy(this.id);">
-							
-						Cadastro
-						
-					</th>
-					
-				</tr>
-					
-				<one(data_not_found)><tr><td colspan="2"><gz>value</gz></td></tr></one>		
+				<img src="@_ROOT/mod/cms/img/icon/create.png" />
 
-				<for(estabelecimento_produtos)>
+				<span class="gz-span-bottom-right @_THEME">
 
-					<tr id="<gz>estabelecimento_produtos.line</gz>" 
-							onMouseOver="onFocus(<gz>estabelecimento_produtos.line</gz>);" 
-							onMouseOut="outFocus(<gz>estabelecimento_produtos.line</gz>);" 
-							onclick="selected(<gz>estabelecimento_produtos.line</gz>);">
+					@_LAN_ADD
 
-						<td style="display:none;"><gz>estabelecimento_produtos.id</gz></td>
+				</span>
 
-						<td><gz>estabelecimento_produtos.cadastro</gz></td>
-						
-					</tr>
+			</a>
 
-				</for>
-
-			</table>
-		
 		</div>
-		
-		<!-- Footer -->
 
-		<div id="gz-footer" class="dv-f-l dv-pt-mdpi dv-pb-mdpi">
-		
-			<one(estabelecimento_produtos)>
-			
-				<div class="dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-xdpi dv-pt-mdpi">
-				
-					<p><gz>estabelecimento_produtos.size</gz> @_LAN_ITEMS_PAGE</p>
-						
-				</div>
-				
-				<gz>estabelecimento_produtos.pagination</gz>
-					
-				<div class="dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-mdpi dv-pt-mdpi">
-			
-					<p>@_LAN_OF <gz>estabelecimento_produtos.pages</gz></p>
+		<!-- Search -->
 
-				</div>
+		<input id="gz-search" class="gz-textbox-mdpi dv-f-l dv-mt-mdpi dv-mr-hdpi dv-mb-mdpi dv-ml-hdpi gz-gray" type="text"
+			value="@_LAN_SEARCH_FOR" onfocus="emptySearch(this.id);" onblur="showSearch(this.id);">
 
-				<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" 
-						onclick="goFirst();">
-						
-					<a href="#" class="gz-tooltip" onclick="return false;">
+		<div id="gz-button-search" class="gz-button dv-f-l dv-mt-mdpi" onclick="goSearch();">
 
-						<img src="@_ROOT/mod/cms/img/icon/first.png" />
+			<a href="#" class="gz-tooltip" onclick="return false;">
 
-						<span class="gz-span-top-right @_THEME">
+				<img src="@_ROOT/mod/cms/img/icon/search.png" />
 
-							@_LAN_FIRST
+				<span class="gz-span-bottom-right @_THEME">
 
-						</span>
+					@_LAN_SEARCH
 
-					</a>		
-						
-				</div>
-				
-				<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" onclick="goBack();">
+				</span>
 
-					<a href="#" class="gz-tooltip" onclick="return false;">
+			</a>
 
-						<img src="@_ROOT/mod/cms/img/icon/back.png" />
+		</div>
 
-						<span class="gz-span-top-right @_THEME">
+		<!-- Delete -->
 
-							@_LAN_PREVIOUS
+		<div class="gz-button dv-f-r dv-mt-mdpi dv-mr-xdpi" onclick="showDelete();">
 
-						</span>
+			<a href="#" class="gz-tooltip" onclick="return false;">
 
-					</a>	
-			
-				</div>
-				
-				<div id="gz-button-next" class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" 
-						onclick="goNext(<gz>estabelecimento_produtos.size</gz>);">
-			
-					<a href="#" class="gz-tooltip" onclick="return false;">
+				<img src="@_ROOT/mod/cms/img/icon/delete.png" />
 
-						<img src="@_ROOT/mod/cms/img/icon/next.png" />
+				<span class="gz-span-bottom-left @_THEME">
 
-						<span class="gz-span-top-right @_THEME">
+					@_LAN_DELETE
 
-							@_LAN_NEXT
+				</span>
 
-						</span>
+			</a>
 
-					</a>	
-					
-				</div>
-				
-				<div id="gz-button-last" class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" 
-						onclick="goLast(<gz>estabelecimento_produtos.size</gz>);">
-
-					<a href="#" class="gz-tooltip" onclick="return false;">
-
-						<img src="@_ROOT/mod/cms/img/icon/last.png" />
-
-						<span class="gz-span-top-right @_THEME">
-
-							@_LAN_LAST
-
-						</span>
-
-					</a>	
-						
-				</div>
-			
-			</one>
-			
 		</div>
 
 	</div>
+
+	<!-- Table -->
+
+	<div class="dv-pl-xdpi dv-pr-xdpi">
+
+		<p class="dv-mb-hdpi gz-gray">
+
+			<one(titles)>
+
+				<gz>menus.menu</gz> /
+
+				<span class="gz-black gz-bold">
+
+					<gz>telas.tela</gz>
+
+				</span>
+
+				</one>
+
+		</p>
+
+		<table>
+
+			<tr>
+
+				<th id="estabelecimento_produtos.id" style="display:none;" onclick="orderBy(this.id);">
+
+					Id
+
+				</th>
+
+				<th id="estabelecimento_produtos.cadastrado" style="width:100%;" onclick="orderBy(this.id);">
+
+					Cadastrado
+
+				</th>
+
+			</tr>
+
+			<one(data_not_found)>
+				<tr>
+					<td colspan="2">
+						<gz>value</gz>
+					</td>
+				</tr>
+				</one>
+
+				<for(estabelecimento_produtos)>
+
+					<tr id="<gz>estabelecimento_produtos.line</gz>" onMouseOver="onFocus(<gz>estabelecimento_produtos.line</gz>);"
+						onMouseOut="outFocus(<gz>estabelecimento_produtos.line</gz>);"
+						onclick="selected(<gz>estabelecimento_produtos.line</gz>);">
+
+						<td style="display:none;">
+							<gz>estabelecimento_produtos.id</gz>
+						</td>
+
+						<td>
+							<gz>estabelecimento_produtos.cadastrado</gz>
+						</td>
+
+					</tr>
+
+					</for>
+
+		</table>
+
+	</div>
+
+	<!-- Footer -->
+
+	<div id="gz-footer" class="dv-f-l dv-pt-mdpi dv-pb-mdpi">
+
+		<one(estabelecimento_produtos)>
+
+			<div class="dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-xdpi dv-pt-mdpi">
+
+				<p>
+					<gz>estabelecimento_produtos.size</gz> @_LAN_ITEMS_PAGE
+				</p>
+
+			</div>
+
+			<gz>estabelecimento_produtos.pagination</gz>
+
+			<div class="dv-f-l dv-mt-mdpi dv-mr-mdpi dv-mb-mdpi dv-ml-mdpi dv-pt-mdpi">
+
+				<p>@_LAN_OF <gz>estabelecimento_produtos.pages</gz>
+				</p>
+
+			</div>
+
+			<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" onclick="goFirst();">
+
+				<a href="#" class="gz-tooltip" onclick="return false;">
+
+					<img src="@_ROOT/mod/cms/img/icon/first.png" />
+
+					<span class="gz-span-top-right @_THEME">
+
+						@_LAN_FIRST
+
+					</span>
+
+				</a>
+
+			</div>
+
+			<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi" onclick="goBack();">
+
+				<a href="#" class="gz-tooltip" onclick="return false;">
+
+					<img src="@_ROOT/mod/cms/img/icon/back.png" />
+
+					<span class="gz-span-top-right @_THEME">
+
+						@_LAN_PREVIOUS
+
+					</span>
+
+				</a>
+
+			</div>
+
+			<div id="gz-button-next" class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi"
+				onclick="goNext(<gz>estabelecimento_produtos.size</gz>);">
+
+				<a href="#" class="gz-tooltip" onclick="return false;">
+
+					<img src="@_ROOT/mod/cms/img/icon/next.png" />
+
+					<span class="gz-span-top-right @_THEME">
+
+						@_LAN_NEXT
+
+					</span>
+
+				</a>
+
+			</div>
+
+			<div id="gz-button-last" class="gz-button dv-f-l dv-mt-mdpi dv-mb-mdpi dv-ml-hdpi"
+				onclick="goLast(<gz>estabelecimento_produtos.size</gz>);">
+
+				<a href="#" class="gz-tooltip" onclick="return false;">
+
+					<img src="@_ROOT/mod/cms/img/icon/last.png" />
+
+					<span class="gz-span-top-right @_THEME">
+
+						@_LAN_LAST
+
+					</span>
+
+				</a>
+
+			</div>
+
+			</one>
+
+	</div>
+
+</div>

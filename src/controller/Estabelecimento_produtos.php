@@ -19,13 +19,13 @@
 	$where = "";
 	
 	if ($search != "")
-		$where = "estabelecimento_produtos.cadastro LIKE \"%" . $search . "%\"";	
+		$where = "estabelecimento_produtos.modificado LIKE \"%" . $search . "%\"";	
 		
 	if ($code != "")
 		$where = "estabelecimento_produtos.id = " . $code;
 	
 	if (isset($_GET["friendly"]))
-		$where = "estabelecimento_produtos.cadastro = \"" . removeLine($_GET["friendly"]) . "\"";	
+		$where = "estabelecimento_produtos.modificado = \"" . removeLine($_GET["friendly"]) . "\"";	
 		
 	$limit = "";	
 		
@@ -62,7 +62,7 @@
 		$daoFactory->close();
 		
 		if (isset($_GET["friendly"]))
-			$view->setTitle($response["estabelecimento_produtos"][0]["estabelecimento_produtos.cadastro"]);
+			$view->setTitle($response["estabelecimento_produtos"][0]["estabelecimento_produtos.modificado"]);
 
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/header.html");
 		
@@ -87,7 +87,7 @@
 
 			$daoFactory->beginTransaction();
 			$estabelecimento_produtos = new model\Estabelecimento_produtos();
-			$estabelecimento_produtos->setCadastro(logicNull(controllerDateTime($request["estabelecimento_produtos.cadastro"])));
+			$estabelecimento_produtos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 			$estabelecimento_produtos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 			$estabelecimento_produtos->setEstabelecimento($request["estabelecimento_produtos.estabelecimento"]);
 			$estabelecimento_produtos->setProduto($request["estabelecimento_produtos.produto"]);
@@ -142,7 +142,7 @@
 			
 			$estabelecimento_produtos = new model\Estabelecimento_produtos();
 			$estabelecimento_produtos->setId($request["estabelecimento_produtos.id"]);
-			$estabelecimento_produtos->setCadastro(logicNull(controllerDateTime($request["estabelecimento_produtos.cadastro"])));
+			$estabelecimento_produtos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 			$estabelecimento_produtos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 			$estabelecimento_produtos->setEstabelecimento($request["estabelecimento_produtos.estabelecimento"]);
 			$estabelecimento_produtos->setProduto($request["estabelecimento_produtos.produto"]);
@@ -291,9 +291,9 @@
 					 * Insert your foreign key here
 					 */
 					if ($where != "")
-						$where .= " AND estabelecimento_produtos.@_FOREIGN_KEY = " . $base;
+						$where .= " AND estabelecimento_produtos.estabelecimento_produtos_preco = " . $base;
 					else 
-						$where = "estabelecimento_produtos.@_FOREIGN_KEY = " . $base;
+						$where = "estabelecimento_produtos.estabelecimento_produtos_preco = " . $base;
 						
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
@@ -363,10 +363,10 @@
 					echo $view->json($response);
 				} else {
 					$estabelecimento_produtos = new model\Estabelecimento_produtos();
-					$estabelecimento_produtos->setCadastro(logicNull(controllerDateTime($form[0])));
+					$estabelecimento_produtos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 					$estabelecimento_produtos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$estabelecimento_produtos->setEstabelecimento($form[1]);
-					$estabelecimento_produtos->setProduto($form[2]);
+					$estabelecimento_produtos->setEstabelecimento($form[0]);
+					$estabelecimento_produtos->setProduto($form[1]);
 					
 					$daoFactory->beginTransaction();
 					$resultDao = $daoFactory->getEstabelecimento_produtosDao()->create($estabelecimento_produtos);
@@ -396,10 +396,10 @@
 				} else {
 					$estabelecimento_produtos = new model\Estabelecimento_produtos();
 					$estabelecimento_produtos->setId($code);
-					$estabelecimento_produtos->setCadastro(logicNull(controllerDateTime($form[0])));
+					$estabelecimento_produtos->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 					$estabelecimento_produtos->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$estabelecimento_produtos->setEstabelecimento($form[1]);
-					$estabelecimento_produtos->setProduto($form[2]);
+					$estabelecimento_produtos->setEstabelecimento($form[0]);
+					$estabelecimento_produtos->setProduto($form[1]);
 					
 					$daoFactory->beginTransaction();
 					$resultDao = $daoFactory->getEstabelecimento_produtosDao()->update($estabelecimento_produtos);

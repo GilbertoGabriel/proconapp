@@ -36,7 +36,7 @@
 	/*
 	 *$fk = array("table" => "field");
 	 */
-	$fk = array("estabelecimento_produtos" => "estabelecimeto_produto"
+	$fk = array("estabelecimento_produtos" => "estabelecimeto_produtos"
 	);
 			
 	/*
@@ -48,7 +48,7 @@
 	);
 				
 	// Set the table if this screen call another
-	$call = "";
+	$call = "estabelecimento_produtos";
 	
 	// Set the column for answer after the call
 	$answer = "";

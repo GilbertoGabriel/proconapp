@@ -782,12 +782,12 @@ span { }
  * Icon
  */
 .gz-icon-chart {
-	background: url("../../mod/cms/img/icon/icon-chart.png") no-repeat;
+	background: url("../../mod/cms/img/icon/icon-chart-white.png") no-repeat;
 	padding-left: 30px;
 }
 
 .gz-icon-folder {
-	background: url("../../mod/cms/img/icon/icon-folder.png") no-repeat;
+	background: url("../../mod/cms/img/icon/icon-folder-white.png") no-repeat;
 	padding-left: 30px;
 }
 
@@ -797,7 +797,7 @@ span { }
 }
 
 .gz-icon-configuration {
-	background: url("../../mod/cms/img/icon/icon-configuration.png") no-repeat;
+	background: url("../../mod/cms/img/icon/icon-configuration-white.png") no-repeat;
 	padding-left: 30px;
 }
 
@@ -805,7 +805,7 @@ span { }
  * Icon
  */
 .gz-icon-user {
-	background: url("../../mod/cms/img/icon/icon-user.png") no-repeat;
+	background: url("../../mod/cms/img/icon/icon-user-white.png") no-repeat;
 	padding-left: 30px;
 }
 
@@ -813,7 +813,7 @@ span { }
  * Icon
  */
 .gz-icon-exit {
-	background: url("../../mod/cms/img/icon/icon-exit.png") no-repeat;
+	background: url("../../mod/cms/img/icon/icon-exit-white.png") no-repeat;
 	padding-left: 30px;
 }
 
