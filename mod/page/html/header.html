@@ -3,173 +3,170 @@
 
 <head>
 
-	<title>@_TITLE</title>
+    <title>@_TITLE</title>
 
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-	<meta http-equiv="content-language" content="pt-br">
+    <meta http-equiv="content-language" content="pt-br">
 
-	<meta name="title" content="@_TITLE">
+    <meta name="title" content="@_TITLE">
 
-	<meta name="description" content="@_DESCRIPTION">
+    <meta name="description" content="@_DESCRIPTION">
 
-	<meta name="keywords" content="@_KEYWORDS">
+    <meta name="keywords" content="@_KEYWORDS">
 
-	<meta name="author" content="Wtag">
+    <meta name="author" content="Wtag">
 
-	<meta name="generator" content="Getz Framework">
+    <meta name="generator" content="Getz Framework">
 
-	<meta name="robots" content="@_ROBOTS">
+    <meta name="robots" content="@_ROBOTS">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="icon" href="@_ROOT/mod/page/img/icon.svg" height="16">
+    <link rel="icon" href="@_ROOT/mod/page/img/icon.svg" height="16">
 
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
 
-	<link rel="stylesheet" href="@_ROOT/res/css/divmon-1.0.0.css">
+    <link rel="stylesheet" href="@_ROOT/res/css/divmon-1.0.0.css">
 
-	<link rel="stylesheet" href="@_ROOT@_PACKAGE/css/style.css">
+    <link rel="stylesheet" href="@_ROOT@_PACKAGE/css/style.css">
 
-	<script charset="UTF-8" src="@_ROOT/res/js/divmon-1.0.0.js"></script>
+    <script charset="UTF-8" src="@_ROOT/res/js/divmon-1.0.0.js"></script>
 
-	<script charset="UTF-8" src="@_ROOT@_PACKAGE/js/ext.js"></script>
+    <script charset="UTF-8" src="@_ROOT@_PACKAGE/js/ext.js"></script>
 
-	<script charset="UTF-8" src="@_ROOT@_PACKAGE/js/handler.js"></script>
+    <script charset="UTF-8" src="@_ROOT@_PACKAGE/js/handler.js"></script>
 
 </head>
 
 <body>
 
-	<div class="blue">
+    <div class="dv-screen dv-line topo-background">
+        <div class="dv-column">
+            <div class="dv-line dv-center">
+
+                <div class="dv-padding-hdpi dv-vertical-align-center">
+
+                    <img class="white-procon" src="@_ROOT/mod/page/img/white-procon.png" style="width: 500px; background-color:#001859">
+
+                </div>
+                <div class="dv-column dv-vertical-align-center background-pesquisar">
+                    <div class="dv-column dv-position-relative dv-vertical-align-center">
+
+                        <div class="dv-padding-hdpi dv-full-width">
+
+                            <form onsubmit="searchExample(); return false;">
+
+                                <input class="dv-padding-mdpi dv-white transparent-bg border-input italic" type="text" id="pesquisa" name="pesquisa" autocomplete="off" placeholder="O que você procura?">
+
+                            </form>
+
+                        </div>
+
+                        <img onclick="searchExample();" class="search-icon dv-position-absolute dv-right dv-margin-right-xdpi dv-cursor dv-white" src="@_ROOT/mod/page/img/icon/search.svg" width="24px;">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="dv-mobile">
+        <div class="dv-line" style="background-color:#00216c">
+
+            <div class="dv-column-three dv-horizontal-align-center dv-vertical-align-center">
+
+                <img class="white-procon" src="@_ROOT/mod/page/img/white-procon.png" alt="">
+
+            </div>
+            <div class="dv-column dv-position-relative dv-vertical-align-center">
+
+                <div class="dv-padding-hdpi dv-full-width">
+
+                    <form onsubmit="searchExample(); return false;">
+
+                        <input class="dv-padding-mdpi dv-white transparent-bg border-input italic" type="text" id="pesquisa" name="pesquisa" autocomplete="off" placeholder="O que você procura?">
+
+                    </form>
+
+                </div>
+
+                <img onclick="searchExample();" class="search-icon dv-position-absolute dv-right dv-margin-right-xdpi dv-cursor dv-white" src="@_ROOT/mod/page/img/icon/search.svg" width="24px;">
+
+            </div>
+
+        </div>
+    </div>
 
 
-		<div class="dv-screen">
-			<div class="dv-line">
+    </div>
 
-				<div class="dv-column-three dv-horizontal-align-left">
-
-					<img class="white-procon" src="@_ROOT/mod/page/img/white-procon.png" style="background-color:#001859">
-
-				</div>
+    <div style="background-color: #00bef2;">
 
 
-				<div class="dv-column dv-position-relative dv-vertical-align-center blue-bg">
+        <div class="dv-mobile" style="margin-bottom: 5px; padding: 10px;">
 
-					<div class="dv-padding-hdpi dv-full-width">
-
-						<form onsubmit="searchExample(); return false;">
-
-							<input class="dv-padding-mdpi dv-white transparent-bg border-input italic" type="text"
-								id="pesquisa" name="pesquisa" autocomplete="off" placeholder="O que você procura?">
-
-						</form>
-
-					</div>
-
-					<img onclick="searchExample();"
-						class="search-icon dv-position-absolute dv-right dv-margin-right-xdpi dv-cursor dv-white"
-						src="@_ROOT/mod/page/img/icon/search.svg" width="24px;">
-
-				</div>
-
-
-			</div>
-		</div>
-
-		<div class="dv-mobile">
-			<div class="dv-line">
-
-				<div class="dv-column-three dv-horizontal-align-center dv-vertical-align-center">
-
-					<img class="white-procon" src="@_ROOT/mod/page/img/white-procon.png" alt="">
-
-				</div>
-				<div class="dv-column dv-position-relative dv-vertical-align-center blue-bg">
-
-					<div class="dv-padding-hdpi dv-full-width">
-
-						<form onsubmit="searchExample(); return false;">
-
-							<input class="dv-padding-mdpi dv-white transparent-bg border-input italic" type="text"
-								id="pesquisa" name="pesquisa" autocomplete="off" placeholder="O que você procura?">
-
-						</form>
-
-					</div>
-
-					<img onclick="searchExample();"
-						class="search-icon dv-position-absolute dv-right dv-margin-right-xdpi dv-cursor dv-white"
-						src="@_ROOT/mod/page/img/icon/search.svg" width="24px;">
-
-				</div>
-
-			</div>
-		</div>
-
-
-	</div>
-
-	<div style="background-color: #2484cd;">
-
-
-		<div class="dv-mobile" style="margin-bottom: 5px; padding: 10px;">
-
-			<span onclick="showMenu()" class="menu dv-svg-mdpi dv-white">
+            <span onclick="showMenu()" class="menu dv-svg-mdpi dv-white">
 				<file(img/icon/menu.svg)>
 			</span>
 
-			<div id="menu" style="display: none;">
+            <div id="menu" style="display: none;">
 
-				<div class="dv-line">
+                <div class="dv-line">
 
-					<div class="dv-column dv-horizontal-align-left dv-horizontal-align-center dv-vertical-align-center">
+                    <div class="dv-column dv-horizontal-align-left dv-vertical-align-center">
 
-						<ul class="dv-margin-mdpi">
+                        <ul class="dv-margin-mdpi">
 
-							<a href="/proconapp" class="dv-margin-ldpi">
-								<li class="link dv-margin-ldpi dv-white">HOME</li>
-							</a>
+                            <a href="/proconapp" class="dv-margin-ldpi">
+                                <li class="dv-margin-ldpi dv-white links-menu menu-mobile">HOME</li>
+                            </a>
 
-							<a href="/proconapp/table" class="dv-margin-ldpi">
-								<li class="link dv-margin-ldpi dv-white">PRODUTO</li>
-							</a>
+                            <a href="/proconapp/table" class="dv-margin-ldpi">
+                                <li class="dv-margin-ldpi dv-white links-menu menu-mobile">PRODUTOS</li>
+                            </a>
 
-						</ul>
+                            <a href="/proconapp/home" class="dv-margin-ldpi">
+                                <li class="dv-margin-ldpi dv-white links-menu menu-mobile">AJUDA</li>
+                            </a>
 
-					</div>
+                        </ul>
 
-				</div>
+                    </div>
 
-			</div>
+                </div>
 
-		</div>
+            </div>
 
-
-		<div class="dv-screen" style="margin-bottom: 10px;">
-
-
-			<div class=" dv-line">
-
-				<div class="dv-column dv-horizontal-align-left">
-
-					<ul class="dv-margin-mdpi">
-
-						<a href="/proconapp" class="dv-margin-ldpi">
-							<li class="link dv-margin-ldpi dv-display-inline dv-white">HOME</li>
-						</a>
-
-						<a href="/proconapp/table" class="dv-margin-ldpi">
-							<li class="link dv-margin-ldpi dv-display-inline dv-white">PRODUTO</li>
-						</a>
-
-					</ul>
-
-				</div>
-
-			</div>
-		</div>
+        </div>
 
 
+        <div class="dv-screen" style="margin-bottom: 20px;">
 
-	</div>
+            <div class="dv-center">
+                <div class="dv-line">
+
+                    <div class="dv-column dv-horizontal-align-left">
+
+                        <ul>
+                            <a href="/proconapp">
+                                <li class="dv-display-inline dv-white menu-screen links-menu">HOME</li>
+                            </a>
+
+                            <a href="/proconapp/table">
+                                <li class="dv-display-inline dv-white menu-screen links-menu">PRODUTOS</li>
+                            </a>
+                            <a href="/proconapp/home">
+                                <li class="dv-display-inline dv-white menu-screen links-menu">AJUDA</li>
+                            </a>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>

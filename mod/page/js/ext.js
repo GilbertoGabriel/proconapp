@@ -393,11 +393,13 @@ function showMenu() {
 }
 
 function goToSearch() {
-	goTo("/table/search/" + gV(gI("produtos")));
+	goTo("/table/search/" + gV(gI("produtos")) + "<gz>" + gV(gI("enderecos")) + "<gz>" + gV(gI("precos")));
 }
 
-document.addEventListener("keypress", function(e){
-	if(e.key === 'Enter'){
-		goToSearch();
+//Pesquisar usando enter
+document.addEventListener("keypress", function(e) {
+	if(e.key === 'Enter') {
+	  goToSearch();
+	
 	}
-})
+  });
