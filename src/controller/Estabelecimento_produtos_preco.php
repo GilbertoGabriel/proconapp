@@ -283,10 +283,10 @@
 					 * Insert your foreign key here
 					 */
 					if ($where != "")
-						$where .= " AND estabelecimento_produtos_preco.estabelecimento_produtos = " . $base;
+						$where .= " AND estabelecimento_produtos_preco.produtos = " . $base;
 					else 
-						$where = "estabelecimento_produtos_preco.estabelecimento_produtos = " . $base;
-						
+						$where = "estabelecimento_produtos_preco.produtos = " . $base;
+					
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
 					$response["estabelecimento_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read("", "", true);

@@ -288,9 +288,6 @@
 			$this->setRead($where, $order);
 			$result = $this->connection->execute($this->getRead());
 
-
-			echo $this->getRead();
-			
 			while ($row = $result->fetch_assoc()) {
 				$this->setResponse($line, "estabelecimento_produtos_preco.id", $row["estabelecimento_produtos_preco.id"]);
 				$this->setResponse($line, "estabelecimento_produtos_preco.preco", modelDouble($row["estabelecimento_produtos_preco.preco"]));
