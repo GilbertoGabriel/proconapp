@@ -7,7 +7,7 @@
             <table id="tableProducts" class="dv-margin-mdpi" style="margin-left: 0; margin-right:0px; max-width: 95%;">
                 <tr>
                     <th class="titleTable blue">Produto</th>
-                    <th class="titleTable blue">Estabelecimento</th>
+                    <th class="titleTable blue">Categorias</th>
                     <th class="titleTable blue">Marca</th>
                 </tr>
 
@@ -45,14 +45,14 @@
 
 
 
-    <div class="dv-line">
+    <div class="dv-line" id="tableEstabelecimento">
 
         <div class="dv-column dv-horizontal-align-center dv-text-align-center">
 
             <table id="tableProducts" class="dv-margin-mdpi" style="margin-left: 0; margin-right:0px; max-width: 95%;">
                 <tr>
                     <th class="titleTable blue">Estabelecimento</th>
-
+                    <th class="titleTable blue">Preco</th>
                 </tr>
 
                 <for(produtoSelect)>
@@ -69,6 +69,19 @@
                         </tr>
 
                     </for>
+
+                    <for(estabelecimento_produtos_preco)>
+                        <tr class="dv-border">
+
+                            <td class="dv-text-align-center">
+
+                                <gz>estabelecimento_produtos_preco.preco</gz>
+
+                            </td>
+
+                        </tr>
+
+                    </for>
  
                 </for>
 
@@ -77,5 +90,4 @@
         </div>
 
     </div>
-
-</div>
+</div>  
