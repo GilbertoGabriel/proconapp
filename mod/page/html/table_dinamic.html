@@ -7,84 +7,37 @@
             <table id="tableProducts" class="dv-margin-mdpi" style="margin-left: 0; margin-right:0px; max-width: 95%;">
                 <tr>
                     <th class="titleTable blue">Produto</th>
-                    <th class="titleTable blue">Categorias</th>
-                    <th class="titleTable blue">Marca</th>
-                </tr>
-
-                <for(produtoSelect)>
-
-                    <tr class="dv-border">
-
-                        <td class="dv-text-align-center">
-
-                            <gz>produtos.produto</gz>
-
-                        </td>
-
-                        <td class="dv-text-align-center">
-
-                            <gz>categorias.categoria</gz>
-
-                        </td>
-
-                        <td class="dv-text-align-center">
-
-                            <gz>marcas.marca</gz>
-
-                        </td>
-
-                    </tr>
-
-                    </for>
-
-            </table>
-
-        </div>
-
-    </div>
-
-
-
-    <div class="dv-line" id="tableEstabelecimento">
-
-        <div class="dv-column dv-horizontal-align-center dv-text-align-center">
-
-            <table id="tableProducts" class="dv-margin-mdpi" style="margin-left: 0; margin-right:0px; max-width: 95%;">
-                <tr>
                     <th class="titleTable blue">Estabelecimento</th>
-                    <th class="titleTable blue">Preco</th>
+                    <th class="titleTable blue">Preço</th>
                 </tr>
 
                 <for(produtoSelect)>
 
-                    <for(estabelecimentos)>
-                        <tr class="dv-border">
+                            <tr class="dv-border">
 
-                            <td class="dv-text-align-center">
+                                <td class="dv-text-align-center">
 
-                                <gz>estabelecimentos.estabelecimento</gz>
+                                    <gz>produtos.produto</gz>
 
-                            </td>
+                                </td>
 
-                        </tr>
+                                <for(estabelecimentos)>
 
+                                    <td class="dv-text-align-center">
+
+                                        <gz>estabelecimentos.estabelecimento</gz>
+
+                                    </td>
+                                    <for(estabelecimento_produtos_preco)>
+                                    <td class="dv-text-align-center">
+
+                                        <gz>estabelecimento_produtos_preco.preco</gz>
+
+                                    </td>
+                            </tr>
+                        </for>
                     </for>
-
-                    <for(estabelecimento_produtos_preco)>
-                        <tr class="dv-border">
-
-                            <td class="dv-text-align-center">
-
-                                <gz>estabelecimento_produtos_preco.preco</gz>
-
-                            </td>
-
-                        </tr>
-
-                    </for>
- 
                 </for>
-
             </table>
 
         </div>
