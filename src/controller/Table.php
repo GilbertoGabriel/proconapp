@@ -12,27 +12,28 @@
 	
 	require_once($_DOCUMENT_ROOT . "/lib/getz/Activator.php");
 
-	
-	if($search != ""){
 
-		$daoFactory->beginTransaction();
-
-		$response["produtoSelect"] = $daoFactory->getProdutosDao()->read("produtos.produto LIKE \"%" . $search . "%\"", "produtos.produto ASC", true);
-
-		$daoFactory->close();
-		
-	}
 	
 
 	if ($method == "page") {
 		
 		$daoFactory->beginTransaction();
-		
-		// $response["estabelecimentos_produtos_preco"] = $daoFactory->getEstabelecimento_produtos_precoDao()->read("", "produtos.id ASC", true);
-
-		for ($x = 0; $x < sizeof($response["produtoSelect"]); $x++) {
-			$response["produtoSelect"][$x]["estabelecimentos"] = $daoFactory->getEstabelecimento_produtosDao()->read(
-					"estabelecimento_produtos.produto = " . $response["produtoSelect"][$x]["produtos.id"], "", true);
+		$where = "";
+		if ($search != "") {
+			$where = "produtos.produto LIKE \"%" . $search . "%\"";
+		}
+		$response["produtos"] = $daoFactory->getProdutosDao()->read($where, "produtos.produto ASC", true);
+		for ($x = 0; $x < sizeof($response["produtos"]); $x++) {
+			$response["produtos"][$x]["estabelecimento_produtos"] = $daoFactory->getEstabelecimento_produtosDao()->read(
+					"estabelecimento_produtos.produto = " . $response["produtos"][$x]["produtos.id"], "", true);
+			for ($y = 0; $y < sizeof($response["produtos"][$x]["estabelecimento_produtos"]); $y++) {
+				$response["produtos"][$x]["estabelecimento_produtos"][$y]["estabelecimento_produtos_preco"] = 
+				$daoFactory->getEstabelecimento_produtos_precoDao()->read(
+						"estabelecimento_produtos_preco.estabelecimeto_produtos = " . 
+						$response["produtos"][$x]["estabelecimento_produtos"][$y]["estabelecimento_produtos.id"], "", 
+						true);
+			}
+			
 		}
 
 		$daoFactory->close();
