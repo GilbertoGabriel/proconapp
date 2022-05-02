@@ -392,29 +392,11 @@ function showMenu() {
 	}
 }
 
-function getValue() {
-	var data = {
-		"cards.name": gV(gI("cards.name")),
-	}
-	console.log(data)
-}
-
-// pesquisa.
-function getSearch() {
-	var data = {
-		"produto": gV(gI("produtos")),
-		"endereco": gV(gI("enderecos")),
-		"preco": gV(gI("precos")),
-	}
-	console.log(data)
-}
-
-// pesquisa no botão.
 function goToSearch() {
 	goTo("/table/search/" + gV(gI("produtos")));
 }
 
-//Pesquisar usando enter.
+//Pesquisar usando enter
 document.addEventListener("keypress", function(e) {
 	if(e.key === 'Enter') {
 	  goToSearch();

@@ -285,7 +285,10 @@
 		public function read($where, $order, $wp) {
 			$line = 0;
 
+		
+			
 			$this->setRead($where, $order);
+
 			$result = $this->connection->execute($this->getRead());
 
 			while ($row = $result->fetch_assoc()) {
