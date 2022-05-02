@@ -1,114 +1,109 @@
 <!-- Read View -->
-	
-	<!-- Content -->
-	
-	<div id="gz-content" class="dv-f-r  table-bg">
 
-		<p class="dv-mt-mdpi dv-mr-xdpi dv-mb-hdpi dv-ml-xdpi gz-gray">
-		
-			<one(titles)>
-			
-				<gz>menus.menu</gz> /
+<!-- Content -->
 
-				<span class="gz-black gz-bold">
-				
-					<gz>telas.tela</gz>
-					
-				</span>
-				
-			</one>	
-				
-		</p>
+<div id="gz-content" class="dv-f-r  table-bg">
 
-		<!-- Table -->
+	<p class="dv-mt-mdpi dv-mr-xdpi dv-mb-hdpi dv-ml-xdpi gz-gray">
 
-		<div class="dv-pr-xdpi dv-pb-xdpi dv-pl-xdpi">
+		<one(titles)>
 
-			<table class="gz-box" style="float: left; width: 49%;">
-				
-				<tr>
+			<gz>menus.menu</gz> /
 
-					<th>
-					
-						Totalizador
-						
-					</th>
-					
-				</tr>
+			<span class="gz-black gz-bold">
 
-				<tr>
+				<gz>telas.tela</gz>
 
-					<td class="dv-pt-hdpi dv-pb-hdpi">
-									
-						<table id="totalt" style="margin-bottom: 0 !important;">
-						
-							<tr>     
-						  
-								<th>Situação</th>
-							
-								<th>Quantidade</th> 
-								
-								<th>Percentual</th> 
-							
-							</tr>
+			</span>
 
-							<tr>
-						  
-								<td><span class="gz-green-tag gz-bold">Ativo</span></td>  
-							
-								<td class="gz-bold">60</td>  
-								
-								<td class="gz-bold">60 %</td>  
-							
-							</tr>
-							
-							<tr>
-						  
-								<td><span class="gz-red-tag gz-bold">Inativo</span></td>  
-							
-								<td class="gz-bold">40</td>  
-								
-								<td class="gz-bold">40 %</td>  
-							
-							</tr>					
+			</one>
 
-						</table>
-						
-					</td>
-					
-				</tr>
-				
-			</table>
-		
-			<table class="gz-box" style="float: right; width: 49%;">
-				
-				<tr>
+	</p>
 
-					<th>
-					
-						Gráfico
-						
-					</th>
-					
-				</tr>
+	<!-- Table -->
 
-				<tr>
+	<div class="dv-pr-xdpi dv-pb-xdpi dv-pl-xdpi">
 
-					<td>
-					
-						<canvas id="total" width="160" height="92" class="dv-pt-hdpi dv-pb-hdpi"
-								style="display: block; margin: 0 auto;"></canvas>
-								
-					</td>
-					
-				</tr>
-				
-			</table>			
-			
-			<div class="dv-clear">
-			
-			</div>
+		<table class="gz-box" style="float: left; width: 49%;">
 
-		</div>
+			<tr>
 
+				<th>
+
+					Totalizador
+
+				</th>
+
+			</tr>
+			<!-- tabela  totalizador-->
+			<tr>
+
+				<td class="dv-pt-hdpi dv-pb-hdpi">
+
+					<table id="totalt" style="margin-bottom: 0 !important;">
+
+						<tr>
+
+							<th>Situação</th>
+
+							<th>Quantidade</th>
+
+							<th>Percentual</th>
+
+						</tr>
+
+						<tr>
+
+							<td><span class="gz-green-tag gz-bold">Ativo</span></td>
+
+							<td class="gz-bold">60</td>
+
+							<td class="gz-bold">60 %</td>
+
+						</tr>
+
+						<tr>
+
+							<td><span class="gz-red-tag gz-bold">Inativo</span></td>
+
+							<td class="gz-bold">40</td>
+
+							<td class="gz-bold">40 %</td>
+
+						</tr>
+
+					</table>
+
+				</td>
+
+			</tr>
+
+		</table>
+		<!--Tabela grafico pizza-->
+		<table class="gz-box" style="float: right; width: 49%;">
+
+			<tr>
+
+				<th>
+
+					Gráfico
+
+				</th>
+
+			</tr>
+
+			<tr>
+
+				<td>
+
+					<canvas id="total" width="160" height="92" class="dv-pt-hdpi dv-pb-hdpi"
+						style="display: block; margin: 0 auto;"></canvas>
+
+				</td>
+
+			</tr>
+
+		</table>
 	</div>
+
+</div>
