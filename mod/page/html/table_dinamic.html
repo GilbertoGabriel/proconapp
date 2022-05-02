@@ -10,35 +10,32 @@
                     <th class="titleTable blue">Estabelecimento</th>
                     <th class="titleTable blue">Preço</th>
                 </tr>
-            
-                   
-                        <for(produtos)>
-                            <tr class="dv-border">
+
+            <tr class="dv-border"></tr>
+                <for(produtos)>
                         <td class="dv-text-align-center">
 
                             <gz>produtos.produto</gz>
-
-                        </td>
-                        <for(estabelecimento_produtos)>
-                            <td class="dv-text-align-center">
-
-                                <gz>estabelecimentos.estabelecimento</gz>
-
-                            </td>
-
-                            <for(estabelecimento_produtos_preco)>
+                            <for(estabelecimento_produtos)>
                                 <td class="dv-text-align-center">
-
-                                    <gz>estabelecimento_produtos_preco.preco</gz>
-
+    
+                                    <gz>estabelecimentos.estabelecimento</gz>
+    
                                 </td>
-                            </for>
-                        </for>
-                    </tr>
-                    </for>
-                   
+    
+                                <for(estabelecimento_produtos_preco)>
+                                    <td class="dv-text-align-center">
+    
+                                        <gz>estabelecimento_produtos_preco.preco</gz>
+    
+                                    </td>
+                                </for>
+                           </for>
+                        </td>
+                     
+                </for>
+            </tr>
 
-             
             </table>
 
         </div>
