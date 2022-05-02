@@ -35,6 +35,7 @@
 			}
 			
 		}
+
 		$daoFactory->close();
 
 		$response["print"] = "true";

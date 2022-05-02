@@ -7,13 +7,13 @@
             <table id="tableProducts" class="dv-margin-mdpi" style="margin-left: 0; margin-right:0px; max-width: 95%;">
                 <tr>
                     <th class="titleTable blue">Produto</th>
-                    <th class="titleTable blue">Marca</th>
                     <th class="titleTable blue">Estabelecimento</th>
                     <th class="titleTable blue">Preço</th>
                 </tr>
-                <for(produtos)>
-                    <tr class="dv-border">
-
+            
+                   
+                        <for(produtos)>
+                            <tr class="dv-border">
                         <td class="dv-text-align-center">
 
                             <gz>produtos.produto</gz>
@@ -25,8 +25,6 @@
                                 <gz>estabelecimentos.estabelecimento</gz>
 
                             </td>
-                            </for>
-
 
                             <for(estabelecimento_produtos_preco)>
                                 <td class="dv-text-align-center">
@@ -35,9 +33,12 @@
 
                                 </td>
                             </for>
+                        </for>
                     </tr>
                     </for>
+                   
 
+             
             </table>
 
         </div>
