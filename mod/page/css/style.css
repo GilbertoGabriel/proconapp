@@ -169,13 +169,13 @@ a:focus {
     transition: 0.5s;
 }
 
-#pesquisa {
+.pesquisa {
     background-color: #00216c;
     border: 2px solid #00bef2;
     color: white;
 }
 
-#pesquisa:focus {
+.pesquisa:focus {
     outline-width: 0px !important;
 }
 

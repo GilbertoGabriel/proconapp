@@ -56,18 +56,15 @@
 
                         <div class="dv-padding-hdpi dv-full-width">
 
-                            <form onsubmit="searchExample(); return false;">
+                            <form onsubmit="goToSearch(); return false;">
 
-                                <input class="dv-padding-mdpi dv-white transparent-bg border-input italic" type="text"
-                                    id="pesquisa" name="pesquisa" autocomplete="off" placeholder="O que você procura?">
+                                <input class="dv-padding-mdpi dv-white transparent-bg border-input italic pesquisa" type="text" id="produtos" name="pesquisa" autocomplete="off" placeholder="O que você procura?">
 
                             </form>
 
                         </div>
 
-                        <img onclick="searchExample();"
-                            class="search-icon dv-position-absolute dv-right dv-margin-right-xdpi dv-cursor dv-white"
-                            src="@_ROOT/mod/page/img/icon/search.svg" width="24px;">
+                        <img onclick="goToSearch();" class="search-icon dv-position-absolute dv-right dv-margin-right-xdpi dv-cursor dv-white" src="@_ROOT/mod/page/img/icon/search.svg" width="24px;">
 
                     </div>
                 </div>
@@ -88,18 +85,15 @@
 
                 <div class="dv-padding-hdpi dv-full-width">
 
-                    <form onsubmit="searchExample(); return false;">
+                    <form>
 
-                        <input class="dv-padding-mdpi dv-white transparent-bg border-input italic" type="text"
-                            id="pesquisa" name="pesquisa" autocomplete="off" placeholder="O que você procura?">
+                        <input onclick="goToSearch();" type="submit" class="pesquisarLabel dv-padding-mdpi dv-margin-mdpi dv-text-align-center dv-radius dv-bold dv-black dv-cursor" value="Pesquisar">
 
                     </form>
 
                 </div>
 
-                <img onclick="searchExample();"
-                    class="search-icon dv-position-absolute dv-right dv-margin-right-xdpi dv-cursor dv-white"
-                    src="@_ROOT/mod/page/img/icon/search.svg" width="24px;">
+                <img onclick="goToSearch();" class="search-icon dv-position-absolute dv-right dv-margin-right-xdpi dv-cursor dv-white" src="@_ROOT/mod/page/img/icon/search.svg" width="24px;">
 
             </div>
 
